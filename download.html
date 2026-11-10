@@ -482,11 +482,11 @@ f.addEventListener('submit',function(e){
  var body=Object.assign({_subject:'New institute enquiry: '+d['Institute name'],_template:'table',_captcha:'false'},d);
  if(d.Email)body._replyto=d.Email;
  fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)})
- .then(function(r){return r.json().then(function(j){if(!r.ok||j.success==='false'||j.success===false)throw 0;ok()})})
- .catch(function(){
+ .then(function(r){return r.json().then(function(j){if(!r.ok||j.success==='false'||j.success===false)throw (j&&j.message)||0;ok()})})
+ .catch(function(m){
   btn.disabled=false;btn.textContent='Submit enquiry';
   var t=Object.keys(d).map(function(k){return k+': '+d[k]}).join('\n');
-  err.innerHTML='We could not send this directly. <a href="mailto:'+TO+'?subject='+encodeURIComponent(body._subject)+'&body='+encodeURIComponent(t)+'">Click here to send it by email instead</a>.'});
+  err.textContent='';err.appendChild(document.createTextNode(typeof m==='string'&&m?m+' ':'We could not send this directly. '));var lk=document.createElement('a');lk.textContent='Click here to send it by email instead';lk.href='mailto:'+TO+'?subject='+encodeURIComponent(body._subject)+'&body='+encodeURIComponent(t);err.appendChild(lk)});// href="mailto:'+TO+'?subject='+encodeURIComponent(body._subject)+'&body='+encodeURIComponent(t)+'">Click here to send it by email instead</a>.'});
 });
 })();
 </script>
@@ -540,8 +540,11 @@ f.addEventListener('submit',function(e){
  var body={_subject:'New review: '+line.inst+' ('+rate+'/5)',_template:'table',_captcha:'false',Name:line.name,Role:line.role,Institute:line.inst,City:line.city,Rating:rate+' / 5',Review:line.text,Mobile:v('v_mob'),'Approve line (paste into reviews.json)':JSON.stringify(line)+','};
  btn.disabled=true;btn.textContent='Sending\u2026';
  fetch('https://formsubmit.co/ajax/vishnu1234stm@gmail.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)})
- .then(function(r){return r.json().then(function(j){if(!r.ok||j.success==='false'||j.success===false)throw 0;document.getElementById('rvbody').hidden=true;document.getElementById('v_ok').hidden=false})})
- .catch(function(){btn.disabled=false;btn.textContent='Submit review';err.textContent='Could not send the review. Please try again in a moment.'});
+ .then(function(r){return r.json().then(function(j){if(!r.ok||j.success==='false'||j.success===false)throw (j&&j.message)||0;document.getElementById('rvbody').hidden=true;document.getElementById('v_ok').hidden=false})})
+ .catch(function(m){btn.disabled=false;btn.textContent='Submit review';
+  var t=Object.keys(body).filter(function(k){return k.charAt(0)!=='_'&&body[k]}).map(function(k){return k+': '+body[k]}).join('\n');
+  err.textContent='';err.appendChild(document.createTextNode((typeof m==='string'&&m?m+' ':'Could not send the review. ')));
+  var a=document.createElement('a');a.href='mailto:vishnu1234stm@gmail.com?subject='+encodeURIComponent(body._subject)+'&body='+encodeURIComponent(t);a.textContent='Send it by email instead';err.appendChild(a)});
 });
 })();
 </script>
