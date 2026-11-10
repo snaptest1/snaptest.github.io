@@ -19,3 +19,9 @@ Lines must be separated by commas; the last one has no comma.
 
 ## Layout
 The viewport is fixed at width=1120, so phones always get the desktop layout (they can pinch-zoom).
+
+## Registration enquiries -> Owner app (v286)
+- download.html writes the form straight to Firestore collection `enquiries` (no email). It reads apiKey/projectId from /firebase-config.js.
+- Owner app: new "Enquiries" tab (owner-enquiries.js). Shows Call / WhatsApp / Mark contacted / Delete.
+- REQUIRED once: paste FIRESTORE_RULES_enquiries.txt into Firebase Console > Firestore > Rules and Publish. Until then the form shows an error.
+- If Firestore App Check enforcement is ON, website writes are rejected; leave it off for the enquiries collection or tell me.

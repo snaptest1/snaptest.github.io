@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com https://formsubmit.co; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com https://formsubmit.co https://firestore.googleapis.com; base-uri 'self'; form-action 'self'; object-src 'none'">
 <style>
 :root{--bg:#000;--ink:#f6f0e2;--mut:#a9a290;--gold:#f2b705;--gold2:#f7d154;--red:#d9291c;--line:#241e12;--card:#0c0a06;color-scheme:dark}
 *{box-sizing:border-box}html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:72px}
@@ -478,15 +478,17 @@ f.addEventListener('submit',function(e){
  if(!v('r_state'))return bad('r_state','Please select the state.');
  if(v('r_pin')&&!/^\d{6}$/.test(v('r_pin')))return bad('r_pin','PIN code must be 6 digits.');
  if(v('r_yt')&&!/^https?:\/\//i.test(v('r_yt')))return bad('r_yt','The link must start with https://');
- var d=collect();btn.disabled=true;btn.textContent='Sending…';
- var body=Object.assign({_subject:'New institute enquiry: '+d['Institute name'],_template:'table',_captcha:'false'},d);
- if(d.Email)body._replyto=d.Email;
- fetch('https://formsubmit.co/ajax/'+TO,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)})
- .then(function(r){return r.json().then(function(j){if(!r.ok||j.success==='false'||j.success===false)throw (j&&j.message)||0;ok()})})
- .catch(function(m){
-  btn.disabled=false;btn.textContent='Submit enquiry';
-  var t=Object.keys(d).map(function(k){return k+': '+d[k]}).join('\n');
-  err.textContent='';err.appendChild(document.createTextNode(typeof m==='string'&&m?m+' ':'We could not send this directly. '));var lk=document.createElement('a');lk.textContent='Click here to send it by email instead';lk.href='mailto:'+TO+'?subject='+encodeURIComponent(body._subject)+'&body='+encodeURIComponent(t);err.appendChild(lk)});// href="mailto:'+TO+'?subject='+encodeURIComponent(body._subject)+'&body='+encodeURIComponent(t)+'">Click here to send it by email instead</a>.'});
+ var d=collect();
+ var last=+(sessionStorage.getItem('enq_t')||0);if(Date.now()-last<30000)return err.textContent='Please wait a few seconds before sending again.';
+ btn.disabled=true;btn.textContent='Sending\u2026';
+ var map={'Owner name':'ownerName','Mobile':'mobile','WhatsApp':'whatsapp','Email':'email','Institute name':'institute','City':'city','District':'district','State':'state','PIN code':'pin','Students':'students','Teachers':'teachers','Classes':'classes','Medium':'medium','Tagline':'tagline','Brand color':'color','YouTube / Website':'link','Message':'message','Preferred contact time':'contactTime'};
+ var fields={status:{stringValue:'new'},source:{stringValue:'download-page'},createdAt:{timestampValue:new Date().toISOString()}};
+ Object.keys(map).forEach(function(k){if(d[k])fields[map[k]]={stringValue:String(d[k]).slice(0,600)}});
+ fetch('/firebase-config.js',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){
+  var k=/apiKey["']?\s*[:=]\s*["']([^"']+)/.exec(t),p=/projectId["']?\s*[:=]\s*["']([^"']+)/.exec(t);if(!k||!p)throw 0;
+  return fetch('https://firestore.googleapis.com/v1/projects/'+encodeURIComponent(p[1])+'/databases/(default)/documents/enquiries?key='+encodeURIComponent(k[1]),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:fields})})
+ }).then(function(r){if(!r.ok)throw 0;sessionStorage.setItem('enq_t',String(Date.now()));ok()})
+ .catch(function(){btn.disabled=false;btn.textContent='Submit enquiry';err.textContent='We could not send your enquiry right now. Please try again in a moment.'});
 });
 })();
 </script>
