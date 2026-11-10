@@ -258,11 +258,29 @@ async function t(name, fn) { try { await fn(); passed++; console.log("  ✅", na
   const adminBs = env.authenticatedContext("ub", { email: "adminB@x.com" });
   await t("Storage: admin-doc ke bina email user NAHI likh sakta", () => assertFails(wr(noDoc, `batches/${A}/b1/n1.pdf`)));
   await t("Storage: disabled (active:false) admin NAHI likh sakta", () => assertFails(wr(disabledAdmin, `batches/${A}/b1/n2.pdf`)));
-  await t("Storage: legacy admin email likh sakta hai", () => assertSucceeds(wr(legacyAdmin, `batches/${A}/b1/n3.pdf`)));
+  await t("v288 Storage: admin-doc ke bina legacy email ab NAHI likh sakta (strict)", () => assertFails(wr(legacyAdmin, `batches/${A}/b1/n3.pdf`)));
   await t("Storage: Owner likh sakta hai", () => assertSucceeds(wr(ownerSt, `batches/${B}/b1/n4.pdf`)));
   await t("Storage: Admin B apne path me likh sakta hai", () => assertSucceeds(wr(adminBs, `batches/${B}/b1/n5.pdf`)));
   await t("Storage: Admin B, Institute A ke path me NAHI likh sakta", () => assertFails(wr(adminBs, `batches/${A}/b1/n6.pdf`)));
   await t("Storage: admin-doc ke bina email user DELETE bhi NAHI kar sakta", () => assertFails(stor(noDoc).ref(`batches/${A}/b1/file.pdf`).delete()));
+
+  /* v288 STRICT TENANT (emulator me chalaya NAHI gaya) */
+  await env.withSecurityRulesDisabled(async (c) => { const db = fsOf(c);
+    await db.doc("tests/t288A").set({ instituteId: A, title: "A test" });
+    await db.doc("tests/t288A/qchunks/c1").set({ q: [] });
+    await db.doc("examManagerExams/e288A").set({ instituteId: A, examName: "A exam" });
+    await db.doc("examManagerExams/e288A/scanResults/r1").set({ roll: "1" });
+    await db.doc("examManagerExams/e288A/roster/main").set({ list: [] });
+    await db.doc("studentRecords/rec288A").set({ instituteId: A, mobile: "9000000001", score: 5 });
+  });
+  console.log("\nv288 strict tenant isolation");
+  await t("v288: Admin B, Institute A ke test ke qchunks NAHI badal sakta", () => assertFails(d(adminB, "tests/t288A/qchunks/c1").set({ q: ["x"] })));
+  await t("v288: Admin A apne test ke qchunks badal sakta hai", () => assertSucceeds(d(adminA, "tests/t288A/qchunks/c1").set({ q: ["ok"] })));
+  await t("v288: Admin B, Institute A ke exam ka scanResults NAHI padh sakta", () => assertFails(d(adminB, "examManagerExams/e288A/scanResults/r1").get()));
+  await t("v288: Admin B, Institute A ka roster NAHI badal sakta", () => assertFails(d(adminB, "examManagerExams/e288A/roster/main").set({ list: ["x"] })));
+  await t("v288: Admin A apne exam ka scanResults padh sakta hai", () => assertSucceeds(d(adminA, "examManagerExams/e288A/scanResults/r1").get()));
+  await t("v288: Admin B, Institute A ka studentRecord NAHI badal / mita sakta", () => Promise.all([assertFails(d(adminB, "studentRecords/rec288A").update({ score: 99 })), assertFails(d(adminB, "studentRecords/rec288A").delete())]));
+  await t("v288: Admin A apne institute ka studentRecord badal sakta hai", () => assertSucceeds(d(adminA, "studentRecords/rec288A").update({ score: 6 })));
 
   await env.cleanup();
   console.log(`\n${passed} passed, ${failed} failed`); if (failedNames.length) console.log("FAILED TESTS:\n  - " + failedNames.join("\n  - ")); process.exit(failed ? 1 : 0);

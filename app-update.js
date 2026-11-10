@@ -83,7 +83,7 @@
   function openDownload() {
     var url = state.url; if (!url || !/^https:\/\/github\.com\//.test(url)) return;
     toast("⬇️ Download shuru — poora hone par file par tap karke Install karein", 6000);
-    cap.nativePromise("Browser", "open", { url: url }).catch(function () { try { window.location.href = url; } catch (e) {} });
+    cap.nativePromise("Browser", "open", { url: url }).catch(function () { try { window.location.href = "intent://" + url.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" + encodeURIComponent(url) + ";end"; } catch (e) {} });
   }
 
   window.SnapAppUpdate = { state: state, check: check, open: openDownload, show: show };

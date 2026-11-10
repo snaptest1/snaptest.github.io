@@ -1,0 +1,18 @@
+# v288 — APK Chrome me download + strict institute isolation
+
+## 1. APK download (Chrome)
+- download.html: "Download APK" ab Android par in-app browser / WebView me ho to Chrome ka `intent://` khol deta hai (wahin se download hota hai, Downloads me dikhta hai). Chrome me ho to seedha download.
+- owner-panel.js: Owner app ka "APK download" link Chrome (Custom Tab) me khulta hai.
+- app-update.js: fallback ab Chrome intent hai (pehle WebView me href — file dikhti nahi thi).
+
+## 2. Strict tenant isolation (firestore.rules / storage.rules)
+- tests/{id}/qchunks: write sirf us test ke institute ke admin se.
+- examManagerExams/{id}/scanPhotos|scanResults|roster aur examRegistrations/{id}/roster|photos: sirf usi institute ka admin (pehle koi bhi admin).
+- studentRecords update/delete: sirf usi institute ka admin.
+- storage.rules: admin-doc + instituteId match ZAROORI (pehle admin-doc na ho to koi bhi email-admin chal jata tha).
+- tests/security-rules.test.js me naye cases (emulator me chalana baaki hai).
+
+## Abhi BAAKI (client code badalna padega, sirf rules se nahi hoga)
+- Global collections bina instituteId ke: pdfDrafts, deletedTests, deletedQuestions, seedExclusions, draftQuestions, qchunks (root), omrTemplates, app_settings, appSettings — kisi bhi admin ko dikhte hain.
+- students/{mobile} `get`, tests `read`, studentRecords `read` signed-in (anonymous) ko khule hain; config/privacy ke lockdown flags ON karne zaroori hain.
+- Purane docs jinme instituteId field nahi, unpar legacy fallback abhi bhi hai.

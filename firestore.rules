@@ -278,6 +278,15 @@ service cloud.firestore {
         (classId in adminAllowedClasses());
     }
 
+    // v288 STRICT TENANT: parent doc (test / exam) kisi doosre institute ka ho to admin ko uski sub-collection par bhi access nahi.
+    // (Sirf purane doc jinme instituteId field hi nahi hai, wahi backward-compat se khule rehte hain.)
+    function sameInstOf(p) {
+      return !('instituteId' in get(p).data) || get(p).data.instituteId == adminInstituteId();
+    }
+    function sameInstData(d) {
+      return !('instituteId' in d) || d.instituteId == adminInstituteId();
+    }
+
     // Koi bhi signed-in visitor — chahe anonymous ho ya admin.
     // (App load hote hi anonymous sign-in ho jata hai, isliye ye
     //  practically "app se aaya hua request" ke barabar hai, random
@@ -404,7 +413,10 @@ service cloud.firestore {
       // atka reh jaata tha.
       match /qchunks/{chunkId} {
         allow read: if isSignedIn();
-        allow write: if isAdmin();
+        allow write: if isAdmin() && (
+          !exists(/databases/$(database)/documents/tests/$(docId)) ||
+          sameInstOf(/databases/$(database)/documents/tests/$(docId))
+        );
       }
     }
 
@@ -489,7 +501,7 @@ service cloud.firestore {
       // requirement as tests/{docId}/qchunks above — a parent match does
       // NOT cover a subcollection.
       match /scanPhotos/{resultId} {
-        allow read, write: if isAdmin();
+        allow read, write: if isAdmin() && sameInstOf(/databases/$(database)/documents/examManagerExams/$(docId));
       }
 
       // scanResults subcollection: one small doc per scanned OMR result
@@ -503,14 +515,14 @@ service cloud.firestore {
       // nested-rule requirement as scanPhotos above — a parent match does
       // NOT cover a subcollection.
       match /scanResults/{resultId} {
-        allow read, write: if isAdmin();
+        allow read, write: if isAdmin() && sameInstOf(/databases/$(database)/documents/examManagerExams/$(docId));
       }
 
       // v230 roster subcollection: roster/main = { list:[{roll,name,mobile,set,classId}], nextRoll }
       // Sirf admin — scan ke waqt roll no -> student match ke liye. Students ise nahi padhte
       // (unhe sirf apna studentAdmitCards doc dikhta hai, neeche).
       match /roster/{rid} {
-        allow read, write: if isAdmin();
+        allow read, write: if isAdmin() && sameInstOf(/databases/$(database)/documents/examManagerExams/$(docId));
       }
     }
 
@@ -540,12 +552,12 @@ service cloud.firestore {
 
       // roster/main = { list:[{name,mobile,classId,cls,group,roll?}], retired:[...] } — sirf admin
       match /roster/{rid} {
-        allow read, write: if isAdmin();
+        allow read, write: if isAdmin() && sameInstOf(/databases/$(database)/documents/examRegistrations/$(regId));
       }
 
       // v232: students ki photo (240x300 jpeg data-URL) — roster doc ke 1MB budget se alag, sirf admin
       match /photos/{pid} {
-        allow read, write: if isAdmin();
+        allow read, write: if isAdmin() && sameInstOf(/databases/$(database)/documents/examRegistrations/$(regId));
       }
     }
 
@@ -741,8 +753,8 @@ service cloud.firestore {
       allow get: if isSignedIn() && canReadRecord(resource.data);
       allow list: if isSignedIn() && canReadRecord(resource.data);
       allow create: if isSignedIn();
-      allow update: if isAdmin();
-      allow delete: if isAdmin();
+      allow update: if isAdmin() && sameInstData(resource.data);
+      allow delete: if isAdmin() && sameInstData(resource.data);
     }
 
     // ── Scanned paper/OMR exam reports linked to a student ─────────
