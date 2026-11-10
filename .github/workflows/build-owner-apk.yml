@@ -91,6 +91,18 @@ jobs:
             --title "SnapTest Owner (b${{ steps.ver.outputs.code }})" \
             --notes "Owner app" --latest=false
 
+      - name: Purane APK releases delete (sirf naya rakho)
+        if: env.HAS_KEYSTORE == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          KEEP="owner-b${{ steps.ver.outputs.code }}"
+          gh release list --limit 200 --json tagName --jq '.[].tagName' | grep -E '^owner-b[0-9]+$' | while read -r T; do
+            [ "$T" = "$KEEP" ] && continue
+            echo "delete: $T"
+            gh release delete "$T" --yes --cleanup-tag || echo "::warning::$T delete nahi hua"
+          done
+
       - name: APK artifact (backup)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:

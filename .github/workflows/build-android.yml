@@ -144,3 +144,16 @@ jobs:
           sleep 90
           curl -fsS -X POST "$URL/broadcast" -H 'Content-Type: text/plain' \
             --data "{\"secret\":\"$SECRET\",\"audience\":\"$AUD\",\"kind\":\"apk\",\"title\":\"Naya APK aaya hai\",\"body\":\"App ka naya version download karein.\"}" || echo "::warning::push nahi gaya"
+
+      - name: Purane APK releases delete (sirf naya rakho)
+        if: env.HAS_KEYSTORE == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          KEEP="app-b${{ steps.ver.outputs.code }}"
+          gh release list --limit 200 --json tagName --jq '.[].tagName' | grep -E '^app-b[0-9]+$' | while read -r T; do
+            [ "$T" = "$KEEP" ] && continue
+            echo "delete: $T"
+            gh release delete "$T" --yes --cleanup-tag || echo "::warning::$T delete nahi hua"
+          done
+

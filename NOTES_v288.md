@@ -16,3 +16,7 @@
 - Global collections bina instituteId ke: pdfDrafts, deletedTests, deletedQuestions, seedExclusions, draftQuestions, qchunks (root), omrTemplates, app_settings, appSettings — kisi bhi admin ko dikhte hain.
 - students/{mobile} `get`, tests `read`, studentRecords `read` signed-in (anonymous) ko khule hain; config/privacy ke lockdown flags ON karne zaroori hain.
 - Purane docs jinme instituteId field nahi, unpar legacy fallback abhi bhi hai.
+
+## v288b — purane APK releases auto-delete
+- build-institute-apk.yml / build-owner-apk.yml / build-android.yml: naya signed APK release banne ke baad usi ke purane releases (aur tags) automatic delete. Sirf latest rehta hai. Institute ke liye sirf usi institute ke (inst-<slug>-bN) delete hote hain, doosre institute ke nahi.
+- Ye workflows tabhi apply hote hain jab .github/workflows GitHub par upload ho (WORKFLOW_PAT na ho to GitHub me khud edit karein).

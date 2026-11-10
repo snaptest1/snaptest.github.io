@@ -121,6 +121,18 @@ jobs:
             --title "${{ steps.inst.outputs.app_name }} (b${{ steps.ver.outputs.code }})" \
             --notes "Institute: ${{ inputs.institute_id }}" --latest=false
 
+      - name: Purane APK releases delete (sirf naya rakho)
+        if: env.HAS_KEYSTORE == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          KEEP="inst-${{ steps.inst.outputs.slug }}-b${{ steps.ver.outputs.code }}"
+          gh release list --limit 200 --json tagName --jq '.[].tagName' | grep -E '^inst-${{ steps.inst.outputs.slug }}-b[0-9]+$' | while read -r T; do
+            [ "$T" = "$KEEP" ] && continue
+            echo "delete: $T"
+            gh release delete "$T" --yes --cleanup-tag || echo "::warning::$T delete nahi hua"
+          done
+
       - name: Is institute ke students + admin ko push (sirf isi institute ko)
         if: env.HAS_KEYSTORE == 'true'
         env:
