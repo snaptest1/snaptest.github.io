@@ -25,3 +25,5 @@ Site ab **https://thevishnusharma.github.io/** par hai (repo `thevishnusharma/th
 - Purane docs/notes/changelog (itihaas) jaise the waise.
 
 Jo abhi bhi jaan-boojh kar purana hai: `com.snaptestpro.*` package IDs, `SnapTestPro.apk` / `SnapTestOwner.apk` file names, Drive folder `SnapTest Pro`, `snaptestpro-backend.onrender.com` (deployed Render service), `snap_*` / `snaptestpro_*` localStorage keys.
+
+**APK release link (app-version.json):** abhi bhi purane repo ke `app-b16` release par point karta hai, kyunki naye repo me abhi koi APK release nahi hai (404 aata tha). Naye repo me *Build Android APK* workflow chalne par ye file apne aap naye repo ke link se badal jayegi. Purana repo tab tak delete/private mat karna.
