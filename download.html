@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=1120,minimum-scale=0.1,maximum-scale=5">
 <meta name="color-scheme" content="dark">
+<meta name="page-version" content="v291">
 <meta name="theme-color" content="#000000">
 <title>SnapTest Pro — Your coaching institute, your own app</title>
 <meta name="description" content="Online tests, ranks, OMR scanning and admit cards in one app. Download your institute's app or open it on the web.">
@@ -583,6 +584,18 @@ f.addEventListener('submit',function(e){
  .catch(function(){btn.disabled=false;btn.textContent='Submit review';err.textContent='We could not send your review right now. Please try again in a moment.'});
 });
 })();
+</script>
+<script>
+/* v291: GitHub Pages har file ~10 minute browser cache me rakhta hai (_headers yahan kaam nahi karta), isliye upload ke baad
+   bhi purana download.html chal sakta tha. Ye check naya version milte hi page ko apne-aap taaza kar deta hai. */
+(function(){try{
+  var cur="v291",tag=document.querySelector('meta[name="page-version"]');if(tag)cur=tag.content;
+  fetch("/download.html?cb="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){
+    var m=/name="page-version" content="([^"]+)"/.exec(t||"");if(!m||m[1]===cur)return;
+    var k="dl_fresh_"+m[1];try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}
+    location.replace("/download.html?v="+encodeURIComponent(m[1])+"&t="+Date.now());
+  }).catch(function(){});
+}catch(e){}})();
 </script>
 </body>
 </html>
