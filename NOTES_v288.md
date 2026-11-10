@@ -30,3 +30,5 @@
 
 ## v288e — APK proxy: galti par seedha GitHub
 - download.html / app-update.js ab proxy URL ko pehle HEAD se check karte hain; theek na ho to seedha GitHub link. Worker ke error message me ab exact path dikhta hai.
+
+## v288f — website Custom Tab me khuli ho to bhi asli Chrome me download (Android par hamesha chrome intent).
