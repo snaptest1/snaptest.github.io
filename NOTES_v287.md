@@ -8,3 +8,4 @@
 - Owner APK: scripts/build-www.js now bundles owner-enquiries.js (it was missing, so the Inbox tab never appeared in the Owner APK). Rebuild the Owner APK: Actions > Build Owner APK > Run workflow.
 - Owner APK now runs in live mode (APP_URL in build-owner-apk.yml): it opens the website's owner-app.html, so every website update shows in the Owner app automatically. Install the new Owner APK once; after that no rebuild is needed. owner-live.js also added to the bundled fallback list.
 - app-ui.css: admin Tests/Students/More cards are now ~150px on laptop (were ~660px squares); phone unchanged.
+- Logo: snaptestpro-logo.png, icon-192/512(+maskable), favicon.ico and splash-screen.jpg replaced with the new SnapTest Pro logo (cleaned, white background). Full original image saved as snaptestpro-banner.jpg. Owner icons (icon-*-owner.png) unchanged.
