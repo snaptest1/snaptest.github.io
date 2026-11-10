@@ -84,7 +84,8 @@
     var W = "https://cool-thunder-a280.vishnu1234stm.workers.dev", m = /^https:\/\/github\.com\/[^\/]+\/[^\/]+\/releases\/download\/([^\/]+)\/([^\/]+\.apk)$/.exec(u);
     if (!m) return Promise.resolve(u);
     var ctrl = window.AbortController ? new AbortController() : null, t = setTimeout(function () { try { ctrl && ctrl.abort(); } catch (e) {} }, 3000);
-    return fetch(W + "/apk/ping", { signal: ctrl ? ctrl.signal : undefined }).then(function (r) { return r.json(); }).then(function (j) { clearTimeout(t); return j && j.ok ? W + "/apk/" + m[1] + "/" + m[2] : u; }).catch(function () { return u; });
+    var p = W + "/apk/" + m[1] + "/" + m[2];
+    return fetch(p, { method: "HEAD", signal: ctrl ? ctrl.signal : undefined }).then(function (r) { clearTimeout(t); return r.ok ? p : u; }).catch(function () { return u; });
   }
   function openDownload() {
     var url = state.url; if (!url || !/^https:\/\/github\.com\//.test(url)) return;

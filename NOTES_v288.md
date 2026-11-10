@@ -27,3 +27,6 @@
 
 ## v288d — download 100% par atakna
 - Chrome Custom Tab (Browser.open) me APK download poora hokar bhi 'Downloading…' par ruk jata tha. app-update.js / owner-panel.js ab link ko system browser me kholte hain (location.href -> Capacitor ACTION_VIEW).
+
+## v288e — APK proxy: galti par seedha GitHub
+- download.html / app-update.js ab proxy URL ko pehle HEAD se check karte hain; theek na ho to seedha GitHub link. Worker ke error message me ab exact path dikhta hai.

@@ -654,12 +654,12 @@ function ghHeaders(env) {
 // GET /apk/ping  -> {ok:true}   |   GET /apk/<tag>/<file>.apk  (sirf is repo ke release tags)
 async function handleApk(request, env, ctx, pathname) {
   if (pathname === '/apk/ping') return json({ ok: true });
-  const m = /^\/apk\/((?:inst-[A-Za-z0-9_-]{1,120}-b\d{1,6})|(?:app-b\d{1,6})|(?:owner-b\d{1,6}))\/([A-Za-z0-9._-]{1,140}\.apk)$/.exec(pathname);
-  if (!m || (request.method !== 'GET' && request.method !== 'HEAD')) throw new HttpErr(404, 'Not found');
+  const m = /^\/apk\/((?:inst|app|owner)-[A-Za-z0-9._-]{1,150})\/([A-Za-z0-9._-]{1,140}\.apk)$/.exec(pathname);
+  if (!m || (request.method !== 'GET' && request.method !== 'HEAD')) throw new HttpErr(404, 'APK link galat: ' + pathname + ' (' + request.method + ')');
   const repo = env.GITHUB_REPO || 'SnaptestPro/snaptestpro.github.io';
   const src = 'https://github.com/' + repo + '/releases/download/' + m[1] + '/' + m[2];
   const up = await fetch(src, { method: request.method, redirect: 'follow', headers: request.headers.get('Range') ? { Range: request.headers.get('Range') } : {}, cf: { cacheEverything: true, cacheTtl: 86400 } });
-  if (!up.ok && up.status !== 206) throw new HttpErr(up.status === 404 ? 404 : 502, 'APK nahi mila');
+  if (!up.ok && up.status !== 206) throw new HttpErr(up.status === 404 ? 404 : 502, 'APK GitHub par nahi mila (' + up.status + '): ' + m[1] + '/' + m[2]);
   const h = new Headers();
   h.set('Content-Type', 'application/vnd.android.package-archive');
   h.set('Content-Disposition', 'attachment; filename="' + m[2] + '"');
