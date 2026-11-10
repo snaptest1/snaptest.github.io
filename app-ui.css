@@ -175,6 +175,8 @@ html.lg-scan #an-nav{display:none!important}
 #sn-page .cd-grid.an-pg{margin:2px 0 12px}
 #sn-page .cd-grid.an-pg .cd-card{aspect-ratio:1/1;min-height:0!important;width:100%;box-sizing:border-box}
 #sn-page .cd-grid.an-pg .cd-card-sub{flex-grow:1}
+/* v287: laptop / bade screen par cards bahut bade ho jaate the (2 column x square). Chhote fixed size; mobile par pehle jaisa 2 column */
+@media(min-width:561px){#sn-page .cd-grid.an-pg{grid-template-columns:repeat(auto-fill,minmax(140px,150px))!important;gap:12px!important;justify-content:start}}
 
 /* v272: popup/modal khule ho to neeche ka floating nav chhup jaye (pehle "Link Karein" jaise buttons nav ke piche chhip jaate the) */
 html:has(.test-analysis-overlay:not(.hidden)) :is(#sn-nav,#an-nav){display:none!important}
