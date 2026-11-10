@@ -25,4 +25,4 @@ jobs:
           BODY=$(printf '%s' "$MSG" | head -n1 | sed -E 's/\[notify:[a-z]+\]//g; s/"/ /g; s/\\/ /g' | cut -c1-200)
           sleep 60
           curl -fsS -X POST "$URL/broadcast" -H 'Content-Type: text/plain' \
-            --data "{\"secret\":\"$SECRET\",\"audience\":\"$AUD\",\"kind\":\"web\",\"title\":\"SnapTest Pro update\",\"body\":\"${BODY:-App me naya update aaya hai.}\"}"
+            --data "{\"secret\":\"$SECRET\",\"audience\":\"$AUD\",\"kind\":\"web\",\"title\":\"The Vishnu Sharma update\",\"body\":\"${BODY:-App me naya update aaya hai.}\"}"

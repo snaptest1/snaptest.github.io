@@ -1,6 +1,6 @@
 /**
  * ╔══════════════════════════════════════════════════════════════════╗
- * ║   SnapTest Pro — AI-POWERED OMR SCANNER (Backend)         ║
+ * ║   The Vishnu Sharma — AI-POWERED OMR SCANNER (Backend)         ║
  * ║   Photo → Claude Vision API → detected answers (JSON)            ║
  * ╠══════════════════════════════════════════════════════════════════╣
  * ║  KYUN CHAHIYE:                                                    ║

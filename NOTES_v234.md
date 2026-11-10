@@ -4,7 +4,7 @@
 1. **Student header** (Home ke upar): ab institute ka logo + naam + chhota "Powered by SnapTest Pro".
    Logo na ho to naam ka pehla akshar (brand rang me). Owner ne "Powered by chhupayein" kiya ho to tagline.
    Branding na mile to purana SnapTestPro look.
-2. **Admin Welcome**: neeche wali instruction line hata di. "Welcome, ▓SAVYASACHI COACHING▓ 👋" jaisa tha waisa.
+2. **Admin Welcome**: neeche wali instruction line hata di. "Welcome, ▓THE VISHNU SHARMA▓ 👋" jaisa tha waisa.
 3. **About screens** (student More → About App, student Settings → About, admin Settings → About + App & Data card): institute logo/naam + Powered by.
 4. **Batch screen** side-logo: institute logo/naam. Batch Tests text me "SnapTest Pro" hata kar neutral text.
 5. **Admit card**: institute naam na ho to fallback ab SnapBrand naam (nahi to purana).

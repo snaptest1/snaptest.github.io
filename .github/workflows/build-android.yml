@@ -119,7 +119,7 @@ jobs:
           NOTES: ${{ inputs.notes }}
           FORCE: ${{ inputs.force }}
         run: |
-          gh release create "app-b$CODE" SnapTestPro.apk --title "SnapTest Pro b$CODE" --notes "$NOTES"
+          gh release create "app-b$CODE" SnapTestPro.apk --title "The Vishnu Sharma b$CODE" --notes "$NOTES"
           node -e "
             const fs=require('fs');
             const o={apk:{build:+process.env.CODE,name:'1.0.'+process.env.CODE,

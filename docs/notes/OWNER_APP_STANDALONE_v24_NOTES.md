@@ -95,7 +95,7 @@ load par miss ho sakta tha).
 ## ⚠️ Deploy ke baad ek zaroori kaam
 
 Manifest ka `id` aur `start_url` badal gaya hai (`/?owner=1` →
-`/owner-app.html`). Jinhone pehle se (v23 wala) "EXAMNOVA Owner" icon
+`/owner-app.html`). Jinhone pehle se (v23 wala) "The Vishnu Sharma Owner" icon
 install kar rakha hai, unka **purana icon home screen se delete karke,
 `owner-app.html` khol kar dobara install karna hoga** — warna purana
 icon ab bhi purani (v23) manifest identity se juda reh sakta hai aur
@@ -115,7 +115,7 @@ zaroori nahi, seedha sahi kaam karega.
 1. Naye tab mein `owner-app.html` seedha kholein (Chrome/Edge) →
    Owner login form seedha dikhna chahiye (koi Admin/Student UI
    nahi), upar gold install banner bhi dikhna chahiye → install
-   karke check karein icon "EXAMNOVA Owner" naam se aata hai.
+   karke check karein icon "The Vishnu Sharma Owner" naam se aata hai.
 2. Icon tap karke app kholein → seedha Owner login (ya agar pehle se
    login ho, seedha Owner Panel) khulna chahiye — kuch bhi flash ya
    overlay nahi, sirf yahi content top-level par.

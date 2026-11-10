@@ -27,7 +27,7 @@ Isliye Owner ke liye ek chhota, alag "install landing" page zaroori tha.
 
 ### Naye files
 
-- **`manifest-owner.webmanifest`** — alag manifest: `name: "EXAMNOVA
+- **`manifest-owner.webmanifest`** — alag manifest: `name: "The Vishnu Sharma
   Owner Panel"`, `start_url: "/?owner=1"` (matlab install ke baad icon
   tap karte hi seedha Owner login/overlay khulta hai — `index.html`
   ka wahi existing `?owner=1` auto-open logic use hota hai, usme kuch
@@ -105,7 +105,7 @@ Isliye Owner ke liye ek chhota, alag "install landing" page zaroori tha.
 1. `owner-app.html` ko kisi Chrome/Edge (Android ya desktop) par
    kholein → "⬇️ Owner App Install Karein" button dikhna chahiye →
    install karke home-screen/app-list icon check karein (naam:
-   "EXAMNOVA Owner", gold ribbon wala icon) → icon tap karke seedha
+   "The Vishnu Sharma Owner", gold ribbon wala icon) → icon tap karke seedha
    Owner login khulna chahiye.
 2. Wahi flow iPhone Safari par bhi try karein (Share → Add to Home
    Screen) — icon tap karne par seedha Owner login khulna chahiye

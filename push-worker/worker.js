@@ -1,4 +1,4 @@
-/* SmarTest Pro — FREE push relay (Cloudflare Workers, free plan, card nahi chahiye).
+/* The Vishnu Sharma — FREE push relay (Cloudflare Workers, free plan, card nahi chahiye).
    Admin app notification Firestore me likhta hai -> phir ye Worker ko bulata hai ->
    Worker FCM se us institute ke sabhi students ke phone par push bhejta hai (app band ho tab bhi).
 
@@ -138,7 +138,7 @@ async function handle(request, env) {
     method: 'POST', headers: { Authorization: 'Bearer ' + at, 'Content-Type': 'application/json' },
     body: JSON.stringify({ message: {
       topic,
-      notification: { title: s('title').slice(0, 100) || 'SmarTest Pro', body: s('body').slice(0, 300) },
+      notification: { title: s('title').slice(0, 100) || 'The Vishnu Sharma', body: s('body').slice(0, 300) },
       data: { instituteId, notifId, type: s('type') || 'admin', ...(batchId ? { batchId } : {}) },
       android: { priority: 'HIGH', ttl: '86400s', notification: { sound: 'default', channel_id: 'snap_updates' } }
     } })
@@ -237,7 +237,7 @@ async function handleBroadcast(request, env) {
   if (diff !== 0) throw new HttpErr(403, 'Secret galat hai');
   const aud = String(req.audience || 'both').toLowerCase();
   const topics = aud === 'admin' ? ['app_admin'] : aud === 'student' ? ['app_student'] : aud === 'owner' ? ['owner_alerts'] : aud === 'all' ? ['app_admin', 'app_student', 'owner_alerts'] : ['app_admin', 'app_student'];   // v259: owner + all
-  const title = String(req.title || 'SmarTest Pro').slice(0, 100), body = String(req.body || 'App me naya update aaya hai.').slice(0, 300);
+  const title = String(req.title || 'The Vishnu Sharma').slice(0, 100), body = String(req.body || 'App me naya update aaya hai.').slice(0, 300);
   const kind = req.kind === 'apk' ? 'apk' : 'web';
   // Institute ka apna app update: sirf us institute ke students + admin ("app_inst_<id>"). Baaki sab ko nahi.
   const instId = String(req.instituteId || '');
@@ -299,7 +299,7 @@ async function handleAlert(request, env) {
   if (!doPush) return { ok: true, pushed: false, seen };
 
   const icon = al.sev === 'critical' ? '🚨' : al.sev === 'error' ? '⚠️' : 'ℹ️';
-  const title = (icon + ' SnapTest ' + al.sev.toUpperCase() + ' • ' + (al.role || 'user') + '/' + (al.plat || 'web')).slice(0, 100);
+  const title = (icon + ' The Vishnu Sharma ' + al.sev.toUpperCase() + ' • ' + (al.role || 'user') + '/' + (al.plat || 'web')).slice(0, 100);
   const lines = [al.msg, al.src && ('File: ' + al.src), al.screen && ('Screen: ' + al.screen), al.inst && ('Institute: ' + al.inst),
     'App: ' + al.app + ' • Net: ' + (al.net || (al.online ? 'online' : 'offline'))].filter(Boolean);
   const out = { fcm: false, telegram: false };
@@ -372,7 +372,7 @@ async function pushDirect(env, sa, projectId, email, instituteId, notifId, req) 
   const topic = batchId ? batchTopic(instituteId, batchId) : 'inst_' + topicSafe(instituteId), at = await googleAccessToken(sa);
   const fr = await fetch('https://fcm.googleapis.com/v1/projects/' + projectId + '/messages:send', {
     method: 'POST', headers: { Authorization: 'Bearer ' + at, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: { topic, notification: { title: String(req.title).slice(0, 100) || 'SmarTest Pro', body: String(req.body || '').slice(0, 300) },
+    body: JSON.stringify({ message: { topic, notification: { title: String(req.title).slice(0, 100) || 'The Vishnu Sharma', body: String(req.body || '').slice(0, 300) },
       data: { instituteId, notifId, type, ...(batchId ? { batchId } : {}) }, android: { priority: 'HIGH', ttl: '86400s', notification: { sound: 'default', channel_id: 'snap_updates' } } } })
   });
   if (!fr.ok) { pushSeen.delete(dk); throw new HttpErr(502, 'FCM fail ' + fr.status + ' ' + (await fr.text()).slice(0, 200)); }
@@ -783,7 +783,7 @@ async function dailyExpiryDigest(env) {
   soon.sort((a, b) => a.d - b.d);
   const body = [soon.length ? '⏳ Jaldi khatam (' + soon.length + '): ' + soon.slice(0, 8).map((x) => x.nm + (x.d <= 0 ? ' (aaj)' : ' (' + x.d + ' din)')).join(', ') : '',
     gone.length ? '❌ Expired (' + gone.length + '): ' + gone.slice(0, 8).map((x) => x.nm + ' (' + (-x.d) + ' din pehle)').join(', ') : ''].filter(Boolean).join('\n').slice(0, 400);
-  const title = '📅 SmarTest Pro — Renewal reminder';
+  const title = '📅 The Vishnu Sharma — Renewal reminder';
   try {
     await fetch('https://fcm.googleapis.com/v1/projects/' + projectId + '/messages:send', { method: 'POST', headers: { Authorization: 'Bearer ' + at, 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: { topic: 'owner_alerts', notification: { title, body }, data: { type: 'owner_digest' }, android: { priority: 'HIGH', ttl: '43200s', notification: { sound: 'default', channel_id: 'snap_updates' } } } }) });

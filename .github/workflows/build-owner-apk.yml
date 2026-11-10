@@ -15,7 +15,7 @@ jobs:
     env:
       OWNER_APP: "1"
       APP_ID: com.snaptestpro.owner
-      APP_NAME: SnapTest Owner
+      APP_NAME: The Vishnu Sharma Owner
       # Live mode: app seedha website kholti hai (owner-app.html) -> website update = owner app update, APK dobara nahi banana padega
       APP_URL: ${{ format('{0}owner-app.html', vars.APP_URL || 'https://snaptestpro.github.io/') }}
       HAS_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' && secrets.ANDROID_KEYSTORE_PASSWORD != '' && secrets.ANDROID_KEY_ALIAS != '' && secrets.ANDROID_KEY_PASSWORD != '' }}
@@ -88,7 +88,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "owner-b${{ steps.ver.outputs.code }}" SnapTestOwner.apk \
-            --title "SnapTest Owner (b${{ steps.ver.outputs.code }})" \
+            --title "The Vishnu Sharma Owner (b${{ steps.ver.outputs.code }})" \
             --notes "Owner app" --latest=false
 
       - name: Purane APK releases delete (sirf naya rakho)

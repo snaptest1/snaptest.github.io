@@ -1,4 +1,4 @@
-/* own-backend.js — HYBRID MODE adapter (SnapTest Pro)
+/* own-backend.js — HYBRID MODE adapter (The Vishnu Sharma)
  *
  * Kya karta hai: firebase.firestore() ke upar ek patla parda (Proxy) lagata hai. Sirf wahi collections jo
  * SNAP_CONFIG.ownBackend.collections me likhi hain apne free backend par jati hain; baaki sab Firebase par

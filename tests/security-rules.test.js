@@ -1,4 +1,4 @@
-/* SnapTest Pro v168 — Security rules tests (Master prompt Rule 7)
+/* The Vishnu Sharma v168 — Security rules tests (Master prompt Rule 7)
    Chalane ke liye (aapke computer par, Java 11+ chahiye):
      npm i -D firebase-tools @firebase/rules-unit-testing firebase
      npx firebase emulators:exec --only firestore,storage "node tests/security-rules.test.js"

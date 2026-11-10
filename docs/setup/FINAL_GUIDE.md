@@ -1,4 +1,4 @@
-# SnapTest Pro — Archived update guide (v157 → v163)
+# The Vishnu Sharma — Archived update guide (v157 → v163)
 
 > **Historical / stale:** this guide documents v157–v163. Do not follow its old upload or deployment steps as current instructions. In particular, Section 1's claim that the two Worker sources and two Android workflow files are identical is stale. Current canonical paths are in `docs/setup/README.md`; the current release process is `docs/RELEASE.md`.
 
@@ -202,7 +202,7 @@ Variables (same page ka **Variables** tab): `APP_URL` pehle se set hai (`https:/
 
 ### F. Update system
 - [ ] **F1.** Settings → App & Data → **Update check** (admin aur student dono). **Expected:** "Aap latest version par hain" (jab tak naya APK na bane).
-- [ ] **F2.** (Pehla naya APK) GitHub → Actions → **Build Android App** → Run. Green tick ka wait. **Expected:** repo me **Releases** me `SnapTest Pro 1.0.N` + `SnapTestPro.apk`; `app-version.json` me `build` badal gaya.
+- [ ] **F2.** (Pehla naya APK) GitHub → Actions → **Build Android App** → Run. Green tick ka wait. **Expected:** repo me **Releases** me `The Vishnu Sharma 1.0.N` + `SnapTestPro.apk`; `app-version.json` me `build` badal gaya.
 - [ ] **F3.** Purani APK wale phone par app kholo ya Update check dabao. **Expected:** "**Naya APK aaya hai**" dialog (Download & Update / Baad mein).
 - [ ] **F4.** **Download & Update** → Chrome download → file par tap → Install. **Expected:** purane app ke upar install, login/data bana. (Pehli baar "Install unknown apps" permission Allow karni pad sakti hai.)
 - [ ] **F5.** Build ke ~2 min baad admin/student phone par push "Naya APK aaya hai" (audience ke hisaab se).
@@ -254,7 +254,7 @@ curl.exe -X POST https://cool-thunder-a280.vishnu1234stm.workers.dev/broadcast -
 | Dikkat | Wajah | Kya karein |
 |---|---|---|
 | Naya look nahi dikha | Purana cache | App background karke wapas kholo; ya Settings → Cache saaf karke refresh |
-| Student ko push nahi aaya | Permission/login | Phone Settings → Apps → SnapTest Pro → Notifications Allow; student ek baar naya app khol ke login kare |
+| Student ko push nahi aaya | Permission/login | Phone Settings → Apps → The Vishnu Sharma → Notifications Allow; student ek baar naya app khol ke login kare |
 | Push "403 / Aap creator nahi" | Admin email se login nahi | Admin email/password se login karein |
 | Push "Notification purani hai" | Online save me 15 min se zyada der | Normal; in-app list me notification phir bhi dikhta hai |
 | `[notify]` wala push nahi gaya | `BROADCAST_SECRET` GitHub/Worker me mismatch | Dono jagah **wahi** secret; Actions log dekhein |

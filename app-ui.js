@@ -111,14 +111,14 @@
           '<div class="sn-faq" style="text-align:center"><b>Abhi koi notification nahi hai</b><p>Naya test ya admin ka message yahan dikhega.</p></div>');
     },
     help: function () {
-      var c = [["📞", "#dcfce7", "Call karein", SUPPORT_PHONE, "tel:" + SUPPORT_PHONE], ["💬", "#dcfce7", "WhatsApp karein", "Chat par turant madad", "https://wa.me/91" + SUPPORT_PHONE + "?text=" + encodeURIComponent("Namaste, mujhe SnapTestPro app mein madad chahiye.")], ["✉️", "#dbeafe", "Email karein", SUPPORT_EMAIL, "mailto:" + SUPPORT_EMAIL + "?subject=" + encodeURIComponent("SnapTestPro Support")]];
+      var c = [["📞", "#dcfce7", "Call karein", SUPPORT_PHONE, "tel:" + SUPPORT_PHONE], ["💬", "#dcfce7", "WhatsApp karein", "Chat par turant madad", "https://wa.me/91" + SUPPORT_PHONE + "?text=" + encodeURIComponent("Namaste, mujhe The Vishnu Sharma app mein madad chahiye.")], ["✉️", "#dbeafe", "Email karein", SUPPORT_EMAIL, "mailto:" + SUPPORT_EMAIL + "?subject=" + encodeURIComponent("The Vishnu Sharma Support")]];
       var faq = [["Test start nahi ho raha?", "Internet check karein, phir Settings → \"Cache saaf karke refresh\" dabayein."], ["Naya test list mein nahi dikh raha?", "Tests tab kholkar refresh karein ya app dobara kholein."], ["Password bhool gaye?", "Login screen par \"Forgot Password\" use karein, ya Admin se sampark karein."]];
       return '<div class="ph"><button type="button" data-a="back">' + svg("back") + '</button><b>Help & Support</b></div><div class="sn-perf"><div><b>Koi problem hai?</b><p>Neeche diye gaye number ya email par seedha contact karein.</p></div>' + svg("headset", 48, "#fff") + '</div>' +
         c.map(function (x) { return '<a class="sn-row" href="' + x[4] + '"><div class="i" style="background:' + x[1] + '">' + E(x[0]) + "</div><div>" + x[2] + "<small>" + x[3] + "</small></div></a>"; }).join("") +
         '<div class="sn-h">Aksar poochhe jaane wale sawaal</div>' + faq.map(function (x) { return '<div class="sn-faq"><b>' + x[0] + "</b><p>" + x[1] + "</p></div>"; }).join("");
     },
     about: function () {
-      var SB = window.SnapBrand, B = SB && SB.ident ? SB.ident({ name: "SmarTest Pro", sub: "Smart Practice • Better Result" }) : { name: "SmarTest Pro", sub: "Smart Practice • Better Result" };
+      var SB = window.SnapBrand, B = SB && SB.ident ? SB.ident({ name: "The Vishnu Sharma", sub: "Smart Practice • Better Result" }) : { name: "The Vishnu Sharma", sub: "Smart Practice • Better Result" };
       return '<div class="ph"><button type="button" data-a="back">' + svg("back") + '</button><b>About App</b></div><div class="sn-about">' + (SB && SB.logoHtml ? SB.logoHtml(72) : '<img src="icon-512-maskable.png" alt="">') + '<b>' + esc(B.name) + '</b><small>' + esc(B.sub) + '</small><span>Version ' + APP_VER + '</span></div>' +
         '<div class="sn-faq"><b>Ye app kya karta hai?</b><p>Online tests, practice mode, result &amp; rank, galat sawaalon ki revision aur 3D Solids Lab — sab ek jagah.</p></div>' +
         '<a class="sn-row" href="mailto:' + SUPPORT_EMAIL + '"><div class="i" style="background:#dbeafe">' + E("🎧") + "</div><div>Help & Support<small>" + SUPPORT_PHONE + " • " + SUPPORT_EMAIL + "</small></div></a>";
@@ -249,7 +249,7 @@
 
     // header
     var top = document.createElement("div"); top.id = "sn-top";
-    top.innerHTML = '<button type="button" class="ic" data-a="m" aria-label="Menu">' + svg("menu") + '</button><div class="lg"><img src="icon-512-maskable.png" alt=""><div><b>SnapTestPro</b><small>Smart Practice • Better Result</small></div></div><button type="button" class="ic" data-a="b" aria-label="Notifications" style="color:#f59e0b">' + svg("bell") + '</button><button type="button" class="av" data-a="u" aria-label="Profile and settings">' + svg("user") + '</button>';
+    top.innerHTML = '<button type="button" class="ic" data-a="m" aria-label="Menu">' + svg("menu") + '</button><div class="lg"><img src="icon-512-maskable.png" alt=""><div><b>The Vishnu Sharma</b><small>Smart Practice • Better Result</small></div></div><button type="button" class="ic" data-a="b" aria-label="Notifications" style="color:#f59e0b">' + svg("bell") + '</button><button type="button" class="av" data-a="u" aria-label="Profile and settings">' + svg("user") + '</button>';
     home.insertBefore(top, home.firstChild);
     try { window.SnapBrand && SnapBrand.paintHeader && SnapBrand.paintHeader(); } catch (e) {}
     fitHeader(); setTimeout(fitHeader, 400); setTimeout(fitHeader, 1500); window.addEventListener("resize", fitHeader); window.addEventListener("orientationchange", function () { setTimeout(fitHeader, 250); });

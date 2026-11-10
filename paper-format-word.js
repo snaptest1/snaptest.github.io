@@ -1,5 +1,5 @@
 /* ============================================================================
-   PAPER FORMAT WORD  (Savyasachi "Test_4" format)  — v1
+   PAPER FORMAT WORD  ("Test_4" format)  — v1
    ----------------------------------------------------------------------------
    Naya, ALAG module. Koi purana function (exportToWord / exportBookletToWord /
    printPaperBooklet) nahi chheda gaya.
@@ -524,7 +524,7 @@
       return;
     }
 
-    var brand = instituteName("SmarTest Pro");
+    var brand = instituteName("The Vishnu Sharma");
     var hdrData = {
       title: brand,
       test: val("subject"),

@@ -15,7 +15,7 @@ Phone me Chrome kholo aur **"Desktop site"** on kar lo (Console desktop jaisi ch
 
 ## 3. Consent screen
 1. Menu -> **APIs & Services -> OAuth consent screen** (ya "Google Auth Platform").
-2. User type **External** -> app name `SnapTest Pro`, support email, developer email.
+2. User type **External** -> app name `The Vishnu Sharma`, support email, developer email.
 3. **Scopes** me sirf `.../auth/drive.file` jodo. (Ye sirf wahi files dekhta hai jo app ne banayi; "sensitive/restricted" scope nahi.)
 4. Jab tak app "Testing" me hai, sirf **Test users** (max 100) login kar sakte hain — institute admins ke Google email yahan jodo. Sabke liye kholne ke liye **Publish app** karna padta hai; `drive.file` ke liye aam tor par bada verification nahi lagta, par ye **verify kar lena**.
 
@@ -35,5 +35,5 @@ Phone me Chrome kholo aur **"Desktop site"** on kar lo (Console desktop jaisi ch
 
 ## Dhyan
 - App token kabhi save nahi karta; Firestore me sirf `driveConnected` aur `driveEmail` rehta hai. Token ~1 ghante me expire hota hai, phir popup/refresh chup-chaap.
-- Drive folder: `SnapTest Pro / <instituteId>`.
+- Drive folder: `The Vishnu Sharma / <instituteId>`.
 - Kuch na chale: browser console / Google ka error text dekho ("origin_mismatch" = origin galat, "access_denied" = test user nahi jora).

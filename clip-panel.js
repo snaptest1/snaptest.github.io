@@ -1,4 +1,4 @@
-/* v248  SnapTest Clipper panel (admin).
+/* v248  The Vishnu Sharma Clipper panel (admin).
    - Clipper ke liye key banana / band karna
    - "Photo se test": gallery ki photo -> backend /api/clip -> AI -> PDF Drafts
    - PDF Draft ki original photo dekhna (SnapClip.showImage)

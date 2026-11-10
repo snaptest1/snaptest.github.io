@@ -1,11 +1,11 @@
 /* ============================================================
-   SmarTest Pro — APP CONFIG (Owner/Developer ek hi jagah se badle)
+   The Vishnu Sharma — APP CONFIG (Owner/Developer ek hi jagah se badle)
    Yahan jo likhoge wahi Student app aur Admin app dono ke
    Help & Support / About me dikhega. Khaali ("") chhodne par wo
    option apne-aap chhup jata hai.
    ============================================================ */
 window.SNAP_CONFIG = {
-  appName: "SmarTest Pro",
+  appName: "The Vishnu Sharma",
   // HYBRID MODE: kuch collections free apne backend par. enabled:false = sab kuch Firebase par (kill-switch). enabled:true = chalu.
   ownBackend: {
     enabled: true,
@@ -32,7 +32,7 @@ window.SNAP_CONFIG = {
   catalog: true,                                                      // v218: batch ki list chhote catalog se (reads kam). false = purana tareeka (poore items padhna)
   youtubeLive: true,                                                  // v217: live class = YouTube embed (ytId). false = Phase 0 wala purana link-prompt (kill-switch)
   driveUpload: true,
-  brandMark: true,                                                    // v233: har output (admit card, result sheet, paper print) par "Powered by SmarTest Pro" tag. Institute-wise chhupana: Owner Panel hidePoweredBy. false = sab jagah band
+  brandMark: true,                                                    // v233: har output (admit card, result sheet, paper print) par "Powered by The Vishnu Sharma" tag. Institute-wise chhupana: Owner Panel hidePoweredBy. false = sab jagah band
   registration: true,                                                 // v231: Test se pehle "Registration" (students + shuffled roll + admit card). false = band
   roster: true,                                                       // v230: Exam Manager me "Admit Card & Roster" + scan par roll-match/anomaly check. false = purana scan flow (kill-switch)
   admitCard: true,                                                    // v230: student dashboard par "Admit Card" card. false = card nahi dikhta (kill-switch)

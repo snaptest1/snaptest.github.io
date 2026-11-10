@@ -108,7 +108,7 @@
   /* Apps Script (ek baar paste + deploy). Web-app GET: ping / create (naya Google Form) / responses / close. Token se surakshit. */
   function buildScript(token) {
     var L = [
-      "// SnapTest — Registration Google Form helper (ek baar deploy karein)",
+      "// The Vishnu Sharma — Registration Google Form helper (ek baar deploy karein)",
       "var TOKEN = " + JSON.stringify(String(token)) + ";",
       "var Q = " + JSON.stringify(FORM_Q) + ";",
       "function out(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }",

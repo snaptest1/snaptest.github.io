@@ -2,7 +2,7 @@
 
 ## Kya hai
 Naya button **📘 Paper Format Word** (sidebar + top toolbar). Paper me jo questions
-select hain, unhe Savyasachi "Test_4" format me auto-layout karke `.docx` download karta hai.
+select hain, unhe "Test_4" format me auto-layout karke `.docx` download karta hai.
 Naya alag module: `paper-format-word.js`. Koi purana function nahi chheda
 (`exportToWord`, `exportBookletToWord`, `printPaperBooklet` jaise ke taise).
 
@@ -19,7 +19,7 @@ N = 8: `[8|1] [2|7] [6|3] [4|5]`. N = 4: `[4|1] [2|3]`.
 - 40 page se zyada ho to confirm aata hai.
 
 ## Header kahan se aata hai
-- Title: `SnapBrand.plain()` (institute ka naam), fallback "SAVYASACHI COACHING"
+- Title: `SnapBrand.plain()` (institute ka naam), fallback "THE VISHNU SHARMA"
 - Test: `#subject`, M.M: `#maxMarks`, DATE: `#testDate`, Instruction: `#instructions`
 - CLASS: click karne par prompt poochta hai (yaad rakhta hai)
 

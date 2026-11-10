@@ -5,7 +5,7 @@
   var C = function () { return window.SNAP_CONFIG || {}; };
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
-  function bi() { var S = window.SnapBrand; return S && S.ident ? S.ident({ name: "SnapTestPro" }) : { brand: false, name: "SmarTest Pro", sub: "", powered: false }; }
+  function bi() { var S = window.SnapBrand; return S && S.ident ? S.ident({ name: "The Vishnu Sharma" }) : { brand: false, name: "The Vishnu Sharma", sub: "", powered: false }; }
   function bl(sz) { var S = window.SnapBrand; return S && S.logoHtml ? S.logoHtml(sz) : '<img src="icon-512-maskable.png" alt="" style="width:' + sz + 'px;height:' + sz + 'px">'; }
   var digits = function (s) { return String(s || "").replace(/\D/g, "").slice(-10); };
 
@@ -127,8 +127,8 @@
       var c = C(), ph = digits(c.supportPhone), wa = digits(c.supportWhatsapp || c.supportPhone), em = c.supportEmail || "";
       var acts = "";
       if (ph) acts += '<a class="asp-btn" href="tel:+91' + ph + '">📞 Call</a>';
-      if (wa) acts += '<a class="asp-btn g" target="_blank" rel="noopener" href="https://wa.me/91' + wa + '?text=' + encodeURIComponent("Namaste, SnapTestPro Admin se madad chahiye.") + '">💬 WhatsApp</a>';
-      if (em) acts += '<a class="asp-btn o" href="mailto:' + esc(em) + '?subject=' + encodeURIComponent("SnapTestPro Admin Support") + '">✉️ Email</a>';
+      if (wa) acts += '<a class="asp-btn g" target="_blank" rel="noopener" href="https://wa.me/91' + wa + '?text=' + encodeURIComponent("Namaste, The Vishnu Sharma Admin se madad chahiye.") + '">💬 WhatsApp</a>';
+      if (em) acts += '<a class="asp-btn o" href="mailto:' + esc(em) + '?subject=' + encodeURIComponent("The Vishnu Sharma Admin Support") + '">✉️ Email</a>';
       var faqs = (c.adminFaqs || []).map(function (f) { return '<div class="asp-card"><b>' + esc(f[0]) + '</b><p>' + esc(f[1]) + '</p></div>'; }).join("");
       done("Help & Support", "Humse sampark karein",
         '<div class="asp-card"><b>Koi problem hai?</b><p>Owner / Developer se seedha contact karein.' + (c.supportHours ? "<br>🕒 " + esc(c.supportHours) : "") + '</p>' +

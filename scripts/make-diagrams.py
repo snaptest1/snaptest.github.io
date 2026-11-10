@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""SnapTest Pro — system map + data map (PNG/PDF). Chalane ke liye: pip install matplotlib; python3 scripts/make-diagrams.py
+"""The Vishnu Sharma — system map + data map (PNG/PDF). Chalane ke liye: pip install matplotlib; python3 scripts/make-diagrams.py
 Code badle (naya service/collection jude) to yahan ka text badal kar dobara chalayein. Output: docs/diagrams/"""
 import os
 import matplotlib
@@ -42,7 +42,7 @@ def canvas(w=24, h=15):
 # ===================================================================== 1. SYSTEM MAP
 fig, ax = canvas()
 ax.add_patch(plt.Rectangle((0, 141), 240, 9, fc=INK, ec=INK))
-ax.text(3, 145.5, "SmarTest Pro / SnapTest Pro  —  System Map", fontsize=26, color="white", fontweight="bold", va="center")
+ax.text(3, 145.5, "The Vishnu Sharma  —  System Map", fontsize=26, color="white", fontweight="bold", va="center")
 ax.text(237, 145.5, "Build 240  |  web 1.4.26  |  Firebase project: the-vishnu-sharma-test (Spark / free plan)", fontsize=13, color="#cbd5e1", va="center", ha="right")
 
 # --- Row A: apps

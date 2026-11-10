@@ -1,11 +1,11 @@
 /* ============================================================
-   SmarTest Pro — APP CONFIG (Owner/Developer ek hi jagah se badle)
+   The Vishnu Sharma — APP CONFIG (Owner/Developer ek hi jagah se badle)
    Yahan jo likhoge wahi Student app aur Admin app dono ke
    Help & Support / About me dikhega. Khaali ("") chhodne par wo
    option apne aap chhup jata hai.
    ============================================================ */
 window.SNAP_CONFIG = {
-  appName: "SmarTest Pro",
+  appName: "The Vishnu Sharma",
   // HYBRID MODE: kuch collections free apne backend par. enabled:false = sab kuch Firebase par (kill-switch). enabled:true = chalu.
   ownBackend: {
     enabled: true,
@@ -22,7 +22,7 @@ window.SNAP_CONFIG = {
     tokenAutoRefresh: true
   },
   tagline: "Smart Practice • Better Result",
-  version: "1.4.88",
+  version: "1.4.89",
   workerUrl: "https://cool-thunder-a280.vishnu1234stm.workers.dev",   // Cloudflare Worker (bank + push + owner alerts)
   ownFiles: false,                                                    // DEPRECATED (v216): Cloudflare R2 "SnapFiles" band hai aur rahega — file upload ab Google Drive se. Code abhi rakha hai, aage hatega.
   googleClientId: "1009250922801-16aubac9rbmnlvpru734phg5c3e8c4rn.apps.googleusercontent.com",                                                 // <-- yahan Google OAuth Web Client ID daalein (DRIVE_SETUP_HINDI.md dekhein). Khaali = Drive upload band
@@ -33,7 +33,7 @@ window.SNAP_CONFIG = {
   catalog: true,                                                      // v218: batch ki list chhote catalog se (reads kam). false = purana tareeka (poore items padhna)
   youtubeLive: true,                                                  // v217: live class = YouTube embed (ytId). false = Phase 0 wala purana link-prompt (kill-switch)
   driveUpload: true,
-  brandMark: true,                                                    // v233: har output (admit card, result sheet, paper print) par "Powered by SmarTest Pro" tag. Institute-wise chhupana: Owner Panel hidePoweredBy. false = sab jagah band
+  brandMark: true,                                                    // v233: har output (admit card, result sheet, paper print) par "Powered by The Vishnu Sharma" tag. Institute-wise chhupana: Owner Panel hidePoweredBy. false = sab jagah band
   registration: true,                                                 // v231: Test se pehle "Registration" (students + shuffled roll + admit card). false = band
   roster: true,                                                       // v230: Exam Manager me "Admit Card & Roster" + scan par roll-match/anomaly check. false = purana scan flow (kill-switch)
   admitCard: true,                                                    // v230: student dashboard par "Admit Card" card. false = card nahi dikhta (kill-switch)
@@ -56,7 +56,7 @@ window.SNAP_CONFIG = {
   },
   appLock: true,                                                      // institute-APK / ?inst= link lock + "app band hai" screen (kill-switch)
   ownerAlertEmail: "vishnu1234stm@gmail.com",                         // is email se login par owner app me alerts ka push aata hai
-  build: "302",
+  build: "303",
   ownerName: "Vishnu Sharma",
   supportPhone: "9525208263",
   supportWhatsapp: "9525208263",          // WhatsApp number (khaali = phone wala use hoga)

@@ -1,7 +1,7 @@
 {
   "id": "/owner-app.html",
-  "name": "SmarTest Pro Owner Panel",
-  "short_name": "SmarTest Pro Owner",
+  "name": "The Vishnu Sharma Owner Panel",
+  "short_name": "The Vishnu Sharma Owner",
   "description": "Owner Panel — saare institutes aur unke admins manage karein.",
   "start_url": "/owner-app.html",
   "scope": "/",

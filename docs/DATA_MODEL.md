@@ -1,6 +1,6 @@
 # Data model
 
-This is a source-level map of the Firestore paths used by SnapTest Pro. Field sets vary by app version and older records may omit newer fields; treat the rules and current code as the schema authority when changing a collection.
+This is a source-level map of the Firestore paths used by The Vishnu Sharma. Field sets vary by app version and older records may omit newer fields; treat the rules and current code as the schema authority when changing a collection.
 
 ## Top-level collections
 

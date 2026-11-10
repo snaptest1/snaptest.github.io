@@ -1,4 +1,4 @@
-/* SmarTest Pro — Batch Management System v1
+/* The Vishnu Sharma — Batch Management System v1
    Admin Panel (batches, live classes, recordings, notes, PPT, students, announcements) + Student "Batch" section.
    Data: institutes/{instituteId}/batches/{batchId}  +  .../items/{itemId}  +  .../members/{mobile}
    Free-tier safe: koi Firebase Storage / Cloud Functions nahi — files ke liye link (Drive/YouTube/URL). */
@@ -245,7 +245,7 @@
   function buildAdmin() {
     var o = $("#bm-admin"); o && o.remove();
     o = document.createElement("div"); o.id = "bm-admin";
-    o.innerHTML = '<aside class="bm-side"><div class="bm-logo">' + (window.SnapBrand && SnapBrand.logoHtml ? SnapBrand.logoHtml(30) : '<img src="icon-512-maskable.png" alt="">') + (window.SnapBrand && SnapBrand.ident ? SnapBrand.esc(SnapBrand.ident({ name: "SmarTest Pro" }).name) : "SmarTest Pro") + '</div>' +
+    o.innerHTML = '<aside class="bm-side"><div class="bm-logo">' + (window.SnapBrand && SnapBrand.logoHtml ? SnapBrand.logoHtml(30) : '<img src="icon-512-maskable.png" alt="">') + (window.SnapBrand && SnapBrand.ident ? SnapBrand.esc(SnapBrand.ident({ name: "The Vishnu Sharma" }).name) : "The Vishnu Sharma") + '</div>' +
       navAll().map(function (n) { return '<button class="bm-nav" data-v="' + n[0] + '"><span>' + n[1] + '</span>' + n[2] + '</button>'; }).join("") +
       '<button class="bm-nav" data-v="exit"><span>⬅️</span>Admin Home</button><div class="bm-me">' + esc(adminEmail()) + '<br>Admin</div></aside>' +
       '<main class="bm-main"><div class="bm-top"><button class="bm-burger" id="bm-burger">☰</button><h2 id="bm-title"></h2><span id="bm-topact"></span></div><div id="bm-drivebn"></div><div id="bm-main"></div></main>';
@@ -621,7 +621,7 @@ function vPay(m) {
     m.innerHTML = '<div class="bm-empty">Loading…</div>';
     authReady().then(function () { return pref(A.inst).get(); }).then(function (d) {
       var v = d.exists ? d.data() : {};
-      m.innerHTML = '<div class="bm-card"><h3>UPI Payment Setup</h3><div class="bm-form"><label>Payee / Institute ka naam</label><input id="ps_n" value="' + esc(v.payeeName || "") + '" placeholder="Savyasachi Coaching">' +
+      m.innerHTML = '<div class="bm-card"><h3>UPI Payment Setup</h3><div class="bm-form"><label>Payee / Institute ka naam</label><input id="ps_n" value="' + esc(v.payeeName || "") + '" placeholder="The Vishnu Sharma">' +
         '<label>UPI ID (optional)</label><input id="ps_u" value="' + esc(v.upiId || "") + '" placeholder="name@upi"><div class="bm-note">UPI ID dene par student ko "UPI app se pay karein" button milta hai (amount apne aap bhar jaata hai).</div>' +
         '<label>QR Scanner image (PhonePe / GPay / Paytm ka QR screenshot)</label><input id="ps_f" type="file" accept="image/*"><div id="ps_p" style="margin-top:10px">' + (v.qr ? '<img src="' + v.qr + '" style="max-width:220px;border-radius:12px;border:1px solid #e2e8f0">' : '<span class="bm-note">Abhi QR set nahi hai.</span>') + '</div>' +
         '<div class="acts"><button class="bm-btn" id="ps_s">Save</button></div></div><div class="bm-note">⚠️ Payment automatic verify nahi hoti. Student UTR/screenshot bhejta hai, aap apni UPI app me paisa dekhkar Approve karte hain.</div></div>';

@@ -1,7 +1,7 @@
 rules_version = '2';
 
 // ══════════════════════════════════════════════════════════════════
-// SnapTest Pro — FIRESTORE SECURITY RULES
+// The Vishnu Sharma — FIRESTORE SECURITY RULES
 // ══════════════════════════════════════════════════════════════════
 // IMPORTANT — README pehle padhein: FIREBASE_SECURITY_SETUP.md
 //

@@ -1,4 +1,4 @@
-/* v148 — SnapTestPro app look: soft blue theme, pastel cards, bottom nav (student), cleaner admin */
+/* v148 — The Vishnu Sharma app look: soft blue theme, pastel cards, bottom nav (student), cleaner admin */
 :root{--sn-blue:#2563eb;--sn-blue2:#1d4ed8;--sn-bg:#f4f7fe;--sn-line:#e4ebfb;--sn-ink:#0f1b3d;--sn-mut:#64748b}
 body{background:linear-gradient(180deg,#f4f7fe,#eef3ff 60%,#f7f9ff)!important;color:var(--sn-ink)}
 .card{border-radius:18px!important;border:1px solid var(--sn-line)!important;box-shadow:0 6px 18px rgba(30,64,175,.07)!important}

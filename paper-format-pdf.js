@@ -244,7 +244,7 @@
     return pdf.output("blob");
   }
 
-  /* ---- app (Capacitor) me seedha phone me save: Documents/SnapTestPro/ ---- */
+  /* ---- app (Capacitor) me seedha phone me save: Documents/TheVishnuSharma/ ---- */
   function getCap() {
     var w = []; try { if (window.top) w.push(window.top); } catch (e) {}
     try { if (window.parent && window.parent !== window.top) w.push(window.parent); } catch (e) {}
@@ -268,7 +268,7 @@
       for (var d = 0; d < dirs.length && !ok; d++) {
         try {
           await Promise.race([
-            C.nativePromise("Filesystem", "writeFile", { path: "SnapTestPro/" + files[i].name, data: data, directory: dirs[d], recursive: true }),
+            C.nativePromise("Filesystem", "writeFile", { path: "TheVishnuSharma/" + files[i].name, data: data, directory: dirs[d], recursive: true }),
             new Promise(function (_, rej) { setTimeout(function () { rej(new Error("timeout")); }, 25000); })
           ]);
           ok = true;
@@ -362,7 +362,7 @@
       document.body.appendChild(host);
 
       var hdrBase = {
-        title: H.instituteName("SmarTest Pro"),
+        title: H.instituteName("The Vishnu Sharma"),
         test: H.val("subject"), mm: H.val("maxMarks"),
         date: H.fmtDate(H.val("testDate")), time: H.fmtTime(H.val("timeMin")),
         instr: H.val("instructions") || "सभी प्रश्न अनिवार्य हैं। प्रत्येक प्रश्न के लिए एक ही सही उत्तर है।"
@@ -387,7 +387,7 @@
       if (isApp) {
         var n = await saveAllNative(files);
         if (n === files.length) {
-          if (typeof toast === "function") toast("✅ " + n + " PDF save ho gayi: Documents/SnapTestPro folder me");
+          if (typeof toast === "function") toast("✅ " + n + " PDF save ho gayi: Documents/TheVishnuSharma folder me");
           return;
         }
         // native save nahi chali -> buttons wala dialog (fallback)

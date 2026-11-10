@@ -1,4 +1,4 @@
-/* SnapTest Pro — Batch Management System (v1) — Admin panel + Student Batch section */
+/* The Vishnu Sharma — Batch Management System (v1) — Admin panel + Student Batch section */
 :root{--bm-navy:#0b1650;--bm-navy2:#101f66;--bm-blue:#2563eb;--bm-purple:#7c3aed;--bm-bg:#f3f6fd;--bm-card:#fff;--bm-tx:#0f172a;--bm-mut:#64748b;--bm-line:#e2e8f0;--bm-green:#16a34a;--bm-red:#dc2626;--bm-amber:#f59e0b}
 .bm-hidden{display:none!important}
 .bm-btn{border:0;border-radius:10px;padding:9px 14px;font-weight:700;font-size:.82rem;cursor:pointer;background:linear-gradient(135deg,var(--bm-blue),var(--bm-purple));color:#fff}

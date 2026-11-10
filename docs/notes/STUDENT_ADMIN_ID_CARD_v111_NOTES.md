@@ -14,7 +14,7 @@ line ki jagah ek asli dark + gold University ID Card dikhta hai:
 | Left circular logo + Right badge logo | Admin ne jo institute-logo upload kiya hai (dono jagah wahi ek logo) |
 | Beech ki badi photo | Student khud us par click karke apni photo lagata hai — **default mein khaali/blank** rehti hai jab tak khud na lagaye (bilkul aapke bataye tareeke se) |
 | Name | Registration ke waqt diya naam |
-| ID Number | **Institute-code + Serial No** (jaise "Savyasachi Coaching" → `SC0001`, `SC0002`...) — har naye student ko institute ke hisaab se agla unique number apne aap milta hai |
+| ID Number | **Institute-code + Serial No** (jaise "The Vishnu Sharma" → `SC0001`, `SC0002`...) — har naye student ko institute ke hisaab se agla unique number apne aap milta hai |
 | Class | Registration ke waqt jo class chuni thi |
 | Academic Session | **Live-calculated** — kabhi save nahi hoti, hamesha aaj ki date ke hisaab se sahi session dikhati hai (April se naya session shuru hota hai, jaise "2026-27") |
 | Issue Date | Registration ki date |

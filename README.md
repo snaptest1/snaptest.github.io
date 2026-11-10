@@ -1,4 +1,4 @@
-# SnapTest Pro
+# The Vishnu Sharma
 
 ![CI](https://github.com/SnaptestPro/snaptestpro.github.io/actions/workflows/ci.yml/badge.svg)
 

@@ -391,7 +391,7 @@
     });
   }
   function waLink(en, ex) {
-    var t = "Namaste " + en.name + ", " + (ex.examName || "exam") + " (" + root.SnapAdmit.prettyDate(ex.date) + ") ka Admit Card ready hai. Roll No: " + en.roll + ". SnapTest app me \"Admit Card\" se dekhein/download karein.";
+    var t = "Namaste " + en.name + ", " + (ex.examName || "exam") + " (" + root.SnapAdmit.prettyDate(ex.date) + ") ka Admit Card ready hai. Roll No: " + en.roll + ". The Vishnu Sharma app me \"Admit Card\" se dekhein/download karein.";
     return "https://wa.me/91" + en.mobile + "?text=" + encodeURIComponent(t);
   }
 

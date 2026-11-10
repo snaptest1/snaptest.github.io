@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "SmarTest Pro — Smart Tests • Better Preparation • Better Results",
-  "short_name": "SmarTest Pro",
-  "description": "Practice tests, track your rank on the leaderboard, and prepare smarter with SmarTest Pro.",
+  "name": "The Vishnu Sharma — Smart Tests • Better Preparation • Better Results",
+  "short_name": "The Vishnu Sharma",
+  "description": "Practice tests, track your rank on the leaderboard, and prepare smarter with The Vishnu Sharma.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -70,14 +70,14 @@
       "sizes": "1024x1024",
       "type": "image/jpeg",
       "form_factor": "wide",
-      "label": "SmarTest Pro Dashboard - Desktop View"
+      "label": "The Vishnu Sharma Dashboard - Desktop View"
     },
     {
       "src": "screenshot-narrow.jpg",
       "sizes": "1024x1024",
       "type": "image/jpeg",
       "form_factor": "narrow",
-      "label": "SmarTest Pro - Mobile View"
+      "label": "The Vishnu Sharma - Mobile View"
     }
   ],
   "shortcuts": [
