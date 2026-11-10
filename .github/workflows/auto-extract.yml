@@ -3,7 +3,7 @@ name: Auto Extract Zip
 # Repo ke root me koi *.zip upload karo -> ye khud:
 #   1) extract karke files adjust karta hai,
 #   2) version.json ka build apne-aap +1 karta hai (agar zip me tumne pehle se bada build nahi diya) + sab files sync (stamp-version),
-#   3) commit/push, phir naya version LIVE hone ka intezar karke Admin + Student + Owner sabko notification bhejta hai.
+#   3) commit/push, phir naya version LIVE hone ka intezar karke sirf Owner ko notification bhejta hai.
 # Commit message (zip upload karte waqt) me tag likh sakte ho:
 #   [quiet]  -> notification nahi jayegi (update phir bhi app kholne par lag jayega)
 #   [force]  -> admin/owner par "Update zaroori hai" parda (minBuild = naya build). Students par kabhi nahi (exam safe).
@@ -104,5 +104,5 @@ jobs:
           case "$LINE" in ""|"Add files via upload"*|"Auto extract"*|"Upload"*) LINE="";; esac
           if [ -n "$LINE" ]; then BODY="$LINE — app kholte hi update apne-aap lag jayega."; else BODY="App me naya update aaya hai — app kholte hi apne-aap lag jayega."; fi
           export BODY
-          PAYLOAD=$(node -e 'console.log(JSON.stringify({secret:process.env.SECRET,audience:"all",kind:"web",title:"SnapTest Pro update",body:process.env.BODY}))')
+          PAYLOAD=$(node -e 'console.log(JSON.stringify({secret:process.env.SECRET,audience:"owner",kind:"web",title:"SnapTest Pro update",body:process.env.BODY}))')
           curl -fsS -X POST "$URL/broadcast" -H 'Content-Type: text/plain' --data "$PAYLOAD"

@@ -121,6 +121,19 @@ jobs:
             --title "${{ steps.inst.outputs.app_name }} (b${{ steps.ver.outputs.code }})" \
             --notes "Institute: ${{ inputs.institute_id }}" --latest=false
 
+      - name: Is institute ke students + admin ko push (sirf isi institute ko)
+        if: env.HAS_KEYSTORE == 'true'
+        env:
+          SECRET: ${{ secrets.BROADCAST_SECRET }}
+          URL: ${{ vars.PUSH_WORKER_URL || 'https://cool-thunder-a280.vishnu1234stm.workers.dev' }}
+          INST: ${{ inputs.institute_id }}
+          APPNAME: ${{ steps.inst.outputs.app_name }}
+        run: |
+          if [ -z "$SECRET" ]; then echo "BROADCAST_SECRET nahi — push skip"; exit 0; fi
+          sleep 90
+          PAYLOAD=$(node -e 'console.log(JSON.stringify({secret:process.env.SECRET,instituteId:process.env.INST,kind:"apk",title:(process.env.APPNAME||"App")+" update",body:"App ka naya version aaya hai. Update karein."}))')
+          curl -fsS -X POST "$URL/broadcast" -H 'Content-Type: text/plain' --data "$PAYLOAD" || echo "::warning::push nahi gaya"
+
       - name: APK artifact (backup)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:

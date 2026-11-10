@@ -239,6 +239,9 @@ async function handleBroadcast(request, env) {
   const topics = aud === 'admin' ? ['app_admin'] : aud === 'student' ? ['app_student'] : aud === 'owner' ? ['owner_alerts'] : aud === 'all' ? ['app_admin', 'app_student', 'owner_alerts'] : ['app_admin', 'app_student'];   // v259: owner + all
   const title = String(req.title || 'SmarTest Pro').slice(0, 100), body = String(req.body || 'App me naya update aaya hai.').slice(0, 300);
   const kind = req.kind === 'apk' ? 'apk' : 'web';
+  // Institute ka apna app update: sirf us institute ke students + admin ("app_inst_<id>"). Baaki sab ko nahi.
+  const instId = String(req.instituteId || '');
+  if (instId) { if (instId.length > 120 || /[\/\s]/.test(instId)) throw new HttpErr(400, 'Bad instituteId'); topics.length = 0; topics.push('app_inst_' + topicSafe(instId)); }
   const sa = JSON.parse(env.SERVICE_ACCOUNT_JSON), projectId = env.PROJECT_ID || sa.project_id, at = await googleAccessToken(sa);
   for (const topic of topics) {
     const fr = await fetch('https://fcm.googleapis.com/v1/projects/' + projectId + '/messages:send', {

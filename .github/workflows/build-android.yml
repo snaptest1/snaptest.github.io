@@ -8,9 +8,9 @@ on:
       audience:
         description: "Kise notification bheje"
         required: true
-        default: both
+        default: owner
         type: choice
-        options: [both, admin, student, none]
+        options: [owner, both, admin, student, none]
       notes:
         description: "Kya naya hai (dialog me dikhega)"
         required: false

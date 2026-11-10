@@ -21,6 +21,7 @@
       document.body.appendChild(b); setTimeout(function () { b.remove(); }, 5000); } catch (e) {}
   }
   function batchTopic(i, b) { var re = /[^a-zA-Z0-9\-_.~%]/g; return "bat_" + String(i).replace(re, "_") + "_" + String(b).replace(re, "_"); }
+  function appTopicFor(id) { return "app_inst_" + String(id).replace(/[^a-zA-Z0-9\-_.~%]/g, "_"); }   // sirf apne institute ka app update
   function topicFor(id) { return "inst_" + String(id).replace(/[^a-zA-Z0-9\-_.~%]/g, "_"); }
   function native(method, opts) { var C = getCap(); return C ? C.nativePromise("FirebaseMessaging", method, opts || {}) : Promise.reject(new Error("no plugin")); }
 
@@ -64,9 +65,9 @@
       try { var a = typeof getAuth === "function" ? getAuth() : null; admin = !!(a && a.currentUser && a.currentUser.email && typeof getCurrentAdminInstituteId === "function" && getCurrentAdminInstituteId()); } catch (e) {}
       var wants = [];
       if (!localStorage.getItem(OPT_OUT)) {
-        if (s && s.instituteId) { wants.push(topicFor(s.instituteId)); wants.push("app_student"); try { (window.SnapV169 ? window.SnapV169.mineList() : []).forEach(function (b) { wants.push(batchTopic(s.instituteId, b)); }); } catch (e) {} }   // institute notices + app update (students)
+        if (s && s.instituteId) { wants.push(topicFor(s.instituteId)); wants.push(appTopicFor(s.instituteId)); try { (window.SnapV169 ? window.SnapV169.mineList() : []).forEach(function (b) { wants.push(batchTopic(s.instituteId, b)); }); } catch (e) {} }   // institute notices + app update (students)
         /* v179: owner_alerts ab sirf alag Owner APK me subscribe hota hai (owner-push.js) — main app me nahi */
-        if (admin) wants.push("app_admin");                                                        // app update (admin)
+        if (admin) { try { var ai = getCurrentAdminInstituteId(); if (ai) wants.push(appTopicFor(ai)); } catch (e) {} }                                                        // app update (admin)
       }
       var have = haveList();
       var rm = have.filter(function (t) { return wants.indexOf(t) < 0; }), add = wants.filter(function (t) { return have.indexOf(t) < 0; });
