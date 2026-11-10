@@ -1293,8 +1293,7 @@ service cloud.firestore {
         && request.resource.data.text is string
         && request.resource.data.text.size() > 0
         && request.resource.data.text.size() <= 400;
-      allow read: if resource.data.get('status', '') == 'approved'
-        || resource.data.get('show', false) == true
+      allow read: if resource.data.status == 'approved'
         || isOwner();
       allow update, delete: if isOwner();
     }

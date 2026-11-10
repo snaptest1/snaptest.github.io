@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com https://formsubmit.co https://firestore.googleapis.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com https://firestore.googleapis.com; base-uri 'self'; form-action 'self'; object-src 'none'">
 <style>
 :root{--bg:#000;--ink:#f6f0e2;--mut:#a9a290;--gold:#f2b705;--gold2:#f7d154;--red:#d9291c;--line:#241e12;--card:#0c0a06;color-scheme:dark}
 *{box-sizing:border-box}html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:72px}
@@ -311,7 +311,6 @@ body{font-size:17px}
      <label class="f" style="margin-top:12px">Rating *</label>
      <div class="star-in" id="v_stars" role="radiogroup" aria-label="Rating"></div>
      <label class="f" for="v_text" style="margin-top:12px">Your review *</label><textarea id="v_text" name="Review" maxlength="400" placeholder="What did you like about the app?"></textarea>
-     <label class="f" for="v_mob" style="margin-top:12px">Mobile number (optional, never shown publicly)</label><input type="tel" id="v_mob" name="Mobile" inputmode="numeric" maxlength="10">
     </fieldset>
     <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
     <button class="btn red" type="submit" id="v_send">Submit review</button>
@@ -341,43 +340,22 @@ body{font-size:17px}
    <li>Your own app with your institute's name, logo and color</li>
    <li>Students join your app directly with a join code</li>
    <li>Tests, ranks, OMR scanning, admit cards and notifications in one place</li>
-   <li>The form takes about 2 minutes to complete</li>
+   <li>Only 5 quick details, it takes less than a minute</li>
   </ul>
  </div>
  <form class="fm rv" id="rf" novalidate>
   <div id="rbody">
-  <fieldset><legend>Owner details</legend><div class="g2">
-   <div><label class="f" for="r_owner">Owner full name *</label><input type="text" id="r_owner" name="Owner name" maxlength="80" autocomplete="name" required></div>
+  <fieldset><legend>Your details</legend><div class="g2">
+   <div><label class="f" for="r_owner">Your name *</label><input type="text" id="r_owner" name="Owner name" maxlength="80" autocomplete="name" required></div>
    <div><label class="f" for="r_mob">Mobile number *</label><input type="tel" id="r_mob" name="Mobile" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number" autocomplete="tel-national" required></div>
-   <div><label class="f" for="r_wa">WhatsApp number</label><input type="tel" id="r_wa" name="WhatsApp" inputmode="numeric" maxlength="10" placeholder="If different from mobile"></div>
-   <div><label class="f" for="r_mail">Email</label><input type="email" id="r_mail" name="Email" maxlength="100" autocomplete="email"></div>
-  </div></fieldset>
-  <fieldset><legend>Institute details</legend><div class="g2">
    <div style="grid-column:1/-1"><label class="f" for="r_inst">Institute name *</label><input type="text" id="r_inst" name="Institute name" maxlength="80" required></div>
    <div><label class="f" for="r_city">City / Town *</label><input type="text" id="r_city" name="City" maxlength="60" autocomplete="address-level2" required></div>
-   <div><label class="f" for="r_dist">District</label><input type="text" id="r_dist" name="District" maxlength="60"></div>
    <div><label class="f" for="r_state">State *</label><select id="r_state" name="State" autocomplete="address-level1" required><option value="">Select state</option><option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option><option>Bihar</option><option>Chhattisgarh</option><option>Goa</option><option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option><option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Punjab</option><option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option><option>Andaman and Nicobar Islands</option><option>Chandigarh</option><option>Dadra and Nagar Haveli and Daman and Diu</option><option>Delhi</option><option>Jammu and Kashmir</option><option>Ladakh</option><option>Lakshadweep</option><option>Puducherry</option></select></div>
-   <div><label class="f" for="r_pin">PIN code</label><input type="tel" id="r_pin" name="PIN code" inputmode="numeric" maxlength="6" autocomplete="postal-code"></div>
-   <div><label class="f" for="r_stu">Approximate number of students</label><input type="number" id="r_stu" name="Students" min="0" max="100000" inputmode="numeric"></div>
-   <div><label class="f" for="r_tch">Number of teachers</label><input type="number" id="r_tch" name="Teachers" min="0" max="1000" inputmode="numeric"></div>
-  </div>
-  <div style="margin-top:14px"><label class="f">Classes and exams you teach (select all that apply)</label><div class="tg"><label><input type="checkbox" name="Classes" value="Class 6-8"><span>Class 6-8</span></label><label><input type="checkbox" name="Classes" value="Class 9-10"><span>Class 9-10</span></label><label><input type="checkbox" name="Classes" value="Class 11-12"><span>Class 11-12</span></label><label><input type="checkbox" name="Classes" value="NEET"><span>NEET</span></label><label><input type="checkbox" name="Classes" value="JEE"><span>JEE</span></label><label><input type="checkbox" name="Classes" value="SSC / Railway"><span>SSC / Railway</span></label><label><input type="checkbox" name="Classes" value="Other"><span>Other</span></label></div></div>
-  <div style="margin-top:14px"><label class="f">Medium</label><div class="tg"><label><input type="checkbox" name="Medium" value="Hindi"><span>Hindi</span></label><label><input type="checkbox" name="Medium" value="English"><span>English</span></label><label><input type="checkbox" name="Medium" value="Both"><span>Both</span></label></div></div></fieldset>
-  <fieldset><legend>App branding</legend><div class="g2">
-   <div><label class="f" for="r_tag">Tagline (optional)</label><input type="text" id="r_tag" name="Tagline" maxlength="60" placeholder="e.g. Success Starts Here"></div>
-   <div><label class="f" for="r_col">Brand color</label><div class="colr"><input type="color" id="r_col" name="Brand color" value="#f2b705"><span class="hint" style="margin:0">Pick your institute's color</span></div></div>
-   <div style="grid-column:1/-1"><label class="f" for="r_yt">YouTube channel or website (optional)</label><input type="url" id="r_yt" name="YouTube / Website" maxlength="200" placeholder="https://"></div>
-  </div>
-  <p class="hint">Logo: after submitting, please send it to us on WhatsApp or by email. A clear, square image works best.</p></fieldset>
-  <fieldset><legend>Additional information</legend>
-   <label class="f" for="r_note">Your requirements or questions</label><textarea id="r_note" name="Message" maxlength="600"></textarea>
-   <label class="f" for="r_when" style="margin-top:12px">Best time to contact you</label>
-   <select id="r_when" name="Preferred contact time"><option>Anytime</option><option>Morning (8 AM to 12 PM)</option><option>Afternoon (12 PM to 4 PM)</option><option>Evening (4 PM to 9 PM)</option></select>
-  </fieldset>
+  </div></fieldset>
   <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
   <button class="btn red" type="submit" id="rsend">Submit enquiry</button>
   <p class="ferr" id="rerr" role="alert"></p>
-  <p class="hint">Your details are used only to process your registration.</p>
+  <p class="hint">We will call or WhatsApp you on this number. Your details are used only to process your registration.</p>
   </div>
   <div class="ok" id="rok" hidden>
    <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
@@ -456,7 +434,9 @@ document.addEventListener('pointerout',function(e){var c=e.target.closest&&e.tar
 <script>
 (function(){
 var f=document.getElementById('rf');if(!f)return;
-var TO="vishnu1234stm@gmail.com",err=document.getElementById('rerr'),btn=document.getElementById('rsend');
+var err=document.getElementById('rerr'),btn=document.getElementById('rsend');
+var _cfg;window.fbCfg=function(){return _cfg||(_cfg=fetch('/firebase-config.js',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){
+ var k=/apiKey["']?\s*[:=]\s*["']([^"']+)/.exec(t),p=/projectId["']?\s*[:=]\s*["']([^"']+)/.exec(t);if(!k||!p)throw 0;return{k:k[1],p:p[1]}}).catch(function(e){_cfg=null;throw e}))};
 function v(id){return(document.getElementById(id).value||'').trim()}
 function bad(id,m){var e=document.getElementById(id);e.classList.add('bad');e.focus();err.textContent=m;return false}
 f.addEventListener('input',function(e){e.target.classList.remove('bad');err.textContent=''});
@@ -471,22 +451,17 @@ f.addEventListener('submit',function(e){
  if(f.querySelector('[name=_honey]').value)return;
  if(v('r_owner').length<2)return bad('r_owner','Please enter the owner\'s name.');
  if(!/^[6-9]\d{9}$/.test(v('r_mob')))return bad('r_mob','Please enter a valid 10-digit mobile number.');
- if(v('r_wa')&&!/^[6-9]\d{9}$/.test(v('r_wa')))return bad('r_wa','WhatsApp number must be 10 digits.');
- if(v('r_mail')&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v('r_mail')))return bad('r_mail','Please enter a valid email address.');
  if(v('r_inst').length<2)return bad('r_inst','Please enter the institute name.');
  if(!v('r_city'))return bad('r_city','Please enter the city or town.');
  if(!v('r_state'))return bad('r_state','Please select the state.');
- if(v('r_pin')&&!/^\d{6}$/.test(v('r_pin')))return bad('r_pin','PIN code must be 6 digits.');
- if(v('r_yt')&&!/^https?:\/\//i.test(v('r_yt')))return bad('r_yt','The link must start with https://');
  var d=collect();
  var last=+(sessionStorage.getItem('enq_t')||0);if(Date.now()-last<30000)return err.textContent='Please wait a few seconds before sending again.';
  btn.disabled=true;btn.textContent='Sending\u2026';
- var map={'Owner name':'ownerName','Mobile':'mobile','WhatsApp':'whatsapp','Email':'email','Institute name':'institute','City':'city','District':'district','State':'state','PIN code':'pin','Students':'students','Teachers':'teachers','Classes':'classes','Medium':'medium','Tagline':'tagline','Brand color':'color','YouTube / Website':'link','Message':'message','Preferred contact time':'contactTime'};
+ var map={'Owner name':'ownerName','Mobile':'mobile','Institute name':'institute','City':'city','State':'state'};
  var fields={status:{stringValue:'new'},source:{stringValue:'download-page'},createdAt:{timestampValue:new Date().toISOString()}};
  Object.keys(map).forEach(function(k){if(d[k])fields[map[k]]={stringValue:String(d[k]).slice(0,600)}});
- fetch('/firebase-config.js',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){
-  var k=/apiKey["']?\s*[:=]\s*["']([^"']+)/.exec(t),p=/projectId["']?\s*[:=]\s*["']([^"']+)/.exec(t);if(!k||!p)throw 0;
-  return fetch('https://firestore.googleapis.com/v1/projects/'+encodeURIComponent(p[1])+'/databases/(default)/documents/enquiries?key='+encodeURIComponent(k[1]),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:fields})})
+ window.fbCfg().then(function(c){
+  return fetch('https://firestore.googleapis.com/v1/projects/'+encodeURIComponent(c.p)+'/databases/(default)/documents/enquiries?key='+encodeURIComponent(c.k),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:fields})})
  }).then(function(r){if(!r.ok)throw 0;sessionStorage.setItem('enq_t',String(Date.now()));ok()})
  .catch(function(){btn.disabled=false;btn.textContent='Submit enquiry';err.textContent='We could not send your enquiry right now. Please try again in a moment.'});
 });
@@ -517,8 +492,13 @@ function card(r){
  if(r.inst){var i=mk('div','rinst');i.innerHTML=BLD;i.appendChild(document.createTextNode(r.inst+(r.city?', '+r.city:'')));c.appendChild(i)}
  if(r.reply){var p=mk('div','rrep');p.appendChild(mk('b','','Reply from SnapTest Pro'));p.appendChild(document.createTextNode(r.reply));c.appendChild(p)}
  return c}
-fetch('/reviews.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(a){
- a=(Array.isArray(a)?a:[]).filter(function(r){return r&&r.show!==false&&r.name&&r.text&&r.rating>=1&&r.rating<=5});
+function fv(x){if(!x)return'';return x.stringValue!=null?x.stringValue:x.integerValue!=null?+x.integerValue:x.doubleValue!=null?+x.doubleValue:x.booleanValue!=null?x.booleanValue:''}
+window.fbCfg().then(function(c){
+ return fetch('https://firestore.googleapis.com/v1/projects/'+encodeURIComponent(c.p)+'/databases/(default)/documents:runQuery?key='+encodeURIComponent(c.k),{method:'POST',headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({structuredQuery:{from:[{collectionId:'reviews'}],where:{fieldFilter:{field:{fieldPath:'status'},op:'EQUAL',value:{stringValue:'approved'}}},limit:100}})})
+}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(rows){
+ var a=(rows||[]).filter(function(x){return x.document}).map(function(x){var f=x.document.fields||{},o={};Object.keys(f).forEach(function(k){o[k]=fv(f[k])});return o});
+ a=a.filter(function(r){return r.name&&r.text&&r.rating>=1&&r.rating<=5});
  a.sort(function(x,y){return (y.pin?1:0)-(x.pin?1:0)||String(y.date||'').localeCompare(String(x.date||''))});
  if(!a.length)throw 0;
  a.forEach(function(r){list.appendChild(card(r))});
@@ -537,16 +517,16 @@ f.addEventListener('submit',function(e){
  if(v('v_inst').length<2)return err.textContent='Please enter your institute name.';
  if(!rate)return err.textContent='Please choose a star rating.';
  if(v('v_text').length<15)return err.textContent='Please write at least a short sentence (15 characters).';
- if(v('v_mob')&&!/^[6-9]\d{9}$/.test(v('v_mob')))return err.textContent='Mobile number must be 10 digits.';
- var d=new Date(),line={name:v('v_name'),role:v('v_role'),inst:v('v_inst'),city:v('v_city'),rating:rate,text:v('v_text'),date:d.toISOString().slice(0,10),show:true,pin:false};
- var body={_subject:'New review: '+line.inst+' ('+rate+'/5)',_template:'table',_captcha:'false',Name:line.name,Role:line.role,Institute:line.inst,City:line.city,Rating:rate+' / 5',Review:line.text,Mobile:v('v_mob'),'Approve line (paste into reviews.json)':JSON.stringify(line)+','};
+ var last=+(sessionStorage.getItem('rev_t')||0);if(Date.now()-last<30000)return err.textContent='Please wait a few seconds before sending again.';
+ var d=new Date();
+ var fields={name:{stringValue:v('v_name')},role:{stringValue:v('v_role')},inst:{stringValue:v('v_inst')},rating:{integerValue:String(rate)},text:{stringValue:v('v_text')},
+  date:{stringValue:d.toISOString().slice(0,10)},status:{stringValue:'pending'},show:{booleanValue:false},pin:{booleanValue:false},source:{stringValue:'download-page'},createdAt:{timestampValue:d.toISOString()}};
+ if(v('v_city'))fields.city={stringValue:v('v_city')};
  btn.disabled=true;btn.textContent='Sending\u2026';
- fetch('https://formsubmit.co/ajax/vishnu1234stm@gmail.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(body)})
- .then(function(r){return r.json().then(function(j){if(!r.ok||j.success==='false'||j.success===false)throw (j&&j.message)||0;document.getElementById('rvbody').hidden=true;document.getElementById('v_ok').hidden=false})})
- .catch(function(m){btn.disabled=false;btn.textContent='Submit review';
-  var t=Object.keys(body).filter(function(k){return k.charAt(0)!=='_'&&body[k]}).map(function(k){return k+': '+body[k]}).join('\n');
-  err.textContent='';err.appendChild(document.createTextNode((typeof m==='string'&&m?m+' ':'Could not send the review. ')));
-  var a=document.createElement('a');a.href='mailto:vishnu1234stm@gmail.com?subject='+encodeURIComponent(body._subject)+'&body='+encodeURIComponent(t);a.textContent='Send it by email instead';err.appendChild(a)});
+ window.fbCfg().then(function(c){
+  return fetch('https://firestore.googleapis.com/v1/projects/'+encodeURIComponent(c.p)+'/databases/(default)/documents/reviews?key='+encodeURIComponent(c.k),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:fields})})
+ }).then(function(r){if(!r.ok)throw 0;sessionStorage.setItem('rev_t',String(Date.now()));document.getElementById('rvbody').hidden=true;document.getElementById('v_ok').hidden=false})
+ .catch(function(){btn.disabled=false;btn.textContent='Submit review';err.textContent='We could not send your review right now. Please try again in a moment.'});
 });
 })();
 </script>
