@@ -1257,6 +1257,48 @@ service cloud.firestore {
       allow delete: if isAdmin() && resource.data.instituteId in [adminInstituteId(), ''];
     }
 
+    // ── Website enquiries (download.html registration form) ───────
+    // Koi bhi website se enquiry bhej sakta hai (sirf tay fields).
+    // Padhna / badalna / delete sirf Owner.
+    match /enquiries/{id} {
+      allow create: if request.resource.data.keys().hasOnly([
+          'ownerName','name','mobile','whatsapp','email','institute','city','district','state','pin',
+          'students','teachers','classes','medium','tagline','color','link','message','contactTime',
+          'status','source','createdAt','contacted'])
+        && request.resource.data.status == 'new'
+        && request.resource.data.mobile is string
+        && request.resource.data.mobile.matches('^[6-9][0-9]{9}$')
+        && request.resource.data.institute is string
+        && request.resource.data.institute.size() > 1
+        && request.resource.data.institute.size() <= 600;
+      allow read, update, delete: if isOwner();
+    }
+
+    // ── Website reviews (Owner app se approve / hide / pin / reply) ─
+    // Naya review hamesha pending hota hai. Site par sirf approved dikhte hain.
+    match /reviews/{id} {
+      allow create: if request.resource.data.keys().hasOnly([
+          'name','role','inst','institute','city','rating','text','date',
+          'status','show','pin','reply','source','createdAt'])
+        && request.resource.data.status == 'pending'
+        && request.resource.data.get('show', false) == false
+        && request.resource.data.get('pin', false) == false
+        && !('reply' in request.resource.data)
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.rating is number
+        && request.resource.data.rating >= 1
+        && request.resource.data.rating <= 5
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 400;
+      allow read: if resource.data.get('status', '') == 'approved'
+        || resource.data.get('show', false) == true
+        || isOwner();
+      allow update, delete: if isOwner();
+    }
+
     // ── Default deny ──────────────────────────────────────────────
     // Koi bhi collection jo upar explicitly list nahi hui, uska
     // access poori tarah band. Ye "test mode" jaisi open-access
