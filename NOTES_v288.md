@@ -20,3 +20,7 @@
 ## v288b — purane APK releases auto-delete
 - build-institute-apk.yml / build-owner-apk.yml / build-android.yml: naya signed APK release banne ke baad usi ke purane releases (aur tags) automatic delete. Sirf latest rehta hai. Institute ke liye sirf usi institute ke (inst-<slug>-bN) delete hote hain, doosre institute ke nahi.
 - Ye workflows tabhi apply hote hain jab .github/workflows GitHub par upload ho (WORKFLOW_PAT na ho to GitHub me khud edit karein).
+
+## v288c — tez APK download
+- push-worker/worker.js: naya route GET /apk/<tag>/<file>.apk (GitHub release ko Cloudflare edge se stream+cache) aur /apk/ping. Worker REDEPLOY zaroori (Cloudflare dashboard > Quick edit > paste > Deploy).
+- download.html + app-update.js: pehle /apk/ping check; worker ready ho to tez link, warna seedha GitHub (purana). Isliye pehle worker deploy karein, phir site.

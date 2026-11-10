@@ -650,6 +650,26 @@ function ghHeaders(env) {
   if (!env.GITHUB_TOKEN) throw new HttpErr(501, 'GITHUB_TOKEN secret Worker me set nahi hai (guide dekhein)');
   return { Authorization: 'Bearer ' + env.GITHUB_TOKEN, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'snaptestpro-owner' };
 }
+// v288: GitHub release APK ko Cloudflare ke raste do — GitHub CDN kai networks par bahut slow hota hai.
+// GET /apk/ping  -> {ok:true}   |   GET /apk/<tag>/<file>.apk  (sirf is repo ke release tags)
+async function handleApk(request, env, ctx, pathname) {
+  if (pathname === '/apk/ping') return json({ ok: true });
+  const m = /^\/apk\/((?:inst-[A-Za-z0-9_-]{1,120}-b\d{1,6})|(?:app-b\d{1,6})|(?:owner-b\d{1,6}))\/([A-Za-z0-9._-]{1,140}\.apk)$/.exec(pathname);
+  if (!m || (request.method !== 'GET' && request.method !== 'HEAD')) throw new HttpErr(404, 'Not found');
+  const repo = env.GITHUB_REPO || 'SnaptestPro/snaptestpro.github.io';
+  const src = 'https://github.com/' + repo + '/releases/download/' + m[1] + '/' + m[2];
+  const up = await fetch(src, { method: request.method, redirect: 'follow', headers: request.headers.get('Range') ? { Range: request.headers.get('Range') } : {}, cf: { cacheEverything: true, cacheTtl: 86400 } });
+  if (!up.ok && up.status !== 206) throw new HttpErr(up.status === 404 ? 404 : 502, 'APK nahi mila');
+  const h = new Headers();
+  h.set('Content-Type', 'application/vnd.android.package-archive');
+  h.set('Content-Disposition', 'attachment; filename="' + m[2] + '"');
+  h.set('Cache-Control', 'public, max-age=3600');
+  h.set('Accept-Ranges', 'bytes');
+  ['Content-Length', 'Content-Range'].forEach((k) => { const v = up.headers.get(k); if (v) h.set(k, v); });
+  Object.keys(CORS).forEach((k) => h.set(k, CORS[k]));
+  return new Response(request.method === 'HEAD' ? null : up.body, { status: up.status, headers: h });
+}
+
 async function handleOwner(request, env, pathname) {
   const o = await ownerOnly(request, env);
   if (pathname.indexOf('/owner/reads/') === 0 && request.method === 'GET') return await rdOwner(request, env, o, pathname);
@@ -1259,6 +1279,7 @@ const worker = {
   },
   async route(request, env, ctx, pathname) {
     try {
+      if (pathname.indexOf('/apk/') === 0) return await handleApk(request, env, ctx, pathname);   // v288: tez APK download (Cloudflare edge cache)
       if (pathname.indexOf('/student/') === 0) return await handleStudentAuth(request, env, pathname);
       if (pathname === '/bank' || pathname === '/bank/meta' || pathname === '/bank/chunk') return await handleBank(request, env, pathname);
       if (pathname.indexOf('/files/') === 0) return await handleFiles(request, env, pathname, ctx);

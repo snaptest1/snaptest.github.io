@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com https://firestore.googleapis.com; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com https://firestore.googleapis.com https://cool-thunder-a280.vishnu1234stm.workers.dev; base-uri 'self'; form-action 'self'; object-src 'none'">
 <style>
 :root{--bg:#000;--ink:#f6f0e2;--mut:#a9a290;--gold:#f2b705;--gold2:#f7d154;--red:#d9291c;--line:#241e12;--card:#0c0a06;color-scheme:dark}
 *{box-sizing:border-box}html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:72px}
@@ -383,13 +383,17 @@ body{font-size:17px}
     if(isRealChrome()){window.location.href=u;return}   /* Chrome me hi hain: seedha download */
     window.location.href=chromeIntent(u);                /* baaki sab jagah: Chrome kholo, wahi download */
   }
+  /* v288: tez download — Cloudflare Worker ke raste (worker ready ho tabhi), warna seedha GitHub */
+  var WORKER="https://cool-thunder-a280.vishnu1234stm.workers.dev",proxyOk=false;
+  function fastUrl(u){var m=/^https:\/\/github\.com\/[^\/]+\/[^\/]+\/releases\/download\/([^\/]+)\/([^\/]+\.apk)$/.exec(u||"");return proxyOk&&m?WORKER+"/apk/"+m[1]+"/"+m[2]:u}
+  try{var _c=window.AbortController?new AbortController():null,_t=setTimeout(function(){_c&&_c.abort()},4000);fetch(WORKER+"/apk/ping",{signal:_c?_c.signal:undefined}).then(function(r){return r.json()}).then(function(j){clearTimeout(_t);proxyOk=!!(j&&j.ok)}).catch(function(){})}catch(e){}
   function mk(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
   function render(){
     var s=q.value.trim().toLowerCase(),n=0;list.textContent="";
     items.forEach(function(it){
       if(s&&it.name.toLowerCase().indexOf(s)<0)return;n++;
       var c=mk("div","card inst");var av=mk("div","av",(it.name.trim().charAt(0)||"?").toUpperCase());c.appendChild(av);c.appendChild(mk("h3","",it.name));c.appendChild(mk("div","v",it.ver));
-      var r=mk("div","row"),a=mk("a","btn gold sm","Download APK");a.href=it.apk;a.rel="noopener";a.addEventListener("click",function(ev){if(isAndroid()&&!isRealChrome()){ev.preventDefault();openApkInChrome(it.apk)}});r.appendChild(a);
+      var r=mk("div","row"),a=mk("a","btn gold sm","Download APK");a.href=it.apk;a.rel="noopener";a.addEventListener("click",function(ev){var u=fastUrl(it.apk);a.href=u;if(isAndroid()&&!isRealChrome()){ev.preventDefault();openApkInChrome(u)}});r.appendChild(a);
       if(it.id){var w=mk("a","btn ghost sm","Open on web");w.href="/?inst="+encodeURIComponent(it.id);r.appendChild(w)}
       c.appendChild(r);list.appendChild(c);
     });

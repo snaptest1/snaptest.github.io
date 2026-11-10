@@ -80,8 +80,17 @@
     ov.querySelector("#sau-go").onclick = function () { openDownload(); };
     var later = ov.querySelector("#sau-later"); if (later) later.onclick = function () { snooze(state.build); ov.remove(); };
   }
+  function fastUrl(u) {                                   /* v288: Cloudflare ke raste tez download (ping ok ho tabhi) */
+    var W = "https://cool-thunder-a280.vishnu1234stm.workers.dev", m = /^https:\/\/github\.com\/[^\/]+\/[^\/]+\/releases\/download\/([^\/]+)\/([^\/]+\.apk)$/.exec(u);
+    if (!m) return Promise.resolve(u);
+    var ctrl = window.AbortController ? new AbortController() : null, t = setTimeout(function () { try { ctrl && ctrl.abort(); } catch (e) {} }, 3000);
+    return fetch(W + "/apk/ping", { signal: ctrl ? ctrl.signal : undefined }).then(function (r) { return r.json(); }).then(function (j) { clearTimeout(t); return j && j.ok ? W + "/apk/" + m[1] + "/" + m[2] : u; }).catch(function () { return u; });
+  }
   function openDownload() {
     var url = state.url; if (!url || !/^https:\/\/github\.com\//.test(url)) return;
+    fastUrl(url).then(function (u) { openDownload2(u, url); });
+  }
+  function openDownload2(url, orig) {
     toast("⬇️ Download shuru — poora hone par file par tap karke Install karein", 6000);
     cap.nativePromise("Browser", "open", { url: url }).catch(function () { try { window.location.href = "intent://" + url.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" + encodeURIComponent(url) + ";end"; } catch (e) {} });
   }
