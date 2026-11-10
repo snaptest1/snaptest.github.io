@@ -44,7 +44,7 @@ global.fetch = async (url, init = {}) => {
   fs.copyFileSync(path.join(__dirname, '..', '..', 'push-worker', 'worker.js'), tmp);
   const W = (await import('file://' + tmp + '?v=' + Date.now())).default;
   const env = { SERVICE_ACCOUNT_JSON: JSON.stringify(SA), BANK_KV: KV, PBKDF2_ITER: '10000' };
-  const ORIG = 'https://snaptestpro.github.io';
+  const ORIG = 'https://thevishnusharma.github.io';
   const call = (p, body, o = {}) => W.fetch(new Request('https://w.test' + p, { method: 'POST', headers: { 'Content-Type': 'application/json', Origin: o.origin === undefined ? ORIG : o.origin, 'CF-Connecting-IP': o.ip || '1.1.1.1' }, body: JSON.stringify(body) }), o.env || env, { waitUntil() {} });
   const sha = (s) => crypto.createHash('sha256').update(s).digest('hex');
   let n = 0; const t = async (name, fn) => { try { await fn(); n++; console.log('  PASS ' + name); } catch (e) { console.log('  FAIL ' + name + '\n   ' + (e.stack || e)); process.exitCode = 1; } };

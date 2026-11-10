@@ -6,7 +6,7 @@
    3) Agar naya build mila to "Naya APK aaya hai" dialog aata hai -> Download -> Android installer -> Install. */
 (function () {
   "use strict";
-  var VERSION_URL = "https://raw.githubusercontent.com/SnapTestPro/snaptestpro.github.io/main/app-version.json";
+  var VERSION_URL = "https://raw.githubusercontent.com/thevishnusharma/thevishnusharma.github.io/main/app-version.json";
   var SNOOZE_KEY = "snap_apk_snooze_v1", LAST_KEY = "snap_apk_lastcheck_v1";
   var state = { available: false, checked: false, build: 0, name: "", url: "", notes: "", force: false, installedBuild: 0, installedName: "" };
   window.SnapAppUpdate = { state: state, check: function () { return Promise.resolve(state); }, open: function () {}, show: function () {} };

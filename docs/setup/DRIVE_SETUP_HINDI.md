@@ -23,7 +23,7 @@ Phone me Chrome kholo aur **"Desktop site"** on kar lo (Console desktop jaisi ch
 1. **APIs & Services -> Credentials -> Create credentials -> OAuth client ID**.
 2. Application type: **Web application**.
 3. **Authorized JavaScript origins** me daalo:
-   - `https://snaptestpro.github.io`
+   - `https://thevishnusharma.github.io`
    - Android APK ke liye: `https://localhost` (Capacitor ka `androidScheme: 'https'` hai). Agar APK `APP_URL` se chalti hai to wahi URL. *Ye mera andaaza hai — APK me Google popup chalega ya nahi, phone par test karna zaroori hai.*
 4. Redirect URI is flow (Google Identity Services token) me nahi chahiye.
 5. Create -> **Client ID** copy karo (`...apps.googleusercontent.com`). Client **secret** kahin mat daalna.

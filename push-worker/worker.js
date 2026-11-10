@@ -631,8 +631,8 @@ async function handleFiles(request, env, pathname, ctx) {
 
 /* ---------- v176: Owner endpoints — APK build (GitHub Actions trigger), APK status, student recount ----------
    Secrets/vars (Cloudflare > Worker > Settings > Variables and Secrets):
-     GITHUB_TOKEN (Secret)  GitHub fine-grained token: repo "snaptestpro.github.io", permissions: Actions = Read and write, Contents = Read-only
-     GITHUB_REPO  (Text)    optional — default "SnaptestPro/snaptestpro.github.io"
+     GITHUB_TOKEN (Secret)  GitHub fine-grained token: repo "thevishnusharma.github.io", permissions: Actions = Read and write, Contents = Read-only
+     GITHUB_REPO  (Text)    optional — default "thevishnusharma/thevishnusharma.github.io"
      GITHUB_REF   (Text)    optional — default "main"
    Sirf OWNER_EMAILS wale logged-in owner ke Firebase token se chalte hain. */
 async function ownerOnly(request, env) {
@@ -656,7 +656,7 @@ async function handleApk(request, env, ctx, pathname) {
   if (pathname === '/apk/ping') return json({ ok: true });
   const m = /^\/apk\/((?:inst|app|owner)-[A-Za-z0-9._-]{1,150})\/([A-Za-z0-9._-]{1,140}\.apk)$/.exec(pathname);
   if (!m || (request.method !== 'GET' && request.method !== 'HEAD')) throw new HttpErr(404, 'APK link galat: ' + pathname + ' (' + request.method + ')');
-  const repo = env.GITHUB_REPO || 'SnaptestPro/snaptestpro.github.io';
+  const repo = env.GITHUB_REPO || 'thevishnusharma/thevishnusharma.github.io';
   const src = 'https://github.com/' + repo + '/releases/download/' + m[1] + '/' + m[2];
   const up = await fetch(src, { method: request.method, redirect: 'follow', headers: request.headers.get('Range') ? { Range: request.headers.get('Range') } : {}, cf: { cacheEverything: true, cacheTtl: 86400 } });
   if (!up.ok && up.status !== 206) throw new HttpErr(up.status === 404 ? 404 : 502, 'APK GitHub par nahi mila (' + up.status + '): ' + m[1] + '/' + m[2]);
@@ -673,7 +673,7 @@ async function handleApk(request, env, ctx, pathname) {
 async function handleOwner(request, env, pathname) {
   const o = await ownerOnly(request, env);
   if (pathname.indexOf('/owner/reads/') === 0 && request.method === 'GET') return await rdOwner(request, env, o, pathname);
-  const repo = env.GITHUB_REPO || 'SnaptestPro/snaptestpro.github.io', wf = 'build-institute-apk.yml';
+  const repo = env.GITHUB_REPO || 'thevishnusharma/thevishnusharma.github.io', wf = 'build-institute-apk.yml';
 
   if (pathname === '/owner/apk' && request.method === 'POST') {
     let b; try { b = JSON.parse(await request.text()); } catch (e) { throw new HttpErr(400, 'Bad JSON'); }
@@ -799,7 +799,7 @@ async function dailyExpiryDigest(env) {
    Zaroori bindings: BANK_KV (rate limit), SERVICE_ACCOUNT_JSON (already hai).
    Optional vars:  PBKDF2_ITER (default 30000; paid plan par 100000+ kar sakte hain),
                    DELETE_LEGACY_HASH = "1"  (jab saare purane APK update ho jayein tab — purana SHA-256 hash login ke baad hata deta hai). */
-const AUTH_ORIGINS = ['https://snaptestpro.github.io', 'https://localhost', 'http://localhost', 'capacitor://localhost', 'ionic://localhost'];
+const AUTH_ORIGINS = ['https://thevishnusharma.github.io', 'https://snaptestpro.github.io' /* purana domain — jab tak purane APK/users migrate na ho jayein, phir hata dena */, 'https://localhost', 'http://localhost', 'capacitor://localhost', 'ionic://localhost'];
 const AUTH_DEV = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 const WEAK_PW = ['123456', '1234567', '12345678', '123456789', '1234567890', 'password', 'qwerty', '111111', '000000', '123123', 'abcdef', 'abc123', '654321', 'iloveyou', 'password1'];
 const sFld = (f, k) => (f && f[k] && (f[k].stringValue !== undefined ? f[k].stringValue : '')) || '';

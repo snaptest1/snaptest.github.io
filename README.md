@@ -1,6 +1,6 @@
 # The Vishnu Sharma
 
-![CI](https://github.com/SnaptestPro/snaptestpro.github.io/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/thevishnusharma/thevishnusharma.github.io/actions/workflows/ci.yml/badge.svg)
 
 Multi-institute test, practice and OMR-scanning platform for coaching institutes.
 Roles: **Owner**, **Admin** (institute), **Student**. Vanilla JS PWA on GitHub Pages + Firebase

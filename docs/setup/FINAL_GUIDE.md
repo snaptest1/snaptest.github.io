@@ -97,7 +97,7 @@ Repo → **Settings → Secrets and variables → Actions → Secrets**:
 
 > ⚠️ **Sabse zaroori:** ye **wahi keystore** honi chahiye jis se aapne ab tak APK sign kiye hain (`sign-apk.bat` wali). Android naya APK sirf usi key se purane ke upar install hone deta hai. Alag key = "App not installed" error. Ye 4 secrets nahi honge to workflow auto-update APK **publish hi nahi karega** (galat APK se kisi ka install na toote, isliye).
 
-Variables (same page ka **Variables** tab): `APP_URL` pehle se set hai (`https://snaptestpro.github.io/`). `PUSH_WORKER_URL` optional.
+Variables (same page ka **Variables** tab): `APP_URL` pehle se set hai (`https://thevishnusharma.github.io/`). `PUSH_WORKER_URL` optional.
 
 ---
 

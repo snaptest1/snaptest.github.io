@@ -35,7 +35,7 @@ jobs:
     timeout-minutes: 45
     env:
       APP_ID: com.snaptestpro.app
-      APP_URL: ${{ vars.APP_URL || 'https://snaptestpro.github.io/' }}
+      APP_URL: ${{ vars.APP_URL || 'https://thevishnusharma.github.io/' }}
       HAS_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' && secrets.ANDROID_KEYSTORE_PASSWORD != '' && secrets.ANDROID_KEY_ALIAS != '' && secrets.ANDROID_KEY_PASSWORD != '' }}
       KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
       KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}

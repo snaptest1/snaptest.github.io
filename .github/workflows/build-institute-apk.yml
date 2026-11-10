@@ -66,7 +66,7 @@ jobs:
         env:
           APP_ID: ${{ steps.inst.outputs.package }}
           APP_NAME: ${{ steps.inst.outputs.app_name }}
-          APP_URL: ${{ inputs.live_mode != 'false' && format('{0}?inst={1}', vars.APP_URL || 'https://snaptestpro.github.io/', inputs.institute_id) || '' }}
+          APP_URL: ${{ inputs.live_mode != 'false' && format('{0}?inst={1}', vars.APP_URL || 'https://thevishnusharma.github.io/', inputs.institute_id) || '' }}
         run: npx cap add android
 
       - name: Firebase (push) config

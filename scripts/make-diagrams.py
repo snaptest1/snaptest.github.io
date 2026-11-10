@@ -60,9 +60,9 @@ for i, (t, ls_) in enumerate(apps):
 ax.text(3, 113.4, "B.  DELIVERY, BACKEND AUR DATA", fontsize=14, color=MUTED, fontweight="bold")
 # GitHub (left)
 box(ax, 3, 56, 66, 56, "GitHub  (code + hosting)", [
-    "*Repo: SnaptestPro/snaptestpro.github.io",
+    "*Repo: thevishnusharma/thevishnusharma.github.io",
     "*GitHub Pages",
-    "   Site: snaptestpro.github.io",
+    "   Site: thevishnusharma.github.io",
     "   Student/Admin/Owner web yahin se",
     "   sw.js = offline cache",
     "*GitHub Releases",
@@ -186,7 +186,7 @@ rows = [
     ("Owner alerts ka history", "Cloudflare KV (key: alerts)", "Worker, Owner App 'Alerts'", "Aakhri 60 + Telegram copy"),
     ("Reads Monitor ke logs", "Cloudflare D1 (READS_DB)", "Tracker -> /readlog -> Owner 'Reads'", "14 din baad auto-saaf. Console ke reads nahi ginta"),
     ("Exam registration responses", "Google Forms (Apps Script)", "Admin app pull karta hai", "exam-registration.js"),
-    ("App ka code / APK / versions", "GitHub (repo, Pages, Releases)", "Aap zip upload, Actions banate", "snaptestpro.github.io, app-version.json"),
+    ("App ka code / APK / versions", "GitHub (repo, Pages, Releases)", "Aap zip upload, Actions banate", "thevishnusharma.github.io, app-version.json"),
     ("Offline cache (phone par)", "localStorage + IndexedDB + sw.js", "Har app khud", "Records/students list, bank copy, tests meta"),
 ]
 H = 15 + (len(rows) - 12) * 0.9

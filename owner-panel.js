@@ -237,7 +237,7 @@ function ownerExportCsv(){
 /* ===== Institute ka apna APK / App Link (+ "APK banao" button) ===== */
 function ownerApkInfo(id){
   const a=(typeof _ownerInstitutesCache!=="undefined"&&_ownerInstitutesCache[id])||{};
-  const cfg=window.SNAP_CONFIG||{},repo=cfg.githubRepo||"SnaptestPro/snaptestpro.github.io",web=(cfg.webUrl||"https://snaptestpro.github.io/").replace(/\/?$/,"/");
+  const cfg=window.SNAP_CONFIG||{},repo=cfg.githubRepo||"thevishnusharma/thevishnusharma.github.io",web=(cfg.webUrl||"https://thevishnusharma.github.io/").replace(/\/?$/,"/");
   const slug=String(id).toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,40),pkg="com.snaptestpro.i"+slug;
   const link=web+"?inst="+encodeURIComponent(id),act="https://github.com/"+repo+"/actions/workflows/build-institute-apk.yml";
   const old=document.getElementById("owner-apk-modal");old&&old.remove();

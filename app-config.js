@@ -22,7 +22,7 @@ window.SNAP_CONFIG = {
     tokenAutoRefresh: true
   },
   tagline: "Smart Practice • Better Result",
-  version: "1.4.89",
+  version: "1.4.90",
   workerUrl: "https://cool-thunder-a280.vishnu1234stm.workers.dev",   // Cloudflare Worker (bank + push + owner alerts)
   ownFiles: false,                                                    // DEPRECATED (v216): Cloudflare R2 "SnapFiles" band hai aur rahega — file upload ab Google Drive se. Code abhi rakha hai, aage hatega.
   googleClientId: "1009250922801-16aubac9rbmnlvpru734phg5c3e8c4rn.apps.googleusercontent.com",                                                 // <-- yahan Google OAuth Web Client ID daalein (DRIVE_SETUP_HINDI.md dekhein). Khaali = Drive upload band
@@ -44,8 +44,8 @@ window.SNAP_CONFIG = {
   resultTools: true,                                                  // v223 Phase 5: Records hub ka "Result Tools" card. false = card nahi banta
   feeDue: true,                                                       // v223 Phase 5C: Batch Admin me "Fee Due" section. false = section nahi jurta
   dailyChallenge: true,                                               // v223 Phase 5D: student ka "Aaj ka Challenge" + revision card. false = card nahi dikhta
-  githubRepo: "SnaptestPro/snaptestpro.github.io",                   // Owner Panel ke "📱 APK" button ke liye
-  webUrl: "https://snaptestpro.github.io/",
+  githubRepo: "thevishnusharma/thevishnusharma.github.io",                   // Owner Panel ke "📱 APK" button ke liye
+  webUrl: "https://thevishnusharma.github.io/",
   graceDays: 3,                                                       // plan expire ke baad itne din app chalta rehta hai (rules me bhi 3 din)
   plans: {                                                            // Owner Panel ke "Branding & Plan" ke preset — number aap badal sakte ho
     Free:    { studentLimit: 30,   storageLimitMB: 500 },
@@ -56,13 +56,13 @@ window.SNAP_CONFIG = {
   },
   appLock: true,                                                      // institute-APK / ?inst= link lock + "app band hai" screen (kill-switch)
   ownerAlertEmail: "vishnu1234stm@gmail.com",                         // is email se login par owner app me alerts ka push aata hai
-  build: "303",
+  build: "304",
   ownerName: "Vishnu Sharma",
   supportPhone: "9525208263",
   supportWhatsapp: "9525208263",          // WhatsApp number (khaali = phone wala use hoga)
   supportEmail: "vishnu1234stm@gmail.com",
   supportHours: "Roz 10:00 AM – 7:00 PM",
-  website: "https://snaptestpro.github.io",
+  website: "https://thevishnusharma.github.io",
   privacyUrl: "/privacy.html",            // Privacy Policy
   termsUrl: "/terms.html",                // Terms & Conditions
   privacyVersion: "2026-10-15-v1",

@@ -8,7 +8,7 @@ const manualName = (process.env.INPUT_APP_NAME || '').trim();
 if (!/^[A-Za-z0-9_-]{1,100}$/.test(id)) { console.error('INSTITUTE_ID galat/khaali hai'); process.exit(1); }
 const cfgTxt = fs.readFileSync(path.join(ROOT, 'firebase-config.js'), 'utf8');
 const apiKey = (cfgTxt.match(/apiKey\s*:\s*"([^"]+)"/) || [])[1], projectId = (cfgTxt.match(/projectId\s*:\s*"([^"]+)"/) || [])[1];
-const H = { 'Content-Type': 'application/json', Referer: 'https://snaptestpro.github.io/', Origin: 'https://snaptestpro.github.io' };
+const H = { 'Content-Type': 'application/json', Referer: 'https://thevishnusharma.github.io/', Origin: 'https://thevishnusharma.github.io' };
 const val = f => f == null ? undefined : (f.stringValue !== undefined ? f.stringValue : f.booleanValue !== undefined ? f.booleanValue : f.integerValue !== undefined ? +f.integerValue : undefined);
 (async () => {
   let d = {};

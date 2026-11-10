@@ -9,7 +9,7 @@ Default **OFF** (`serverAuth: false`): app bilkul pehle jaisa. Pehle apne phone 
 - **Lazy migration**: purana SHA-256 wala student ek baar login kare -> chupchap PBKDF2 me upgrade. Koi forced reset nahi. (PIN purane SHA-256 me rehta hai jab tak student PIN se reset na kare.)
 - Naya password policy: kam se kam 6 characters, aasan passwords (123456, password ...) reject. Purane users ko login se nahi roka jata.
 - Uniform error: "Mobile number ya password galat hai." (account hai ya nahi, ye nahi batata).
-- Strict CORS: sirf `https://snaptestpro.github.io`, `https://localhost` / `capacitor://localhost`, local dev.
+- Strict CORS: sirf `https://thevishnusharma.github.io`, `https://localhost` / `capacitor://localhost`, local dev.
 - Admin password reset sirf apne institute ke student ka (Worker check karta hai; owner sab).
 - Rules: `config/privacy.secretsLockdown = true` hone par koi bhi client (admin bhi) `studentSecrets` nahi padh/likh sakta.
 

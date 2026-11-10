@@ -17,7 +17,7 @@ jobs:
       APP_ID: com.snaptestpro.owner
       APP_NAME: The Vishnu Sharma Owner
       # Live mode: app seedha website kholti hai (owner-app.html) -> website update = owner app update, APK dobara nahi banana padega
-      APP_URL: ${{ format('{0}owner-app.html', vars.APP_URL || 'https://snaptestpro.github.io/') }}
+      APP_URL: ${{ format('{0}owner-app.html', vars.APP_URL || 'https://thevishnusharma.github.io/') }}
       HAS_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' && secrets.ANDROID_KEYSTORE_PASSWORD != '' && secrets.ANDROID_KEY_ALIAS != '' && secrets.ANDROID_KEY_PASSWORD != '' }}
       KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
       KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}

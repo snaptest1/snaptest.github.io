@@ -12,9 +12,16 @@ title / meta / og / twitter, manifest name + short_name, owner manifest, splash 
 | Google Drive folder `"SnapTest Pro"` | drive-upload.js | Isi naam se purana folder dhoondha jata hai; badalne par institutes ki files "gayab" dikhengi |
 | `SnapTestProApp` (User-Agent marker) | app-bridge.js, inline/index-inline-02.js | App-vs-web detection |
 | `SnapTestPro.apk`, `SnapTestOwner.apk`, `app-b<N>` tags | build-android.yml, build-owner-apk.yml, app-version.json | Purane install links + auto-update |
-| `snaptestpro.github.io`, `SnaptestPro/...` GitHub repo/URLs, `web+snaptestpro` | everywhere | Production URLs |
+| `web+snaptestpro` protocol handler | manifest.webmanifest | Internal scheme; badalne ka fayda nahi |
 | Firebase project ID, Firestore collections, `snap_*` localStorage keys, Worker `snaptestpro-push` | various | Data compatibility |
 | Service-worker cache prefix `snaptestpro-v<build>` | sw.js | Internal; build number se badalta hai |
 | Purane docs / notes / changelog | docs/notes, notes/, NOTES*.md | Itihaas |
 
 Naya package ID / URL / repo naam chahiye ho to alag migration plan banega — display rename ke saath mat milao.
+
+## Site / domain migration (v304 — Nov 2026)
+Site ab **https://thevishnusharma.github.io/** par hai (repo `thevishnusharma/thevishnusharma.github.io`). Purana `snaptestpro.github.io` / `SnaptestPro/...` ab kisi active file me nahi hai, sirf:
+- `push-worker/worker.js` -> `AUTH_ORIGINS` me purana domain *transition* ke liye rakha hai (purane APK/links chalte rahein). Sab migrate ho jayein to hata dein.
+- Purane docs/notes/changelog (itihaas) jaise the waise.
+
+Jo abhi bhi jaan-boojh kar purana hai: `com.snaptestpro.*` package IDs, `SnapTestPro.apk` / `SnapTestOwner.apk` file names, Drive folder `SnapTest Pro`, `snaptestpro-backend.onrender.com` (deployed Render service), `snap_*` / `snaptestpro_*` localStorage keys.
