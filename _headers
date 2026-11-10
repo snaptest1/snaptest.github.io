@@ -15,6 +15,9 @@
 /index.html
   Cache-Control: no-cache, no-store, must-revalidate
 
+/download.html
+  Cache-Control: no-cache, must-revalidate
+
 /
   Cache-Control: no-cache, no-store, must-revalidate
 
