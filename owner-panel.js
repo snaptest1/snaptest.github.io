@@ -268,7 +268,7 @@ function ownerApkInfo(id){
       else if(r.status!=="completed"){show("⏳ APK ban raha hai (10-15 min lagte hain)…"+(j.apkUrl?"<br>Pichla APK:"+dl:""));if(!timer)timer=setInterval(()=>{if(!document.body.contains(m))return stop();refresh()},20000)}
       else{stop();show(r.conclusion==="success"?(j.apkUrl?"✅ APK tayyar hai!"+dl:`✅ Build ho gaya par release link nahi mila (keystore secret nahi hoga?) — <a href="${ownerEscAttr(r.url)}" target="_blank" rel="noopener">GitHub run kholo</a>`):`❌ Build fail hua — <a href="${ownerEscAttr(r.url)}" target="_blank" rel="noopener">logs dekhein</a>`+(j.apkUrl?"<br>Pichla chalta APK:"+dl:""))}
       /* v288: APK link Chrome me khule (WebView me download dikhta nahi) */
-      m.querySelectorAll('a[href$=".apk"]').forEach(a=>{a.onclick=ev=>{ev.preventDefault();const u=a.href;try{const C=window.Capacitor;if(C&&C.nativePromise){C.nativePromise("Browser","open",{url:u}).catch(()=>{location.href="intent://"+u.replace(/^https?:\/\//,"")+"#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url="+encodeURIComponent(u)+";end"});return}}catch(e){}window.open(u,"_blank","noopener")}});
+      m.querySelectorAll('a[href$=".apk"]').forEach(a=>{a.onclick=ev=>{ev.preventDefault();location.href=a.href}});
       const cp=m.querySelector("#oap-cp");if(cp)cp.onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(j.apkUrl).then(()=>{cp.textContent="✓"})};
     }catch(e){stop();show("⚠️ Status nahi mila: "+ownerEsc(e.message||e)+(/GITHUB_TOKEN/.test(e.message||"")?"<br>Guide ka 'Worker me GITHUB_TOKEN' step karein.":""))}
   }

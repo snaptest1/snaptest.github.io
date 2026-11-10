@@ -24,3 +24,6 @@
 ## v288c — tez APK download
 - push-worker/worker.js: naya route GET /apk/<tag>/<file>.apk (GitHub release ko Cloudflare edge se stream+cache) aur /apk/ping. Worker REDEPLOY zaroori (Cloudflare dashboard > Quick edit > paste > Deploy).
 - download.html + app-update.js: pehle /apk/ping check; worker ready ho to tez link, warna seedha GitHub (purana). Isliye pehle worker deploy karein, phir site.
+
+## v288d — download 100% par atakna
+- Chrome Custom Tab (Browser.open) me APK download poora hokar bhi 'Downloading…' par ruk jata tha. app-update.js / owner-panel.js ab link ko system browser me kholte hain (location.href -> Capacitor ACTION_VIEW).

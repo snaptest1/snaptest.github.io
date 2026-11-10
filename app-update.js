@@ -92,7 +92,9 @@
   }
   function openDownload2(url, orig) {
     toast("⬇️ Download shuru — poora hone par file par tap karke Install karein", 6000);
-    cap.nativePromise("Browser", "open", { url: url }).catch(function () { try { window.location.href = "intent://" + url.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" + encodeURIComponent(url) + ";end"; } catch (e) {} });
+    /* v288: Browser.open (Chrome Custom Tab) me download 100% par atak jata tha. Bahari link par Capacitor
+       system browser (Chrome) kholta hai — wahan normal download + notification + Open milta hai. */
+    try { window.location.href = url; } catch (e) { cap.nativePromise("Browser", "open", { url: url }).catch(function () {}); }
   }
 
   window.SnapAppUpdate = { state: state, check: check, open: openDownload, show: show };
