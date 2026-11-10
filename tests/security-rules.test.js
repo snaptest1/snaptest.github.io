@@ -208,6 +208,37 @@ async function t(name, fn) { try { await fn(); passed++; console.log("  ✅", na
   await t("secretsLockdown ON: admin A student ko delete kar sakta hai (account delete chalta rahe)", () => assertSucceeds(d(adminA, "studentSecrets/7777").delete()));
   await env.withSecurityRulesDisabled(async (c) => { await fsOf(c).doc("config/privacy").set({ recordsLockdown: false, secretsLockdown: false }); });
 
+  console.log("\nv283 — URL/ID badalkar doosre ka data (studentDataLockdown switch)");
+  await env.withSecurityRulesDisabled(async (c) => {
+    const db = fsOf(c);
+    await db.doc("studentMistakes/9999").set({ mobile: "9999", items: [] });
+    await db.doc("studentMistakes/8888").set({ mobile: "8888", items: [] });
+    await db.doc("studentScanReports/sr1").set({ mobile: "9999", examId: "e1", photoDataUrl: "data:x" });
+    await db.doc("studentScanReports/sr2").set({ mobile: "8888", examId: "e1", photoDataUrl: "data:y" });
+    await db.doc("studentAdmitCards/ac1").set({ mobile: "9999", examId: "e1" });
+    await db.doc("studentAdmitCards/ac2").set({ mobile: "8888", examId: "e1" });
+    await db.doc("config/privacy").set({ recordsLockdown: false, secretsLockdown: false, studentDataLockdown: false });
+  });
+  await t("DataLockdown OFF: purana behaviour (signed-in koi bhi mistakes/scan/admit padh sakta hai)", async () => {
+    await assertSucceeds(d(anon, "studentMistakes/8888").get());
+    await assertSucceeds(d(anon, "studentScanReports/sr2").get());
+    await assertSucceeds(col(anon, "studentAdmitCards").where("mobile", "==", "8888").get());
+  });
+  await t("DataLockdown OFF: maujood na hone wala doc get() ab bhi chalta hai (null resource)", () => assertSucceeds(d(anon, "studentScanReports/nope").get()));
+  await env.withSecurityRulesDisabled(async (c) => { await fsOf(c).doc("config/privacy").set({ recordsLockdown: false, secretsLockdown: false, studentDataLockdown: true }); });
+  await t("DataLockdown ON: student apni mistakes padh/likh sakta hai", async () => { await assertSucceeds(d(stuA, "studentMistakes/9999").get()); await assertSucceeds(d(stuA, "studentMistakes/9999").set({ mobile: "9999", items: [1] }, { merge: true })); });
+  await t("DataLockdown ON: student doosre ki mistakes NAHI padh/likh sakta (mobile badalkar)", async () => { await assertFails(d(stuA, "studentMistakes/8888").get()); await assertFails(d(stuA, "studentMistakes/8888").set({ mobile: "8888", items: ["hack"] }, { merge: true })); });
+  await t("DataLockdown ON: bina session (anonymous) kisi ki mistakes NAHI padh sakta", () => assertFails(d(anon, "studentMistakes/9999").get()));
+  await t("DataLockdown ON: student apni scan report + photo padh sakta hai", async () => { await assertSucceeds(d(stuA, "studentScanReports/sr1").get()); await assertSucceeds(col(stuA, "studentScanReports").where("mobile", "==", "9999").get()); });
+  await t("DataLockdown ON: student doosre ki scan report (OMR photo) NAHI padh sakta", async () => { await assertFails(d(stuA, "studentScanReports/sr2").get()); await assertFails(col(stuA, "studentScanReports").where("mobile", "==", "8888").get()); });
+  await t("DataLockdown ON: student apna admit card padh sakta hai, doosre ka NAHI", async () => { await assertSucceeds(col(stuA, "studentAdmitCards").where("mobile", "==", "9999").get()); await assertFails(col(stuA, "studentAdmitCards").where("mobile", "==", "8888").get()); await assertFails(d(stuA, "studentAdmitCards/ac2").get()); });
+  await t("DataLockdown ON: bina filter poora list student ko NAHI milta", async () => { await assertFails(col(stuA, "studentScanReports").get()); await assertFails(col(stuA, "studentAdmitCards").get()); });
+  await t("DataLockdown ON: Worker custom-token student apna data padh sakta hai", () => assertSucceeds(d(custA, "studentMistakes/9999").get()));
+  await t("DataLockdown ON: mobile-claim ke bina custom-token user kuch NAHI padh sakta", () => assertFails(d(custFake, "studentScanReports/sr1").get()));
+  await t("DataLockdown ON: admin A scan reports/admit cards padh sakta hai (admin panel chalta rahe)", async () => { await assertSucceeds(d(adminA, "studentScanReports/sr1").get()); await assertSucceeds(col(adminA, "studentAdmitCards").where("examId", "==", "e1").get()); });
+  await t("DataLockdown ON: student scan report/admit card likh NAHI sakta (pehle jaisa admin-only)", async () => { await assertFails(d(stuA, "studentScanReports/sr1").set({ mobile: "9999", examId: "e1" })); await assertFails(d(stuA, "studentAdmitCards/ac1").delete()); });
+  await env.withSecurityRulesDisabled(async (c) => { await fsOf(c).doc("config/privacy").set({ recordsLockdown: false, secretsLockdown: false, studentDataLockdown: false }); });
+
   console.log("\nStorage");
   const stor = (ctx) => ctx.__stor || (ctx.__stor = ctx.storage());   /* context par storage() bhi ek hi baar */
   const adminAs = env.authenticatedContext("ua", { email: "adminA@x.com" }), stuAs = env.authenticatedContext("uid9999"), stuBs = env.authenticatedContext("uid8888");

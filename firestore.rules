@@ -553,7 +553,7 @@ service cloud.firestore {
     // studentScanReports jaisa trust model: padhna signed-in, likhna/mitana sirf admin
     // aur sirf apne institute ke student ke liye.
     match /studentAdmitCards/{docId} {
-      allow get, list: if isSignedIn();
+      allow get, list: if isSignedIn() && (resource == null || canAccessStudentMobile(resource.data.get('mobile', '')));
       allow create, update: if isAdmin() &&
         'mobile' in request.resource.data &&
         studentBelongsToAdmin(request.resource.data.mobile);
@@ -715,6 +715,18 @@ service cloud.firestore {
       return !recordsLockdown() || isOwner() || isAdmin() ||
         (sessMobile() != null && (d.mobile == sessMobile() || (d.instituteId != null && isInstStudent(d.instituteId))));
     }
+    // ── v283: "URL/ID badalkar doosre ka data" (IDOR) band karna ─────────────────────────────
+    // studentMistakes/{mobile}, studentScanReports (OMR photo samet), studentAdmitCards ka doc-id/field = student ka MOBILE.
+    // Pehle koi bhi signed-in visitor sirf mobile number badalkar kisi ka bhi data padh/likh sakta tha.
+    // Switch: config/privacy.studentDataLockdown = true  (default OFF => purana behaviour, kuch nahi tootta; rollback = false).
+    // ON hone par: student sirf APNA (sessMobile() == mobile) padh/likh sake; admin/owner pehle jaise.
+    function studentDataLockdown() {
+      return exists(/databases/$(database)/documents/config/privacy) &&
+        get(/databases/$(database)/documents/config/privacy).data.get('studentDataLockdown', false) == true;
+    }
+    function canAccessStudentMobile(m) {
+      return !studentDataLockdown() || isOwner() || isAdmin() || (sessMobile() != null && sessMobile() == m);
+    }
     match /config/privacy {
       allow read: if isSignedIn();
       allow write: if isOwner();
@@ -740,7 +752,7 @@ service cloud.firestore {
     // by mobile — same read/write trust model as studentRecords above,
     // but writes stay admin-only since linking is an admin action.
     match /studentScanReports/{docId} {
-      allow get, list: if isSignedIn();
+      allow get, list: if isSignedIn() && (resource == null || canAccessStudentMobile(resource.data.get('mobile', '')));
 
       // ⚠️ FIX (v133): create/update/delete ab admin ke apne institute
       // ke student tak simit hai (doc ke `mobile` field se check hota
@@ -764,7 +776,8 @@ service cloud.firestore {
     // there's nothing sensitive here (just question text + answers
     // already visible in the question bank). Delete stays admin-only.
     match /studentMistakes/{mobile} {
-      allow get, create, update: if isSignedIn();
+      // v283: studentDataLockdown ON => sirf apna mobile (ya admin/owner); OFF => purana behaviour.
+      allow get, create, update: if isSignedIn() && canAccessStudentMobile(mobile);
       allow list: if isAdmin();
       // ⚠️ FIX (v133): admin ke apne institute ke student tak simit.
       allow delete: if isAdmin() && studentBelongsToAdmin(mobile);
