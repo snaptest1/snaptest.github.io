@@ -1,5 +1,5 @@
 /* v247  Version Gate (sirf admin/owner). version.json me "minBuild": N likho -> jo admin app N se purane build par hoga
-   uski screen par band na hone wala "Update zaroori hai" parda aa jayega (login bana rahega).
+   uski screen par band na hone wala "Update zaroori hai" parda aa jaayega (login bana rahega).
    - students par KABHI nahi lagta (exam ke waqt safe).
    - internet na ho to kuch nahi karta (offline kaam nahi rukta).
    - Kill-switch: SNAP_CONFIG.versionGate = false, ya version.json me "minBuild": 0.

@@ -129,7 +129,7 @@
     var head = el("div", "display:flex;align-items:center;justify-content:space-between;margin-bottom:8px");
     head.appendChild(el("h3", "margin:0;font-size:1.05rem", "🚩 Question Reports"));
     var x = el("button", "background:none;border:0;font-size:1.3rem;cursor:pointer", "✕"); x.type = "button"; head.appendChild(x); box.appendChild(head);
-    box.appendChild(el("p", "margin:0 0 10px;font-size:.78rem;color:#64748b", "Students ne jo questions galat bataye, wo yahan dikhte hain. ✏️ dabakar question edit karein, phir wahi 'Save Test Online' dabayein — test dobara online set ho jayega."));
+    box.appendChild(el("p", "margin:0 0 10px;font-size:.78rem;color:#64748b", "Students ne jo questions galat bataye, wo yahan dikhte hain. ✏️ dabakar question edit karein, phir wahi 'Save Test Online' dabayein — test dobara online set ho jaayega."));
     var tabs = el("div", "display:flex;gap:8px;margin-bottom:10px");
     ["open", "resolved"].forEach(function (k) {
       var t = el("button", "flex:1", k === "open" ? "🟠 Open" : "✅ Resolved"); t.type = "button"; t.className = "btn-secondary"; t.dataset.k = k;
@@ -200,7 +200,7 @@
         if (window.SnapQEdit && window.SnapQEdit.editDraft && qi >= 0) {
           window.SnapQEdit.editDraft(qi, { note: note, doneMsg: "✅ Question badal gaya. Ab 'Save Test Online' dabayein, fir Question Reports me ✅ Resolved kar dein." });
         } else {
-          alert("✏️ '" + (x.testTitle || "Test") + "' mein Question " + x.qNumber + " ko theek karein.\n\nStudent ne likha: " + (x.message || "") + "\n\nEdit ke baad 'Save Test Online' dabayein — test dobara online ho jayega. Fir yahan report ko ✅ Resolved mark kar dein.");
+          alert("✏️ '" + (x.testTitle || "Test") + "' mein Question " + x.qNumber + " ko theek karein.\n\nStudent ne likha: " + (x.message || "") + "\n\nEdit ke baad 'Save Test Online' dabayein — test dobara online ho jaayega. Fir yahan report ko ✅ Resolved mark kar dein.");
         }
       }, 400);
     } catch (e) { aSt("⚠️ Test edit nahi khul paya: " + (e && e.message || e)); }

@@ -1,5 +1,5 @@
 /* SnapDrive (v173) — card-free file storage: file device se seedhe ADMIN ke apne Google Drive me upload,
-   upload hote hi "anyone with link" ban jaata hai aur link apne-aap mil jaata hai (hath se link banana nahi padta).
+   upload hote hi "anyone with link" ban jaata hai aur link apne aap mil jaata hai (hath se link banana nahi padta).
    - Storage institute ke apne Google account (15 GB free) me gina jaata hai — aapka storage / bandwidth kharcha zero.
    - Drive me folder banta hai:  SnapTest Pro / <instituteId>  (sirf wahi files jo app ne banayi, scope = drive.file).
    - Setup: SNAP_CONFIG.googleClientId (app-config.js) me Google OAuth Web Client ID daalni hai (DRIVE_SETUP_HINDI.md dekhein).
@@ -131,7 +131,7 @@
     }, function () { return { connected: false, email: "", unknown: true }; });
   }
   function saveStatus(inst, connected, email) {
-    var db = idb(); if (!db) return Promise.reject(new Error("Firebase ready nahi"));
+    var db = idb(); if (!db) return Promise.reject(new Error("Server ready nahi"));
     email = connected && MAIL.test(email || "") ? String(email).slice(0, 100) : "";
     return db.collection("institutes").doc(inst).update({ driveConnected: !!connected, driveEmail: email }).then(function () { st[inst] = Object.assign(st[inst] || {}, { connected: !!connected, email: email }); return st[inst]; });
   }

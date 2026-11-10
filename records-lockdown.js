@@ -47,7 +47,7 @@
   /* Admin tool: purane results me instituteId lagao (lockdown ON karne se pehle ek baar chalayein). */
   window.SnapRecordsBackfill = async function (opts) {
     var dry = !opts || opts.dry !== false, v = window.vishnuFirebase;
-    if (!v || !v.enabled) throw new Error("Firebase connected nahi");
+    if (!v || !v.enabled) throw new Error("Server se connected nahi");
     var list = (typeof allStudentsCache !== "undefined" && allStudentsCache) || [];
     var byMobile = {}; list.forEach(function (s) { var m = String(s.mobile || "").replace(/\D/g, "").slice(-10); if (m && s.instituteId) byMobile[m] = s.instituteId; });
     var mobiles = Object.keys(byMobile), todo = [];

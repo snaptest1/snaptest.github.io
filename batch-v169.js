@@ -167,7 +167,7 @@
       { k: "marks", l: "Marks per question", t: "number" },
       { k: "startTxt", l: "Start time (optional — future = Upcoming test)", t: "datetime-local" },
       { k: "syllabus", l: "Syllabus (students ko dikhega)", t: "textarea" },
-      { k: "status", l: "Status", t: "select", o: [["live", "Abhi publish karein (students ko notification jayega)"], ["draft", "Draft me rakhein"]] }
+      { k: "status", l: "Status", t: "select", o: [["live", "Abhi publish karein (students ko notification jaayega)"], ["draft", "Draft me rakhein"]] }
     ], { title: ch.name + " — Chapter Test", count: n0, minutes: Math.max(5, Math.round(n0 * 1.2)), marks: 2, syllabus: subj.name + " › " + ch.name, status: "live" }, function (o) {
       var n = Math.floor(+o.count);
       if (!o.title || !String(o.title).trim()) { c.toast("Test ka naam likhein"); return false; }

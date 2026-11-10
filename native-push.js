@@ -36,7 +36,7 @@
   }
   function send(notifId, payload) {
     try {
-      if (notifId && navigator.onLine === false) { pqAdd(String(notifId)); toast("📴 Offline — push internet aate hi apne-aap chala jaayega"); return Promise.resolve(false); }
+      if (notifId && navigator.onLine === false) { pqAdd(String(notifId)); toast("📴 Offline — push internet aate hi apne aap chala jaayega"); return Promise.resolve(false); }
       var a = typeof getAuth === "function" ? getAuth() : null, u = a && a.currentUser;
       var inst = typeof getCurrentAdminInstituteId === "function" ? getCurrentAdminInstituteId() : null;
       if (!u || !inst || !notifId || /YOUR-SUBDOMAIN/.test(PUSH_WORKER_URL)) { toast("⚠️ Push nahi gaya: " + (!u ? "admin email login nahi hai" : !inst ? "institute id nahi mila" : "Worker URL set nahi")); return Promise.resolve(false); }

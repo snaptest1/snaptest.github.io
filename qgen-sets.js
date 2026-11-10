@@ -5,7 +5,7 @@
    Set B–E = SAME questions, order alag (aur chahe to options ka order bhi).
    Har set ka order + option-order test me `qSets` field me save hota hai
    (paper-sets.js ka format) — publish par isi se OMR Exam Manager ki
-   har set ki answer key apne-aap banti hai.
+   har set ki answer key apne aap banti hai.
 
    Ye file qgen-app.js ke globals (getAllQuestionsFlat, sections, toast ...)
    sirf CALL-TIME par use karti hai, isliye load-order ki chinta nahi.
@@ -155,7 +155,7 @@
     if (info) {
       info.innerHTML =
         S.n >= 2
-          ? "✅ " + S.n + " sets (A–" + LETTERS[S.n - 1] + "). Sab me same questions, order alag. Test publish hone par OMR Exam Manager me har set ki answer key apne-aap bhar jayegi.<br>" + warn
+          ? "✅ " + S.n + " sets (A–" + LETTERS[S.n - 1] + "). Sab me same questions, order alag. Test publish hone par OMR Exam Manager me har set ki answer key apne aap bhar jaayegi.<br>" + warn
           : "1 set = purana tareeka. 2–5 chunne par Set B–E auto-shuffle se banenge.";
     }
     var bar = document.getElementById("qgSetBar");
@@ -188,7 +188,7 @@
       return;
     }
     if (n < 2) {
-      if (S.n >= 2 && S.def && !confirm("Sets hata dein? Set B–E ka shuffle delete ho jayega (sirf original Set A rahega).")) {
+      if (S.n >= 2 && S.def && !confirm("Sets hata dein? Set B–E ka shuffle delete ho jaayega (sirf original Set A rahega).")) {
         renderBar();
         return;
       }
@@ -203,7 +203,7 @@
     S.n = n;
     if (!L.length) {
       renderBar();
-      say("ℹ️ Pehle paper me questions add karein — sets apne-aap ban jayenge.");
+      say("ℹ️ Pehle paper me questions add karein — sets apne aap ban jaayenge.");
       return;
     }
     regen(descs(L), segSizes(L), false, true, true);
@@ -223,7 +223,7 @@
 
   function regenerate() {
     if (S.n < 2) return;
-    if (S.def && !confirm("Set B–E ka order dobara shuffle hoga. Agar pehle ke sets print kar chuke hain to wo purane ho jayenge. Aage badhein?")) return;
+    if (S.def && !confirm("Set B–E ka order dobara shuffle hoga. Agar pehle ke sets print kar chuke hain to wo purane ho jaayenge. Aage badhein?")) return;
     var L = flat();
     if (!L.length) return;
     regen(descs(L), segSizes(L), false, true, false);

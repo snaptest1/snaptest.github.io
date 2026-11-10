@@ -5,7 +5,7 @@
         koi link/URL nahi). Student 1-5 reads me list dekh leta hai; poora item (link/file) tabhi padhta hai jab kholta/join karta hai.
 
    Sync: admin jab bhi kuch badalta hai (item, subject, chapter, import, bulk) to batch-system.js ka loadAll() chalta hai; uske baad
-         SnapCatalog.sync() items se catalog banakar sirf BADLE huye docs likhta hai (hash se). Admin panel kholne par bhi apne-aap theek hota hai.
+         SnapCatalog.sync() items se catalog banakar sirf BADLE huye docs likhta hai (hash se). Admin panel kholne par bhi apne aap theek hota hai.
    Safety: catalog na ho / fail ho to student ka purana tareeka (poore items) chalta hai. Kill-switch: SNAP_CONFIG.catalog = false */
 (function () {
   "use strict";

@@ -41,7 +41,7 @@
     var done = function () { toast(okMsg || "Copy ho gaya ✅", 2500); };
     try { if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(done, function () { fallback(); }); return; } } catch (e) {}
     fallback();
-    function fallback() { var ta = el("textarea", "position:fixed;opacity:0"); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); done(); } catch (e) { toast("Copy nahi hua — khud chuniye"); } ta.remove(); }
+    function fallback() { var ta = el("textarea", "position:fixed;opacity:0"); ta.value = txt; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); done(); } catch (e) { toast("Copy nahi hua — khud chunein"); } ta.remove(); }
   }
   function close() { if (ov) { ov.remove(); ov = null; } document.body.style.overflow = ""; }
   function shell(title) {
@@ -79,18 +79,18 @@
     box.appendChild(status);
 
     /* 1) Photo se test */
-    box.appendChild(el("div", "margin-top:16px;font-weight:800", "📷 Photo se sawal nikalo"));
-    box.appendChild(el("div", "font-size:.8rem;color:#475569;margin-top:2px", "Kisi bhi sawal ki photo / screenshot chuniye. AI sawal banakar 📥 Clip Drafts me daal dega."));
+    box.appendChild(el("div", "margin-top:16px;font-weight:800", "📷 Photo se sawaal nikalo"));
+    box.appendChild(el("div", "font-size:.8rem;color:#475569;margin-top:2px", "Kisi bhi sawaal ki photo / screenshot chunein. AI sawaal banakar 📥 Clip Drafts me daal dega."));
     var file = el("input", "margin-top:8px;max-width:100%"); file.type = "file"; file.accept = "image/*";
     var go = el("button", BTN + "margin-top:8px;background:#4f46e5;color:#fff", "Bhejo"); go.type = "button";
     var res = el("div", "margin-top:8px;font-size:.85rem;white-space:pre-wrap");
     go.onclick = function () {
-      var f = file.files && file.files[0]; if (!f) { toast("Pehle photo chuniye"); return; }
-      go.disabled = true; res.style.color = "#334155"; res.textContent = "⏳ AI sawal padh raha hai (5-20 second)...";
+      var f = file.files && file.files[0]; if (!f) { toast("Pehle photo chunein"); return; }
+      go.disabled = true; res.style.color = "#334155"; res.textContent = "⏳ AI sawaal padh raha hai (5-20 second)...";
       shrink(f).then(function (blob) { return api("POST", "/api/clip", { headers: { "Content-Type": "image/jpeg", "X-Clip-Source": "App photo" }, body: blob }); })
         .then(function (r) {
           res.style.color = r.count ? "#166534" : "#92400e";
-          res.textContent = r.count ? ("✅ " + r.count + " sawal 📥 Clip Drafts me aa gaye.\nWahan se Edit / Bank / Test kar sakte hain.") : ("⚠️ " + (r.notes || "Photo me sawal nahi mila"));
+          res.textContent = r.count ? ("✅ " + r.count + " sawaal 📥 Clip Drafts me aa gaye.\nWahan se Edit / Bank / Test kar sakte hain.") : ("⚠️ " + (r.notes || "Photo me sawaal nahi mila"));
           refresh();
         })
         .catch(function (e) { res.style.color = "#b91c1c"; res.textContent = "❌ " + (e.message || e); })
@@ -158,7 +158,7 @@
   }
 
 
-  /* ===================== 📥 Clip Drafts (Clipper se aaye sawal) ===================== */
+  /* ===================== 📥 Clip Drafts (Clipper se aaye sawaal) ===================== */
   function lastPick() { try { return JSON.parse(localStorage.getItem("snap_clip_last") || "{}"); } catch (e) { return {}; } }
   function savePick(p) { try { localStorage.setItem("snap_clip_last", JSON.stringify(p)); } catch (e) {} }
   function clipDrafts() {
@@ -186,10 +186,10 @@
 
   function toBank(d, pick, btn, rerender) {
     var isSub = d.qType === "subjective", src = d.clipMeta && d.clipMeta.answerSource;
-    if (!isSub && src === "unknown") { alert("Pehle ✏️ Edit dabakar sahi uttar chuniye."); return; }
-    if (!isSub && src === "solved" && !confirm("Is sawal ka uttar AI ne nikala hai. Kya aapne check kar liya?")) return;
+    if (!isSub && src === "unknown") { alert("Pehle ✏️ Edit dabakar sahi uttar chunein."); return; }
+    if (!isSub && src === "solved" && !confirm("Is sawaal ka uttar AI ne nikala hai. Kya aapne check kar liya?")) return;
     var classId = pick.cls.value, subject = pick.sub.value.trim(), chapter = pick.ch.value.trim();
-    if (!classId || !subject || !chapter) { alert("Class, Subject aur Chapter teeno chuniye."); return; }
+    if (!classId || !subject || !chapter) { alert("Class, Subject aur Chapter teeno chunein."); return; }
     var q = d.textHI || d.text || "", opts = (d.optionsHI || d.options || ["", "", "", ""]).slice(0, 4), ex = d.explanationHI || d.explanation || "";
     var doc = { subject: subject, chapter: chapter, classId: classId, qType: isSub ? "subjective" : "mcq",
       text: q, textHI: q, textEN: q, options: opts, optionsHI: opts, optionsEN: opts, answer: isSub ? 0 : Number(d.answer || 0),
@@ -257,7 +257,7 @@
     var B = function (t, bg, fg, fn) { var b = el("button", BTN + "padding:8px 11px;font-size:.82rem;background:" + bg + ";color:" + fg, t); b.type = "button"; b.onclick = function () { fn(b); }; return b; };
     acts.appendChild(B("✏️ Edit", "#e0e7ff", "#3730a3", function () {
       if (!root.SnapQEdit) { alert("Editor load nahi hua, page refresh karein."); return; }
-      root.SnapQEdit.open({ title: "Clip sawal edit", q: d, note: d.sourcePdf, onSave: function (f) {
+      root.SnapQEdit.open({ title: "Clip sawaal edit", q: d, note: d.sourcePdf, onSave: function (f) {
         var payload = Object.assign({}, f, { needsReview: false, sourcePdf: "Clip • ✏️ Aapne check kiya", clipMeta: Object.assign({}, m, { answerSource: "manual" }) });
         Object.assign(d, payload);
         try { getDB().collection("pdfDrafts").doc(d.id).set(payload, { merge: true }).catch(function (e) { alert("Draft save nahi hua: " + (e && e.message || e)); }); } catch (e) {}
@@ -275,13 +275,13 @@
   }
 
   function openDrafts() {
-    var box = shell("📥 Clip se aaye sawal");
-    box.appendChild(el("div", "margin-top:6px;font-size:.8rem;color:#475569", "Har sawal dekhiye. Class / Subject / Chapter chunkar ✅ Bank me daalo. Uttar galat ho to ✏️ Edit."));
+    var box = shell("📥 Clip se aaye sawaal");
+    box.appendChild(el("div", "margin-top:6px;font-size:.8rem;color:#475569", "Har sawaal dekhein. Class / Subject / Chapter chunkar ✅ Bank me daalo. Uttar galat ho to ✏️ Edit."));
     var host = el("div"); box.appendChild(host);
     function render() {
       host.textContent = "";
       var list = clipDrafts();
-      if (!list.length) { host.appendChild(el("div", "margin-top:24px;text-align:center;color:#64748b;font-size:.9rem;white-space:pre-line", "Abhi koi naya Clip sawal nahi hai.\n✂️ Clipper se sawal bhejiye.")); return; }
+      if (!list.length) { host.appendChild(el("div", "margin-top:24px;text-align:center;color:#64748b;font-size:.9rem;white-space:pre-line", "Abhi koi naya Clip sawaal nahi hai.\n✂️ Clipper se sawaal bhejein.")); return; }
       list.forEach(function (d) { host.appendChild(card(d, render)); });
     }
     render();

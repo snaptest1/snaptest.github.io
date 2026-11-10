@@ -155,7 +155,7 @@
     return e.p;
   }
   function saveRoster(id) {
-    var e = C[id], d = DB(); if (!d) { alert("Firebase se connect nahi ho paya — internet check karein."); return Promise.resolve(false); }
+    var e = C[id], d = DB(); if (!d) { alert("Server se connect nahi ho paya — internet check karein."); return Promise.resolve(false); }
     e.by = indexList(e.list); saveLocal(id);
     return d.collection(EXAMS).doc(id).collection("roster").doc("main").set({ list: e.list, nextRoll: e.nextRoll, updatedAt: root.firebase.firestore.FieldValue.serverTimestamp() })
       .then(function () { return X().patch(id, { students: e.list.length, rosterCount: e.list.length }); })
@@ -214,7 +214,7 @@
         var v = verify(R, ex, { roll: det.roll, setLetter: det.setLetter, id: null }, results(ex), ocr);
         if (v.level !== "error") return { block: false };
         if (v.issues[0].code === "ROLL_UNREADABLE") { alert("⚠️ " + mismatchText(v)); return { block: true }; }
-        return { block: !confirm("❌ ANOMALY: " + mismatchText(v) + "\n\nPhir bhi is sheet ko save karein? (Result 'anomaly' ke roop me mark hoga)") };
+        return { block: !confirm("❌ ANOMALY: " + mismatchText(v) + "\n\nPhir bhi is sheet ko save karein? (Result par ⚠️ flag lagega)") };
       } catch (e) { return { block: false }; }
     },
     /* auto-save ko tab rokna jab roster verification saaf na ho */
@@ -320,7 +320,7 @@
   }
   function removeEntry(en) {
     if (ctxEx().registrationId) { note("🔗 Registration se jude exam me student Registration se hatayein, phir Sync dabayein."); return; }
-    if (!confirm("Roll " + en.roll + " — " + en.name + " ko roster se hata dein?" + (ctxEx().admitPublished ? "\nIska published Admit Card bhi delete ho jayega." : ""))) return;
+    if (!confirm("Roll " + en.roll + " — " + en.name + " ko roster se hata dein?" + (ctxEx().admitPublished ? "\nIska published Admit Card bhi delete ho jaayega." : ""))) return;
     var R = C[P.id]; R.list = R.list.filter(function (x) { return x.roll !== en.roll; });
     var d = DB(); if (d && ctxEx().admitPublished) d.collection(CARDS).doc(P.id + "_" + en.mobile).delete().catch(function () {});
     saveRoster(P.id).then(function (ok) { if (ok) { renderAll(); note("🗑️ Roll " + en.roll + " hata diya."); } });
@@ -328,7 +328,7 @@
   function publish() {
     var ex = ctxEx(), R = C[P.id], d = DB();
     if (!R || !R.list.length) { note("⚠️ Pehle students jodein."); return; }
-    if (!d) { alert("Firebase se connect nahi ho paya."); return; }
+    if (!d) { alert("Server se connect nahi ho paya."); return; }
     var digits = Math.max(1, Math.min(5, Number(ex.rollDigits) || 2));
     if (R.list.some(function (e) { return e.roll.length !== digits; })) { note("⚠️ Roll digits exam settings se match nahi karte — neeche \"Roll dobara banayein\" dabayein."); return; }
     if (!confirm(R.list.length + " students ko Admit Card bhej dein? Student apne app me dekh/download kar paayenge.")) return;
@@ -493,8 +493,8 @@
     var ex = ctxEx(), sel = document.getElementById("ros-link-sel"), rid = typeof forceId === "string" ? forceId : (sel && sel.value), R = C[P.id];
     if (!rid) { note("⚠️ Pehle upar se Registration chunein."); return; }
     var reg = P.regs.filter(function (r) { return r.id === rid; })[0];
-    if (!ex.registrationId && R && R.list.length && !confirm("Is exam ke abhi ke " + R.list.length + " roster students hat kar Registration wale students aa jayenge. Aage badhein?")) return;
-    if (reg && reg.rollDigits !== (Number(ex.rollDigits) || 2) && !confirm("Exam ke Roll digits " + (Number(ex.rollDigits) || 2) + " se " + reg.rollDigits + " ho jayenge (OMR sheet par roll columns badlenge — chhapi hui sheet dobara chhapni pad sakti hai). Aage badhein?")) return;
+    if (!ex.registrationId && R && R.list.length && !confirm("Is exam ke abhi ke " + R.list.length + " roster students hat kar Registration wale students aa jaayenge. Aage badhein?")) return;
+    if (reg && reg.rollDigits !== (Number(ex.rollDigits) || 2) && !confirm("Exam ke Roll digits " + (Number(ex.rollDigits) || 2) + " se " + reg.rollDigits + " ho jaayenge (OMR sheet par roll columns badlenge — chhapi hui sheet dobara chhapni pad sakti hai). Aage badhein?")) return;
     note("⏳ Registration se jod rahe hain...");
     api.linkRegistration(P.id, rid).then(function (ok) { if (ok) { renderAll(); note("✅ Registration se " + ((C[P.id] && C[P.id].list.length) || 0) + " students jud gaye. Roll No wahi hain jo admit card par hain."); } else note(""); });
   }

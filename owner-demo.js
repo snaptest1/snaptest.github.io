@@ -78,7 +78,7 @@
     if (!confirm("Demo reset: sirf DEMO data (isDemo) hatega — asli institutes ko kuch nahi hoga. Chalu karein?")) return;
     msg("Reset ho raha hai…"); var inst = D.collection("institutes").doc(ID), del = function (docs) { return commit(docs.map(function (d) { return { ref: d.ref, del: true }; })); };
     var SUBS = ["items", "members", "assignments", "requests", "catalog", "subjects"];
-    /* 1) demo institute ka batch-tree (rules ke liye institute doc sabse aakhir me jayega) */
+    /* 1) demo institute ka batch-tree (rules ke liye institute doc sabse aakhir me jaayega) */
     inst.collection("batches").get().then(function (bs) {
       return bs.docs.reduce(function (p, b) {
         return p.then(function () {

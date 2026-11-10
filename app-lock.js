@@ -4,7 +4,7 @@
         - link me  ?inst=<instituteId>                      (institute ka apna web link; phone/browser me yaad rakha jaata hai)
         - pichli baar ka yaad rakha hua (localStorage)
       Link kholne wala lock hatane ke liye:  ?inst=off
-      Lock hone par: Registration me institute apne-aap chun jaata hai (dropdown chhup jaata hai), aur doosre institute ke
+      Lock hone par: Registration me institute apne aap chun jaata hai (dropdown chhup jaata hai), aur doosre institute ke
       Student/Admin us app me login karein to "ye app is institute ka nahi hai" screen aati hai.
    2) SUSPEND: Owner Panel me institute Deactivate hote hi us institute ke Admin + Students (aur lock wale app me har koi)
       ko "App abhi band hai" screen aati hai. Activate karte hi wapas chalu. Owner par koi asar nahi.
@@ -35,7 +35,7 @@
   }
   function esc(t) { return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
 
-  /* ---------- registration: locked institute apne-aap chun lo, dropdown chhupa do ---------- */
+  /* ---------- registration: locked institute apne aap chun lo, dropdown chhupa do ---------- */
   function lockRegister(lock) {
     var sel = document.getElementById("register-institute"); if (!sel || !lock) return;
     var has = false; for (var i = 0; i < sel.options.length; i++) if (sel.options[i].value === lock) has = true;
@@ -66,11 +66,11 @@
     var title, msg, btns;
     if (kind === "expired") {
       title = nm + " ka plan khatam ho gaya";
-      msg = "Is institute ka subscription expire ho gaya hai. Renew ke liye apne institute (owner) se sampark karein. Renew hote hi app apne-aap khul jayega.";
+      msg = "Is institute ka subscription expire ho gaya hai. Renew ke liye apne institute (owner) se sampark karein. Renew hote hi app apne aap khul jaayega.";
       btns = '<button id="snap-lock-retry" style="margin-top:18px;padding:11px 22px;border:0;border-radius:10px;background:#4f46e5;color:#fff;font-size:1rem;">🔄 Dobara check karein</button>';
     } else if (kind === "suspended") {
       title = nm + " ka app abhi band hai";
-      msg = "Is institute ka access abhi roka gaya hai. Kripya apne institute se sampark karein. Chalu hote hi app apne-aap khul jayega.";
+      msg = "Is institute ka access abhi roka gaya hai. Kripya apne institute se sampark karein. Chalu hote hi app apne aap khul jaayega.";
       btns = '<button id="snap-lock-retry" style="margin-top:18px;padding:11px 22px;border:0;border-radius:10px;background:#4f46e5;color:#fff;font-size:1rem;">🔄 Dobara check karein</button>';
     } else {
       title = "Ye app sirf " + nm + " ke liye hai";
@@ -95,7 +95,7 @@
     var left = Math.ceil((exp - Date.now()) / 86400000);
     if (left > 7) { if (el) el.remove(); return; }
     var txt = left > 0 ? "⚠️ Aapka plan " + left + " din me khatam hoga — renew ke liye Owner se sampark karein." :
-      "⚠️ Plan khatam ho chuka hai — " + Math.max(0, Math.ceil((exp + grace - Date.now()) / 86400000)) + " din me app band ho jayega. Abhi renew karwayein.";
+      "⚠️ Plan khatam ho chuka hai — " + Math.max(0, Math.ceil((exp + grace - Date.now()) / 86400000)) + " din me app band ho jaayega. Abhi renew karwayein.";
     if (!el) { el = document.createElement("div"); el.id = "snap-lock-banner"; el.style.cssText = "position:fixed;left:0;right:0;bottom:0;z-index:2147482000;background:#b45309;color:#fff;text-align:center;padding:8px 12px;font:600 .82rem system-ui,sans-serif;"; document.body.appendChild(el); }
     el.textContent = txt;
   }

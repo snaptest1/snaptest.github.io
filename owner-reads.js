@@ -149,7 +149,7 @@
     var m = st.minutes;
     call("/owner/reads/summary?minutes=" + m).then(function (s) { st.sum = s; st.sel = null; st.detail = null; st.user = null; }).catch(function (e) { st.err = e.message || String(e); st.sum = null; })
       .then(function () { render(); return st.err ? null : call("/owner/reads/actual?minutes=" + m).then(function (a) { st.act = a; }).catch(function (e) { st.actErr = e.message || String(e); }); })
-      .then(function () { st.busy = false; render(); var sp = st.sum && spikes(st.sum.series)[0]; if (sp) pickSpike(sp.t); });   // sabse bada jhatka apne-aap khul jata hai
+      .then(function () { st.busy = false; render(); var sp = st.sum && spikes(st.sum.series)[0]; if (sp) pickSpike(sp.t); });   // sabse bada jhatka apne aap khul jata hai
   }
   function pickUser(usr, role) {
     st.user = { usr: usr, role: role }; render();

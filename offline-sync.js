@@ -1,4 +1,4 @@
-/* v163 — Offline mode: saved data se app chalti hai, offline badlav internet aate hi apne-aap online save hote hain.
+/* v163 — Offline mode: saved data se app chalti hai, offline badlav internet aate hi apne aap online save hote hain.
    Firestore offline persistence (firebase-config.js) pehle se chalu hai: offline likhe data phone me queue hota hai aur internet aate hi upload hota hai.
    Ye file sirf USER KO BATATI hai: offline pill, "data abhi online save nahi hua" notice, "N baaki" count, "sab online save ho gaya" confirmation.
    Online hone par koi write badla nahi jaata (wahi original promise lautta hai); sirf offline hone par save button atka na rahe isliye promise jaldi resolve hota hai. */
@@ -52,7 +52,7 @@
   }
   function notice(slow) {
     var now = Date.now(); if (now - lastNotice < 9000) return; lastNotice = now;
-    toast("<b>Data abhi online save nahi hua</b><br>" + (slow ? "Network kamzor hai — data aapke phone me safe hai." : "Aapka data phone me safe hai.") + " Internet aate hi apne-aap online upload ho jaayega.");
+    toast("<b>Data abhi online save nahi hua</b><br>" + (slow ? "Network kamzor hai — data aapke phone me safe hai." : "Aapka data phone me safe hai.") + " Internet aate hi apne aap online upload ho jaayega.");
   }
 
   /* ---------- Write tracking ---------- */
@@ -123,13 +123,13 @@
 
   S.syncNow = function () {
     var d = db();
-    if (offline()) { toast("<b>Internet nahi hai</b><br>Internet connect hote hi data apne-aap sync ho jaayega."); return Promise.resolve(false); }
+    if (offline()) { toast("<b>Internet nahi hai</b><br>Internet connect hote hi data apne aap sync ho jaayega."); return Promise.resolve(false); }
     if (!d || typeof d.waitForPendingWrites !== "function") { toast("Sync abhi available nahi hai", true); return Promise.resolve(false); }
     toast("Sync check ho raha hai…", true, 2500);
     try { d.enableNetwork && d.enableNetwork().catch(function () {}); } catch (e) {}
     return Promise.race([d.waitForPendingWrites().then(function () { return true; }), new Promise(function (r) { setTimeout(function () { r(false); }, 9000); })]).then(function (ok) {
       if (ok) { toast("<b>Sab online save hai</b><br>Koi badlav baaki nahi.", true, 4000); unknown = false; pending = Math.max(0, pending); paint(); fireSynced(); }
-      else toast("Abhi kuch badlav baaki hain — network aate hi apne-aap online ho jaayenge.");
+      else toast("Abhi kuch badlav baaki hain — network aate hi apne aap online ho jaayenge.");
       return ok;
     });
   };

@@ -107,7 +107,7 @@
           '<div class="asp-card asp-ctr" style="padding:20px 15px"><div class="asp-av" style="margin:0 auto;width:78px;height:78px;font-size:1.7rem">' + esc(initials(i.name || u.email)) + '</div>' +
           '<div style="font-size:1.1rem;font-weight:800;margin-top:10px">' + nm + '</div><div style="font-size:.78rem;color:#64748b;margin-top:2px">Admin' + (u.email ? " • " + esc(u.email) : "") + '</div>' +
           '<span class="asp-pill' + (act ? " r" : "") + '"><i></i>' + (act ? "Deactivated" : "Active") + '</span></div>' +
-          '<div class="asp-card" style="padding:13px"><h4>' + ico("idc") + ' Aapka ID Card</h4><p style="margin:5px 0 11px">Logo par click karke institute ka logo lagayein — turant sabhi students ke ID Card par bhi dikhega. Photo aur Naam par click/✏️ se apni details set karein.</p><div data-borrow="admin-idcard-outer,admin-institute-logo-status"></div></div>' +
+          '<div class="asp-card" style="padding:13px"><h4>' + ico("idc") + ' Aapka ID Card</h4><p style="margin:5px 0 11px">Logo par click karke institute ka logo lagayein (ID Card par bhi dikhega). Photo aur Naam par click/✏️ karke details set karein.</p><div data-borrow="admin-idcard-outer,admin-institute-logo-status"></div></div>' +
           '<div class="asp-card"><h4>' + ico("user") + ' Account Details</h4>' + kv("Admin Email", esc(u.email || "—"), "mail", 1) + kv("Email verified", u.emailVerified ? '<span class="asp-ok">Haan, verified</span>' : '<span class="asp-bad">Nahi</span>', "shield") + '</div>' +
           '<div class="asp-card"><h4>' + ico("build") + ' Institute Details</h4>' + kv("Institute", nm, "build", 1) + kv("Institute ID", esc(id || "—"), "hash") + kv("Status", act ? '<span class="asp-bad">Deactivated</span>' : '<span class="asp-ok">Active</span>', "pulse") + '</div>' +
           '');
@@ -116,10 +116,10 @@
     notif: function (done) {
       var url = "https://cool-thunder-a280.vishnu1234stm.workers.dev";
       done("Notifications", "Students ko push bhejein",
-        '<div class="asp-card asp-ctr" style="padding:20px 15px"><div class="asp-bell">' + ico("bell") + '</div><div style="font-size:1rem;font-weight:800">Students ko notification</div><p>App band hone par bhi students ke phone par aati hai (free push system).</p>' +
+        '<div class="asp-card asp-ctr" style="padding:20px 15px"><div class="asp-bell">' + ico("bell") + '</div><div style="font-size:1rem;font-weight:800">Students ko notification</div><p>App band ho tab bhi students ke phone par aati hai.</p>' +
         '<div class="asp-act"><button type="button" class="asp-btn" data-go="sendnotif">' + ico("send") + ' Notification bhejein</button></div></div>' +
         '<div class="asp-card"><h4>' + ico("pulse") + ' Push service status</h4><div class="asp-stat wait" id="asp-push-box"><div class="l"><span class="asp-ping"></span>Server</div><span id="asp-push-st" style="font-size:.78rem;color:#64748b">Check ho raha hai…</span></div>' +
-        '<div class="asp-note">' + ico("alert") + '<div>Agar status ❌ dikhe to Owner se contact karein. Students ko notification tabhi milegi jab unhone naya app install karke ek baar login kiya ho aur permission Allow ki ho.</div></div></div>');
+        '<div class="asp-note">' + ico("alert") + '<div>Status ❌ ho to Owner se contact karein. Notification ke liye students ko naya app install karke ek baar login karna aur permission Allow karni hogi.</div></div></div>');
       var setSt = function (ok, txt) { var b = $("asp-push-box"), e = $("asp-push-st"); if (!b || !e) return; b.className = "asp-stat" + (ok ? "" : " bad"); e.className = "asp-pill" + (ok ? "" : " r"); e.removeAttribute("style"); e.innerHTML = "<i></i>" + txt; };
       fetch(url, { method: "GET" }).then(function (r) { return r.json(); }).then(function (j) { setSt(j && j.ok, j && j.ok ? "Chalu hai" : "Jawab galat"); }).catch(function () { setSt(false, "Connect nahi hua"); });
     },
@@ -132,7 +132,7 @@
       var faqs = (c.adminFaqs || []).map(function (f) { return '<div class="asp-card"><b>' + esc(f[0]) + '</b><p>' + esc(f[1]) + '</p></div>'; }).join("");
       done("Help & Support", "Humse sampark karein",
         '<div class="asp-card"><b>Koi problem hai?</b><p>Owner / Developer se seedha contact karein.' + (c.supportHours ? "<br>🕒 " + esc(c.supportHours) : "") + '</p>' +
-        (acts ? '<div class="asp-act">' + acts + '</div>' : "") + '</div>' + (faqs ? '<div class="asp-h" style="margin-top:14px">Aam sawal</div>' + faqs : ""));
+        (acts ? '<div class="asp-act">' + acts + '</div>' : "") + '</div>' + (faqs ? '<div class="asp-h" style="margin-top:14px">Aam sawaal</div>' + faqs : ""));
     },
     about: function (done) {
       var c = C();
@@ -149,10 +149,10 @@
         '<div class="asp-card"><div class="asp-line"><div class="asp-ic" style="background:' + TILE.ind + '">' + ico("dl") + '</div><div class="asp-tx"><b>Update check</b><p>Latest version laga hai ya nahi dekhein.</p></div></div><div class="asp-act"><button type="button" class="asp-btn" data-go="update">' + ico("refresh") + ' Update check karein</button></div>' +
         '<div class="asp-sep"></div><div class="asp-line"><div class="asp-ic" style="background:' + TILE.tea + '">' + ico("trash") + '</div><div class="asp-tx"><b>Cache saaf karke refresh</b><p>Kuch purana ya adhura dikhe to ye karein. Aapka login bana rahega.</p></div></div><div class="asp-act"><button type="button" class="asp-btn o" data-go="cache">' + ico("trash") + ' Cache saaf karein</button></div></div>' +
         '<div class="asp-card"><h4>' + ico("db") + ' Question Bank</h4>' +
-        '<div class="asp-line" style="margin-top:12px"><div class="asp-tx"><b>Bank dobara load karein</b><p>Doosre admin ne questions jode hon aur yahan na dikhein to dabayein.</p><span class="asp-tag">Firestore reads lagenge</span></div><button type="button" class="asp-mini" data-go="bank">Refresh</button></div>' +
-        '<div class="asp-sep"></div><div class="asp-line"><div class="asp-tx"><b>Bank students ke liye publish</b><p>Students ko bank Cloudflare se milta hai (reads 0). Normally ye apne-aap hota hai; kabhi na ho to yahan dabayein.</p><span class="asp-tag">Reads: 0</span></div><button type="button" class="asp-mini g" data-go="pub">Publish</button></div>' +
-        '<div class="asp-sep"></div><div class="asp-line"><div class="asp-tx"><b>Bank backup (export)</b><p>Poora question bank ek JSON file me download hota hai — backup ke liye.</p><span class="asp-tag">Reads: 0</span></div><button type="button" class="asp-mini" data-go="bankexp">Export</button></div>' +
-        '<div class="asp-sep"></div><div><b style="font-size:.88rem">Seed All Questions</b><p>Pehli baar click karo — sare subjects (Math &amp; History) ke questions Firebase mein save/update ho jayenge.</p><span class="asp-tag">Sirf pehli baar</span><div data-borrow="seed-questions-btn"></div></div></div>');
+        '<div class="asp-line" style="margin-top:12px"><div class="asp-tx"><b>Bank dobara load karein</b><p>Doosre admin ne questions jode hon aur yahan na dikhein to dabayein.</p><span class="asp-tag">Reads lagenge</span></div><button type="button" class="asp-mini" data-go="bank">Refresh</button></div>' +
+        '<div class="asp-sep"></div><div class="asp-line"><div class="asp-tx"><b>Bank students ke liye publish</b><p>Students ko bank alag server se milta hai (reads 0). Ye apne aap hota hai; kabhi na ho to yahan dabayein.</p><span class="asp-tag">Reads: 0</span></div><button type="button" class="asp-mini g" data-go="pub">Publish</button></div>' +
+        '<div class="asp-sep"></div><div class="asp-line"><div class="asp-tx"><b>Bank backup (export)</b><p>Poora question bank backup file mein download hoga.</p><span class="asp-tag">Reads: 0</span></div><button type="button" class="asp-mini" data-go="bankexp">Export</button></div>' +
+        '<div class="asp-sep"></div><div><b style="font-size:.88rem">Seed All Questions</b><p>Pehli baar click karein — sabhi subjects (Math &amp; History) ke questions save/update ho jaayenge.</p><span class="asp-tag">Sirf pehli baar</span><div data-borrow="seed-questions-btn"></div></div></div>');
     },
     joincode: function (done) {
       if (typeof window.loadInstituteJoinCodeStatus === "function") { try { window.loadInstituteJoinCodeStatus(); } catch (e) {} }
@@ -160,12 +160,12 @@
         '<div class="asp-card asp-ctr" style="padding:20px 15px"><div class="asp-big" id="asp-jc-ic">' + ico("shield") + '</div><div id="asp-jc-t" style="font-size:1rem;font-weight:800;margin-top:12px">Check ho raha hai…</div><p id="asp-jc-p" style="display:none">Abhi ka code</p><span class="asp-code" id="asp-jc-code" style="display:none"></span></div>' +
         '<div class="asp-card"><h4>' + ico("key") + ' Naya code set / badlein</h4><div class="asp-lbl">NAYA CODE</div><div data-borrow="institute-joincode-input"></div>' +
         '<div class="asp-act" style="flex-direction:column"><button type="button" class="asp-btn" data-go="jcsave">' + ico("db") + ' Code Save Karein</button><button type="button" class="asp-btn r" data-go="jcoff">' + ico("alert") + ' Protection Hatayein</button></div></div>' +
-        '<div class="asp-note">' + ico("alert") + '<div>Naye students ko registration ke waqt ye code dena hoga — isse koi bhi bina permission ke aapke institute mein register nahi kar payega. Ye code sirf apne asli students ko hi dein.</div></div>' +
+        '<div class="asp-note">' + ico("alert") + '<div>Naye students ko registration ke waqt ye code dena hoga — bina code ke koi aapke institute mein register nahi kar paayega. Code sirf apne students ko dein.</div></div>' +
         '<div style="display:none" data-borrow="institute-joincode-status" data-after="jc"></div>');
     },
     pwd: function (done) {
       done("Admin Password", "Password aur recovery",
-        '<div class="asp-card asp-ctr" style="padding:20px 15px"><div class="asp-bell" style="background:linear-gradient(135deg,#fb923c,#c2410c);box-shadow:0 0 0 8px #ffedd5,0 0 0 16px #fff7ed">' + ico("lock") + '</div><div style="font-size:1rem;font-weight:800">Aapka password surakshit hai</div><p>Password Firebase mein save hota hai, isliye har device par same rahega.</p></div>' +
+        '<div class="asp-card asp-ctr" style="padding:20px 15px"><div class="asp-bell" style="background:linear-gradient(135deg,#fb923c,#c2410c);box-shadow:0 0 0 8px #ffedd5,0 0 0 16px #fff7ed">' + ico("lock") + '</div><div style="font-size:1rem;font-weight:800">Aapka password surakshit hai</div><p>Password online save hota hai, isliye har device par same rahega.</p></div>' +
         '<div class="asp-grp">' + row2("refresh", "orc", "Change Password", "Naya password set karein", "pw") + row2("info", "blu", "Recovery Info", "Password bhool jaayein to kaise milega", "rec") + '</div>' +
         '<button type="button" class="asp-row asp-logout" data-go="lo" style="margin-top:14px"><span class="asp-ic" style="background:' + TILE.red + '">' + ico("out") + '</span><span class="asp-tx"><b style="color:#b91c1c">Admin Logout</b><small>Is device se admin logout</small></span></button>');
     },

@@ -95,7 +95,7 @@
     });
     return { people: people, bad: bad };
   }
-  /* Google Form ke sawal (script aur import dono yahi titles use karte hain) */
+  /* Google Form ke sawaal (script aur import dono yahi titles use karte hain) */
   var FORM_Q = { name: "Student ka Naam", mobile: "Mobile Number (10 digit)", father: "Father / Guardian ka Naam", cls: "Class", dob: "Date of Birth", school: "School / Institute ka Naam" };
   function rowsToPeople(rows) {
     var out = [];
@@ -190,7 +190,7 @@
     });
   }
   function saveRoster() {
-    var d = DB(), reg = S.reg; if (!d) { alert("Firebase se connect nahi ho paya — internet check karein."); return Promise.resolve(false); }
+    var d = DB(), reg = S.reg; if (!d) { alert("Server se connect nahi ho paya — internet check karein."); return Promise.resolve(false); }
     var ref = d.collection(REGS).doc(reg.id);
     return ref.collection("roster").doc("main").set({ list: S.R.list, retired: S.R.retired, updatedAt: FV().serverTimestamp() })
       .then(function () { reg.count = S.R.list.length; return ref.update({ count: reg.count, updatedAt: FV().serverTimestamp() }); })
@@ -261,7 +261,7 @@
   function createReg() {
     var name = val("reg-new-name"), date = $("reg-new-date").value || "", d = DB();
     if (!name) { note("⚠️ Registration ka naam likhein."); return; }
-    if (!d) { alert("Firebase se connect nahi ho paya — internet check karein."); return; }
+    if (!d) { alert("Server se connect nahi ho paya — internet check karein."); return; }
     var iid = iidNow(), ref = d.collection(REGS).doc(), cn = ""; try { cn = typeof getCachedAdminInstituteName === "function" ? getCachedAdminInstituteName() : ""; } catch (e) {}
     var doc = { name: name, date: date, time: "", reportTime: "", venue: "", notes: "", rollDigits: digitsOf($("reg-new-digits").value), published: false, count: 0, instituteName: cn || "", createdAt: FV().serverTimestamp(), updatedAt: FV().serverTimestamp() };
     if (iid) doc.instituteId = iid;
@@ -273,7 +273,7 @@
     return loadReg(id).then(function () { S.tq = ""; S.pdfGroup = ""; S.edit = null; S.photo = null; S.setup = false; showView("cur"); note(""); resetForm(true); renderCur(); }).catch(function (e) { note("❌ " + (e.message || e)); });
   }
   function deleteReg(r) {
-    if (!confirm("\"" + (r.name || "Registration") + "\" delete karein?" + (r.published ? "\nStudents ke published Admit Card bhi hat jayenge. (Is se jude exams ka roster waisa hi rahega.)" : ""))) return;
+    if (!confirm("\"" + (r.name || "Registration") + "\" delete karein?" + (r.published ? "\nStudents ke published Admit Card bhi hat jaayenge. (Is se jude exams ka roster waisa hi rahega.)" : ""))) return;
     var d = DB(); if (!d) return;
     note("⏳ Delete ho raha hai...");
     var ref = d.collection(REGS).doc(r.id);
@@ -386,10 +386,10 @@
   function publish() {
     var reg = S.reg, R = S.R, d = DB();
     if (!R.list.length) { note("⚠️ Pehle students jodein."); return; }
-    if (!d) { alert("Firebase se connect nahi ho paya."); return; }
+    if (!d) { alert("Server se connect nahi ho paya."); return; }
     var p = readDetails(); if (!reg.published) p.rollDigits = digitsOf($("reg-f-digits").value);
     var pending = R.list.filter(function (e) { return !e.roll; }).length, first = !reg.published, nophoto = R.list.filter(function (e) { return !e.hasPhoto; }).length;
-    var msg = (first ? R.list.length + " students ko RANDOM roll number mil jayenge (sab institute/class mix) aur Admit Card ban jayega.\n\nPublish ke baad roll kabhi nahi badlenge." : (pending ? pending + " bina-roll wale students ko roll dekar " : "") + R.list.length + " students ke Admit Card update honge.") + (nophoto ? "\n\n⚠️ " + nophoto + " students ki photo nahi hai (card par photo ka khaali box aayega)." : "") + "\n\nAage badhein?";
+    var msg = (first ? R.list.length + " students ko RANDOM roll number mil jaayenge (sab institute/class mix) aur Admit Card ban jaayega.\n\nPublish ke baad roll kabhi nahi badlenge." : (pending ? pending + " bina-roll wale students ko roll dekar " : "") + R.list.length + " students ke Admit Card update honge.") + (nophoto ? "\n\n⚠️ " + nophoto + " students ki photo nahi hai (card par photo ka khaali box aayega)." : "") + "\n\nAage badhein?";
     if (!confirm(msg)) return;
     var a = assignRolls(R.list, { rollDigits: p.rollDigits || reg.rollDigits, retired: R.retired });
     if (a.error) { note("⚠️ Roll digits kam hain — " + a.error.need + " ya zyada digits chunein."); return; }
@@ -468,7 +468,7 @@
     var reg = S.reg, c = cfg(); note("⏳ Google Form ban raha hai...");
     gs("create", { title: (reg.name || "Exam") + " — Registration", desc: (reg.name || "Test") + (reg.date ? " (" + prettyDate(reg.date) + ")" : "") + " ke liye registration. Sahi jaankari bharein — isi se Admit Card banega." })
       .then(function (j) { return patchReg({ formEndpoint: c.url, formToken: c.token, formId: j.formId, formUrl: j.url, formEditUrl: j.editUrl }); })
-      .then(function (ok) { if (ok) { note("✅ Google Form ban gaya. Link students/institutes ko bhejein; bharte hi yahan 🔄 se register ho jayenge."); renderForm(); } })
+      .then(function (ok) { if (ok) { note("✅ Google Form ban gaya. Link students/institutes ko bhejein; bharte hi yahan 🔄 se register ho jaayenge."); renderForm(); } })
       .catch(function (e) { note("❌ Form nahi bana: " + (e.message || e)); });
   }
   function pullResponses() {
@@ -490,7 +490,7 @@
     var reg = S.reg, c = cfg();
     if (!c || S.setup) {
       box.appendChild(h("p", { class: "muted-text", text: c ? "Setup dobara:" : "Students ko khud register karne ke liye Google Form automatic banta hai. Bas ek baar (5 min) ye setup chahiye:" }));
-      ["1) script.google.com kholein (jis Google account se form banana ho) → New project.", "2) Niche ka code pura copy karke wahan paste karein (purana code hata dein) → Save.", "3) Deploy → New deployment → Type: Web app → Execute as: Me → Who has access: Anyone → Deploy → Allow (permission dein).", "4) Jo Web app URL (…/exec) mile use neeche paste karke Save dabayein."].forEach(function (t) { box.appendChild(h("div", { class: "muted-text", text: t })); });
+      ["1) script.google.com kholein (jis Google account se form banana ho) → New project.", "2) Neeche ka code pura copy karke wahan paste karein (purana code hata dein) → Save.", "3) Deploy → New deployment → Type: Web app → Execute as: Me → Who has access: Anyone → Deploy → Allow (permission dein).", "4) Jo Web app URL (…/exec) mile use neeche paste karke Save dabayein."].forEach(function (t) { box.appendChild(h("div", { class: "muted-text", text: t })); });
       var code = h("textarea", { class: "reg-code", rows: "6", readonly: "" }); code.value = buildScript(setupToken()); box.appendChild(code);
       box.appendChild(h("div", { class: "ros-btnrow" }, [h("button", { type: "button", class: "btn-secondary", text: "📋 Code copy karein", onclick: function () { copyText(code.value, "📋 Code copy ho gaya — script.google.com par paste karein."); } })]));
       box.appendChild(h("label", { class: "ros-field" }, [h("span", { text: "Web app URL" }), h("input", { id: "reg-gs-url", placeholder: "https://script.google.com/macros/s/…/exec" })]));

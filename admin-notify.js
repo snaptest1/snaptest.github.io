@@ -107,7 +107,7 @@
         var sm = document.createElement("small"); sm.textContent = (x.type === "test" ? "📝 Auto (test) • " : "") + ago(ms); sm.style.color = "#94a3b8";
         tx.append(b1, p, sm);
         var del = document.createElement("button"); del.type = "button"; del.textContent = "🗑️"; del.style.cssText = "background:none;border:0;cursor:pointer;font-size:1.05rem";
-        del.onclick = function () { if (confirm("Ye notification delete karein? Students ki list se bhi hat jayegi.")) d.ref.delete().then(loadList).catch(function () { st("❌ Delete nahi hua."); }); };
+        del.onclick = function () { if (confirm("Ye notification delete karein? Students ki list se bhi hat jaayegi.")) d.ref.delete().then(loadList).catch(function () { st("❌ Delete nahi hua."); }); };
         r.append(tx, del); box.appendChild(r);
       });
     }).catch(function (e) { box.textContent = /permission/i.test(String(e && e.message)) ? "Naya firestore.rules deploy karein." : "List load nahi hui."; });

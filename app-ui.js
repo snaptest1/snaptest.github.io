@@ -343,7 +343,7 @@
   }
   var BATCH_SVG = '<span class="sn-i"><svg viewBox="0 0 24 24" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>';
   var BGS = ["#e8e7ff", "#fce7f3", "#ede9fe", "#d9f7f3", "#fff0cc", "#ffedd5", "#dbeafe", "#dcfce7", "#ffe4e4", "#e5e7eb"];
-  /* page admin dashboard ke sections se hi banta hai (naya card aaye to apne-aap judta hai, jaise Question Reports) */
+  /* page admin dashboard ke sections se hi banta hai (naya card aaye to apne aap judta hai, jaise Question Reports) */
   function aCards(k) {
     var home = $("admin-dashboard-home"), out = []; if (!home) return out;
     classifyAdmin();

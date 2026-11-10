@@ -172,7 +172,7 @@
         '<div class="ssp-card"><div class="ssp-line"><div class="ssp-ic" style="background:' + TILE.ind + '">' + ico("dl") + '</div><div class="ssp-tx"><b>Update check</b><p>Naya version / APK aaya hai ya nahi dekhein.</p></div></div><div class="ssp-act"><button type="button" class="ssp-btn" data-sgo="update">' + ico("refresh") + ' Update check karein</button></div>' +
         '<div class="ssp-sep"></div><div class="ssp-line"><div class="ssp-ic" style="background:' + TILE.tea + '">' + ico("trash") + '</div><div class="ssp-tx"><b>Cache saaf karke refresh</b><p>Kuch purana ya adhura dikhe to ye karein. Aapka login bana rahega.</p></div></div><div class="ssp-act"><button type="button" class="ssp-btn o" data-sgo="cache">' + ico("trash") + ' Cache saaf karein</button></div></div>' +
         '<div class="ssp-card"><h4>' + ico("cloud") + ' Offline &amp; Sync</h4><div class="ssp-stat wait" id="ssp-sync-box"><div class="l"><span class="ssp-ping"></span>Data status</div><span class="ssp-pill" id="ssp-sync-pill" style="margin:0"><i></i><span id="ssp-sync-txt">…</span></span></div>' +
-        '<p style="margin-top:10px">Internet na ho tab bhi app saved data se chalegi. Offline kiye badlav internet aate hi apne-aap online save ho jaayenge.</p><div class="ssp-act"><button type="button" class="ssp-btn o" data-sgo="sync">' + ico("refresh") + " Abhi sync karein</button></div></div>");
+        '<p style="margin-top:10px">Internet na ho tab bhi app saved data se chalegi. Offline kiye badlav internet aate hi apne aap online save ho jaayenge.</p><div class="ssp-act"><button type="button" class="ssp-btn o" data-sgo="sync">' + ico("refresh") + " Abhi sync karein</button></div></div>");
       paintSync();
     }
   };

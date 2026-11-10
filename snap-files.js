@@ -2,7 +2,7 @@
 /* SnapFiles (v169) — apna file storage. Notes / PPT / recording / assignment ki file device se seedhe Cloudflare R2 me (Worker ke through),
    Firebase Storage / Firestore ki limit ki zaroorat nahi. Firestore me sirf chhota pointer { key, name, type, size } save hota hai.
    - File <= 8 MB: ek request. Badi file: 8 MB ke tukde (multipart), har tukda 4 baar tak retry -> file size ki practical limit nahi.
-   - Worker / R2 set na ho ya fail ho to caller (batch-system.js) apne-aap purane Firebase tareeke par chala jaata hai.
+   - Worker / R2 set na ho ya fail ho to caller (batch-system.js) apne aap purane Firebase tareeke par chala jaata hai.
    - Kill-switch: SNAP_CONFIG.ownFiles = false. Worker URL: SNAP_CONFIG.workerUrl. */
 (function () {
   "use strict";

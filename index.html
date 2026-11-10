@@ -308,7 +308,7 @@
         <div class="cd-hero">
           <div class="cd-hero-text">
             <h2>Hi <span id="cd-student-name">Student</span> 👋</h2>
-            <p>Exam-level mock tests attempt karein aur apni preparation ko boost karein. 🏆</p>
+            <p>Mock tests dein aur apni taiyari badhayein. 🏆</p>
           </div>
       <div class="cd-hero-emoji" aria-hidden="true">🎯</div>
         </div>
@@ -432,12 +432,12 @@
       </div>
 
       <!-- ── 3D Solids Lab (v125) — Surface Area/Volume ke solids
-           interactively banaiye, ghumaiye, cut karke andar dekhiye.
+           interactively banaiye, ghumaiye, cut karke andar dekhein.
            React+Three.js widget hai, __ensureLib se lazy load hota
            hai (goStudentSection wiring script.js mein). ── -->
       <div class="card hidden" id="student-solids-lab-card">
         <h3 class="section-title">📐 3D Solids Lab</h3>
-        <p class="muted-text">Cylinder, cone, sphere, cuboid jaise solids khud banaiye aur ghumaiye, unhe stack/combine kariye, cut karke andar dekhiye — aur unka Volume/Surface Area formula turant saamne dekhiye.</p>
+        <p class="muted-text">Cylinder, cone, sphere, cuboid jaise solids banayein, ghumayein aur kaat kar andar dekhein — Volume/Surface Area formula turant dikhega.</p>
         <div id="solids-lab-mount-student" class="solids-lab-root"></div>
       </div>
 
@@ -520,7 +520,7 @@
 
         <div style="margin-top:16px;padding-top:14px;border-top:1px solid #e2e8f0;">
           <h4 style="margin:0 0 6px;font-size:.92rem;">🔔 Notifications</h4>
-          <p class="muted-text" style="margin-top:0;">Default se ON rehti hain — jaise hi naya test publish hoga aur aapka app khula ho (background tab bhi chalega), notification turant aa jaayegi. Nahi chahiye to yahan se off kar sakte hain.</p>
+          <p class="muted-text" style="margin-top:0;">Naya test aate hi notification milega. Nahi chahiye to yahan se band karein.</p>
           <button type="button" id="push-notify-toggle-btn" class="btn-secondary" onclick="window.SavyaPush && window.SavyaPush.toggle()">🔔 Notifications On Karein</button>
           <p id="push-notify-status" class="muted-text" style="margin-top:8px;font-size:.8rem;"></p>
         </div>
@@ -543,7 +543,7 @@
           <h3 class="section-title" style="margin-bottom:0;">🧾 Mera Result — Sahi/Galat Dekhein</h3>
           <button type="button" id="my-result-refresh-btn" class="btn-secondary" style="font-size:.78rem;padding:5px 12px;">🔄 Refresh</button>
         </div>
-        <p class="muted-text">Aapne jo bhi test diya hai (online ho, OMR ho, ya offline sheet check karke chadhaya gaya ho), sabme aapne kaun sa sawaal sahi kiya aur kaun sa galat, wo yahan automatically dikhega — apna number dobara dalne ki zaroorat nahi.</p>
+        <p class="muted-text">Aapke diye har test (online, OMR ya offline) mein kaun sa sawaal sahi hua aur kaun sa galat — yahan apne aap dikhega.</p>
         <div id="my-result-list" style="margin-top:12px;"></div>
 
         <div id="my-paper-exam-section" class="hidden" style="margin-top:18px;">
@@ -563,13 +563,13 @@
       <!-- ── PRACTICE MODE (unlimited, no timer pressure, doesn't count towards ranking) ── -->
       <div class="card hidden" id="practice-mode-card">
         <h3 class="section-title">🎯 Practice Mode</h3>
-        <p class="muted-text">Bina time-pressure ke practice karo — turant sahi/galat pata chalega, koi rank/marks count nahi hote.</p>
+        <p class="muted-text">Bina time-pressure ke practice karein — turant sahi/galat pata chalega. Rank/marks count nahi hote.</p>
         <div class="field-row">
           <label for="practice-subject-filter">Subject</label>
           <select id="practice-subject-filter"></select>
         </div>
         <div class="field-row">
-          <label for="practice-question-count">Chapters (ek se zyada select kar sakte hain — kuch bhi select na karein to sabhi chapters shamil honge)</label>
+          <label for="practice-question-count">Chapters (ek ya zyada chunein — kuch na chunein to sabhi chapters shamil honge)</label>
         </div>
         <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
           <button type="button" id="practice-select-all-chapters" class="btn-secondary" style="font-size:.78rem;padding:5px 12px;">☑️ Sabhi Select Karein</button>
@@ -586,7 +586,7 @@
       <!-- ── MY PROGRESS (score trend across all tests) ── -->
       <div class="card hidden" id="my-progress-card">
         <h3 class="section-title">📈 My Progress</h3>
-        <p class="muted-text">Aapke saare tests ka score trend — dekhein aap time ke saath improve kar rahe hain ya nahi.</p>
+        <p class="muted-text">Aapke saare tests ka score trend — dekhein kitna improve ho raha hai.</p>
         <div id="my-progress-empty" class="muted-text">Abhi tak koi test attempt nahi hua.</div>
         <canvas id="my-progress-chart" height="140" style="display:none;"></canvas>
       </div>
@@ -594,7 +594,7 @@
       <!-- ── MY MISTAKES (auto-collected wrong answers, revise anytime) ── -->
       <div class="card hidden" id="my-mistakes-card">
         <h3 class="section-title">❌ My Mistakes</h3>
-        <p class="muted-text">Jo bhi question kisi test mein galat hua, wo yahan automatically save ho jata hai — revise karke "Maine sikh liya" dabayein.</p>
+        <p class="muted-text">Test mein galat hue questions yahan apne aap save hote hain — revise karke "Maine sikh liya" dabayein.</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
           <button type="button" id="refresh-mistakes-btn" class="btn-secondary">🔄 Refresh</button>
           <button type="button" id="practice-mistakes-btn" class="btn-primary" style="background:linear-gradient(135deg,#f59e0b,#d97706);">🔁 Inhe Practice Karein</button>
@@ -624,7 +624,7 @@
       <div class="test-analysis-sheet">
         <button type="button" class="test-analysis-close" onclick="examgrCloseAdd()">✕</button>
         <div class="test-analysis-title">🗂️ Naya Exam Banayein</div>
-        <p class="muted-text">Ye ek offline/paper exam record banayega — question bank se link nahi hota.</p>
+        <p class="muted-text">Offline/paper exam ka record banega.</p>
         <div class="field-row">
           <label for="examgr-add-name">Exam Name</label>
           <input type="text" id="examgr-add-name" placeholder="jaise: Half Yearly Test">
@@ -665,7 +665,7 @@
            <label for="examgr-add-reg">📝 Registration se jodein (pehle se register students + roll)</label>
            <select id="examgr-add-reg"></select>
          </div>
-         <p class="muted-text" style="font-size:.78rem;margin-top:-6px;">Note: printable OMR sheet ek fixed 100-question/5-column layout par based hai, isliye questions max 100 tak rakhein. 1 se zyada set ho to har set ki apni answer key Answer Key screen mein alag se bharni hogi.</p>
+         <p class="muted-text" style="font-size:.78rem;margin-top:-6px;">Note: OMR sheet 100 questions / 5 columns ki hai, isliye questions 100 tak rakhein. Ek se zyada set ho to har set ki answer key Answer Key screen mein alag bharein.</p>
         <button type="button" class="btn-primary" id="examgr-add-save-btn" style="width:100%;">💾 Exam Banayein</button>
       </div>
     </div>
@@ -732,8 +732,8 @@
             <input type="number" id="examgr-settings-sets" min="1" max="5" inputmode="numeric">
           </div>
           <div class="field-row">
-            <label for="examgr-settings-attempt">Attempt Limit (pehle itne bhare hue sawal hi check hon)</label>
-            <input type="number" id="examgr-settings-attempt" min="1" max="100" inputmode="numeric" placeholder="Khali = sab sawal check hon">
+            <label for="examgr-settings-attempt">Attempt Limit (pehle itne bhare hue sawaal hi check hon)</label>
+            <input type="number" id="examgr-settings-attempt" min="1" max="100" inputmode="numeric" placeholder="Khali = sab sawaal check hon">
           </div>
         </div>
 
@@ -793,7 +793,7 @@
       <div class="test-analysis-sheet examgr-sheet-modal">
         <button type="button" class="test-analysis-close" onclick="examgrCloseOmrSheet()">✕</button>
         <div class="test-analysis-title">🗒️ OMR / Bubble Sheet</div>
-        <p class="muted-text">100-question, 5-column standard layout — print karke seedha use karein. Corner ke 4 kaale square poori tarah dikhne chahiye.</p>
+        <p class="muted-text">100 question, 5 column — print karke seedha use karein. Corner ke 4 kaale square poore dikhne chahiye.</p>
         <div class="examgr-sheet-preview-wrap"><div class="examgr-sheet-preview" id="examgr-sheet-preview"></div></div>
         <button type="button" class="btn-primary" id="examgr-sheet-jpg-btn" style="width:100%;margin-top:14px;">🖼️ JPG Download Karein</button>
         <div class="muted-text" style="margin:14px 0 4px;font-weight:700;">✅ Bhari hui Reference OMR (sahi answers bhare hue)</div>
@@ -806,7 +806,7 @@
       <div class="test-analysis-sheet examgr-scan-modal">
         <button type="button" class="test-analysis-close" onclick="examgrCloseScanner()">✕</button>
         <div class="test-analysis-title">📷 Scan Sheet</div>
-        <p class="muted-text" id="examgr-scan-desc">Sheet ko 4 corner ke kaale square blue box ke andar rakhein — sab align hote hi photo apne aap capture ho kar Answer Key se check ho jaati hai.</p>
+        <p class="muted-text" id="examgr-scan-desc">Sheet ko blue box mein rakhein — 4 corner ke kaale square align hote hi photo apne aap ho jaayegi aur Answer Key se check hogi.</p>
 
         <div class="examgr-scan-graded-head" id="examgr-scan-graded-head" hidden>
           <span>Roll No <strong id="examgr-scan-g-roll">0</strong></span>
@@ -844,7 +844,7 @@
           <div class="examgr-scan-permission" id="examgr-scan-permission" hidden>
             <div class="examgr-scan-permission-panel">
               <strong>📷 Camera access chahiye</strong>
-              <p id="examgr-scan-permission-msg">Browser ke permission popup mein Camera allow karein, phir dobara try karein.</p>
+              <p id="examgr-scan-permission-msg">Camera ki permission allow karein, phir dobara try karein.</p>
               <button type="button" class="btn-primary" id="examgr-scan-enable-btn">Camera Enable Karein</button>
             </div>
           </div>
@@ -869,7 +869,7 @@
       <div class="test-analysis-sheet examgr-akey-sheet">
         <button type="button" class="test-analysis-close" onclick="examgrCloseEdit()">✕</button>
         <div class="test-analysis-title">✏️ Reading Theek Karein</div>
-        <p class="muted-text">Camera ne jo padha usme kahin galti ho to yahan se sahi karein.</p>
+        <p class="muted-text">Camera se galat padha ho to yahan sahi karein.</p>
         <div class="examgr-edit-rollset" id="examgr-edit-rollset"></div>
         <div class="examgr-akey-list" id="examgr-edit-qlist"></div>
         <div class="examgr-akey-footer">
@@ -923,7 +923,7 @@
       <div class="test-analysis-sheet" style="max-width:420px;">
         <button type="button" class="test-analysis-close" onclick="examgrCloseLinkStudent()">✕</button>
         <div class="test-analysis-title">🔗 Student Se Link Karein</div>
-        <p class="muted-text">Is scanned result ko student ke mobile number se link karein — tab wo student apne "My Result" mein ye report (photo sahit) dekh payega. Neeche naam se registered student search karke chunein, number apne aap bhar jaayega.</p>
+        <p class="muted-text">Is result ko student ke mobile number se link karein — student ise apne "My Result" mein (photo ke saath) dekh paayega. Neeche naam se student chunein, number apne aap bhar jaayega.</p>
         <div class="field-row">
           <label for="examgr-link-name-input">Registered Student Dhoondein (Naam se)</label>
           <input id="examgr-link-name-input" type="text" placeholder="Student ka naam type karein..." autocomplete="off" />
@@ -1135,7 +1135,7 @@
           <h3 class="section-title" style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
             <span>📝 Saved Drafts <span id="create-drafts-count" style="font-size:.8rem;color:#6b7280;font-weight:600;"></span></span>
           </h3>
-          <small style="color:#6b7280;font-size:.78rem;display:block;margin-bottom:8px;">Paper Generator ya "Save as Draft" se bane tests yahan dikhte hain. <b>Edit</b> se neeche form me khulega, <b>Online Test Banao</b> se students ke liye publish ho jayega.</small>
+          <small style="color:#6b7280;font-size:.78rem;display:block;margin-bottom:8px;">Paper Generator ya "Save as Draft" se bane tests yahan dikhte hain. <b>Edit</b> se neeche form me khulega, <b>Online Test Banao</b> se students ke liye publish ho jaayega.</small>
           <div id="create-drafts-list" class="list-box"><p class="muted-text">Koi draft nahi hai.</p></div>
           <div id="create-drafts-legacy" style="margin-top:10px;"></div>
         </div>
@@ -1145,19 +1145,19 @@
           <div class="field-row">
             <label for="test-category">Category (optional)</label>
             <input id="test-category" type="text" placeholder="jaise: Percentage, Ratio and Proportion" />
-            <small style="color:#6b7280;font-size:.78rem;">Student ke "Start Test" screen par isi naam se ek filter tab ban jaata hai (jaise "Percentage (6)"). Same category naam wale sabhi tests ek hi tab mein group ho jaate hain. Khaali chhodne par test "General" tab mein dikhega.</small>
+            <small style="color:#6b7280;font-size:.78rem;">Student ke "Start Test" screen par isi naam ka filter tab banta hai (jaise "Percentage (6)"). Khaali chhodne par test "General" mein dikhega.</small>
           </div>
           <div class="field-row"><label for="test-minutes">Duration (min)</label><input id="test-minutes" type="number" value="30" /></div>
           <div class="field-row"><label for="test-marks">Marks / Question</label><input id="test-marks" type="number" value="2" step="0.25" /></div>
           <div class="field-row">
             <label for="test-attempt-limit">MCQ Attempt Limit (optional)</label>
             <input id="test-attempt-limit" type="number" min="1" placeholder="e.g. 90 (blank = sab MCQs attempt karo)" />
-            <small style="color:#6b7280;font-size:.78rem;">Agar bharoge (jaise 90), toh student MCQ questions me se koi bhi utne hi attempt kar sakta hai — us limit ke baad extra MCQ answers count nahi honge. Yeh sirf MCQ ke liye hai, subjective questions is limit mein count nahi hote. Khaali chhodo agar sab MCQ questions attempt karne hai.</small>
+            <small style="color:#6b7280;font-size:.78rem;">Kitne MCQ attempt kar sakte hain (jaise 90). Limit ke baad ke MCQ answers count nahi honge; subjective par limit nahi lagti. Khaali chhodein to sabhi MCQ attempt ho sakte hain.</small>
           </div>
           <div class="field-row">
             <label for="test-subjective-marks">Subjective Marks (optional)</label>
             <input id="test-subjective-marks" type="number" min="0" step="0.5" placeholder="e.g. 60 (agar is test paper mein Word wale subjective questions bhi hain)" />
-            <small style="color:#6b7280;font-size:.78rem;">Sirf tumhare record/total ke liye — yeh subjective questions system mein add nahi hote (wo tum MS Word mein banate ho), sirf unka total marks yahan note ho jaata hai. Student ko exam ya result mein kahin nahi dikhta, sirf admin ki Test List mein total marks ke saath jud kar dikhta hai.</small>
+            <small style="color:#6b7280;font-size:.78rem;">Sirf aapke record ke liye — subjective questions system mein add nahi hote, sirf unka total marks yahan note hota hai. Student ko exam/result mein nahi dikhta, sirf admin ki Test List mein dikhta hai.</small>
           </div>
           <div class="hidden">
             <div class="field-row">
@@ -1177,7 +1177,7 @@
                 <input id="test-start-time" type="datetime-local" style="flex:1;" title="Test kab se available hoga" />
                 <input id="test-end-time" type="datetime-local" style="flex:1;" title="Test kab band hoga" />
               </div>
-              <small style="color:#6b7280;font-size:.78rem;">Blank chhodo = hamesha available. Start time se pehle test lock rahega (students ko Upcoming dikhega, syllabus ke saath notification jayega).</small>
+              <small style="color:#6b7280;font-size:.78rem;">Khaali chhodein = hamesha available. Start time se pehle test lock rahega (students ko Upcoming dikhega, syllabus ke saath notification jaayega).</small>
             </div>
             <div class="field-row">
               <label for="test-syllabus">Syllabus (optional)</label>
@@ -1188,7 +1188,7 @@
 
           <div class="field-row" id="send-to-generator-row" style="margin-top:6px;">
             <button type="button" id="send-to-generator-btn" class="btn-secondary" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;border:none;font-weight:700;">📄 Questions Paper Generator mein Add Karein →</button>
-            <small style="color:#6b7280;font-size:.78rem;display:block;margin-top:6px;">Upar ki details (Title, Category, Duration, Marks, Limits) pehle bhar lein, phir yahan click karein. Seedha Paper Generator khul jaayega jahan Question Bank se select karke, naye likhkar, ya bulk paste karke poora paper taiyar kar sakte hain. Wahan "✅ Save &amp; Admin ko Bhejein" dabate hi ye test — questions ke saath — yahan wapas aa jaayega, taiyar hoke.</small>
+            <small style="color:#6b7280;font-size:.78rem;display:block;margin-top:6px;">Upar ki details (Title, Category, Duration, Marks, Limits) bhar kar yahan click karein. Paper Generator khulega — wahan paper banakar "✅ Save &amp; Admin ko Bhejein" dabayein, test questions ke saath yahan aa jaayega.</small>
           </div>
           <div class="hidden">
             <hr />
@@ -1250,7 +1250,7 @@
             <div id="question-subjective-fields" class="field-row hidden">
               <label for="question-marks">Max Marks (is question ke liye)</label>
               <input id="question-marks" type="number" min="0" step="0.5" placeholder="Khaali = test ke default marks/question" />
-              <small style="color:#6b7280;font-size:.78rem;">Student text mein jawab likhega, teacher baad mein manually check karke marks denge.</small>
+              <small style="color:#6b7280;font-size:.78rem;">Student text mein jawab likhega; teacher baad mein check karke marks denge.</small>
             </div>
             <div class="field-row"><label for="explanation-text-hi">Explanation (HI)</label><textarea id="explanation-text-hi" rows="2"></textarea></div>
             <button type="button" id="add-question" class="btn-secondary">Add Question to Test</button>
@@ -1294,7 +1294,7 @@
               <select id="bank-classid" onchange="onBankClassIdChange()">
                 <option value="">-- Class chunein --</option>
               </select>
-              <small style="color:#6b7280;font-size:.78rem;margin-top:2px;display:block;">Ye question kis Class ke liye hai — pehle Class chunein, tabhi Subject/Chapter list milegi</small>
+              <small style="color:#6b7280;font-size:.78rem;margin-top:2px;display:block;">Pehle Class chunein, tabhi Subject/Chapter list milegi.</small>
             </div>
             <div class="field-row"><label for="bank-subject-select">2️⃣ Subject</label>
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
@@ -1303,7 +1303,7 @@
                 </select>
                 <input id="bank-subject" type="text" aria-label="Or enter a new subject" placeholder="Ya naya subject likhein..." style="flex:1;min-width:160px;" oninput="updateMathPreview()" onchange="updateMathPreview()" />
               </div>
-              <small style="color:#6b7280;font-size:.78rem;margin-top:2px;display:block;">Dropdown se chunein <strong>ya</strong> naya subject manually likhein — save hone par automatically add ho jayega</small>
+              <small style="color:#6b7280;font-size:.78rem;margin-top:2px;display:block;">Dropdown se chunein <strong>ya</strong> naya subject manually likhein — save hone par automatically add ho jaayega</small>
             </div>
             <div class="field-row"><label for="bank-chapter">3️⃣ Chapter</label>
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
@@ -1312,7 +1312,7 @@
                 </select>
                 <input id="bank-chapter" type="text" placeholder="Ya naya chapter likhein..." style="flex:1;min-width:160px;" />
               </div>
-              <small style="color:#6b7280;font-size:.78rem;margin-top:2px;display:block;">Dropdown se chunein <strong>ya</strong> naya chapter manually likhein — save hone par automatically add ho jayega</small>
+              <small style="color:#6b7280;font-size:.78rem;margin-top:2px;display:block;">Dropdown se chunein <strong>ya</strong> naya chapter manually likhein — save hone par automatically add ho jaayega</small>
             </div>
             <div class="field-row"><label for="bank-question-hi">Question (HI)</label><textarea id="bank-question-hi" rows="2" oninput="updateMathPreview()"></textarea></div>
 
@@ -1322,14 +1322,14 @@
                 <div id="bank-math-preview" style="display:none;font-size:.95rem;color:#1e3a8a;">
                   <div id="bank-math-preview-body"></div>
                 </div>
-                <small id="bank-math-auto-hint" style="color:#1e40af;font-size:.78rem;">Bas normal likho jaise "x^2 – 3x + 2" — equation apne aap detect ho jayega, baaki Hindi/English text waisa hi rahega.</small>
+                <small id="bank-math-auto-hint" style="color:#1e40af;font-size:.78rem;">Normal likhein, jaise "x^2 – 3x + 2" — equation apne aap pehchan li jaayegi.</small>
               </div>
               <div style="flex:1;min-width:260px;background:#fff7ed;border:1.5px dashed #fdba74;border-radius:8px;padding:10px 12px;">
               <label style="display:flex;align-items:center;gap:6px;font-size:.82rem;font-weight:700;color:#9a3412;cursor:pointer;user-select:none;margin-bottom:4px;" for="bank-manual-latex">
                   <input type="checkbox" id="bank-manual-latex" onchange="updateMathPreview()" style="width:15px;height:15px;cursor:pointer;accent-color:#ea580c;" />
                   🔧 MANUAL MODE (LaTeX khud likhna hai)
                 </label>
-                <small style="color:#9a3412;font-size:.78rem;display:block;">Check karo to auto-detect band ho jayega — sirf equation part ko khud <code>\( ... \)</code> mein likho, aur agar equation ke andar Hindi/English shabd likhne hain to unhe <code>\text{...}</code> mein rakho. Jaise: <code>यदि \(P(x) = x^2-3x-4\) तो \(P(x)\) का शून्यक है</code></small>
+                <small style="color:#9a3412;font-size:.78rem;display:block;">Check karo to auto-detect band ho jaayega — sirf equation part ko khud <code>\( ... \)</code> mein likho, aur agar equation ke andar Hindi/English shabd likhne hain to unhe <code>\text{...}</code> mein rakho. Jaise: <code>यदि \(P(x) = x^2-3x-4\) तो \(P(x)\) का शून्यक है</code></small>
               </div>
             </div>
 
@@ -1432,7 +1432,7 @@
       <div id="bulk-upload-box" class="hidden">
         <div class="card">
           <h3 class="section-title">📦 Bulk Question Upload</h3>
-          <p class="muted-text">Bahut saare questions ek saath text se paste karke Question Bank mein daalne ke liye. Format:</p>
+          <p class="muted-text">Bahut saare questions ek saath paste karne ke liye. Format:</p>
           <div style="font-size:.78rem;color:#64748b;background:#f1f5f9;border-radius:8px;padding:10px 12px;margin-bottom:12px;font-family:monospace;white-space:pre-wrap;">1. भारत की राजधानी क्या है?
 A) दिल्ली
 B) मुंबई
@@ -1488,7 +1488,7 @@ Model Answer: समाजवाद एक आर्थिक व्यवस्
             <label for="bulk-images-input">📷 Images Attach Karein (optional)</label>
             <input type="file" id="bulk-images-input" accept="image/*" multiple style="width:100%;padding:6px;border:1px dashed #94a3b8;border-radius:8px;background:#f8fafc;" onchange="handleBulkImagesSelected(this.files)" />
             <small style="color:#6b7280;font-size:.78rem;margin-top:2px;display:block;">
-              File ka naam question number se match karo (jaise <code>Q1.jpg</code>, <code>2.png</code>) — auto-attach ho jayega. Preview table me manually bhi attach/change kar sakte ho.
+              File ka naam question number se match karo (jaise <code>Q1.jpg</code>, <code>2.png</code>) — auto-attach ho jaayega. Preview table me manually bhi attach/change kar sakte ho.
             </small>
             <div id="bulk-images-status" style="font-size:.8rem;color:#0f766e;margin-top:4px;display:none;"></div>
           </div>
@@ -1645,7 +1645,7 @@ B"></textarea>
             <button type="button" class="cd-card cd-orange" onclick="showRecordsSubTab('fixmobile')">
               <div class="cd-card-top"><div class="cd-icon-circle">🔧</div><span class="cd-badge">Fix</span></div>
               <div class="cd-card-title">Fake/Galat Mobile Number Theek Karein</div>
-              <div class="cd-card-sub">Placeholder numbers (1111111111 jaise) AUR registered number se mismatch — dono pakde jaate hain</div>
+              <div class="cd-card-sub">Placeholder number (jaise 1111111111) aur registered number se mismatch — dono pakde jaate hain</div>
               <div class="cd-card-bottom"><span class="cd-arrow-btn">→</span></div>
             </button>
           </div>
@@ -1656,7 +1656,7 @@ B"></textarea>
           <button type="button" class="btn-secondary" onclick="backToRecordsHub()" style="margin-bottom:12px;">⬅ Records par wapas</button>
         <div class="card" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1.5px solid #fca5a5;margin-bottom:12px;">
           <h3 class="section-title" style="color:#991b1b;">🔑 Student Password Reset (Admin)</h3>
-          <p style="font-size:.82rem;color:#7f1d1d;margin-bottom:10px;">Agar student apna password AUR security PIN dono bhool jaaye, to unki identity WhatsApp/class mein confirm karne ke baad hi yahan se reset karein.</p>
+          <p style="font-size:.82rem;color:#7f1d1d;margin-bottom:10px;">Student ka password AUR security PIN dono bhool jaayein to pehchaan (WhatsApp/class mein) confirm karke hi reset karein.</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;">
             <div class="field-row" style="margin:0;">
               <label for="admin-reset-student-mobile">Student Mobile Number</label>
@@ -1678,7 +1678,7 @@ B"></textarea>
           <button type="button" class="btn-secondary" onclick="backToRecordsHub()" style="margin-bottom:12px;">⬅ Records par wapas</button>
         <div class="card" style="margin-bottom:16px;">
           <h3 class="section-title">👥 Students Directory</h3>
-          <p class="muted-text">Har registered student ka naam, mobile (ID), aur unke diye hue MCQ answers yahan milenge — chahe test online diya ho, OMR scan se ho, ya Manual Entry se marks chadhaye gaye ho.</p>
+          <p class="muted-text">Har registered student ka naam, mobile (ID) aur MCQ answers yahan milenge — online, OMR ya Manual Entry, kisi bhi tarah se diya ho.</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:10px;">
             <div class="field-row" style="margin:0;flex:1;min-width:180px;">
               <label for="students-directory-search">Naam ya Mobile Se Search Karein</label>
@@ -1758,7 +1758,7 @@ B"></textarea>
           <button type="button" class="btn-secondary" onclick="backToRecordsHub()" style="margin-bottom:12px;">⬅ Records par wapas</button>
         <div class="card" style="margin-bottom:16px;">
           <h3 class="section-title">🔧 Fake/Galat Mobile Number Theek Karein</h3>
-          <p class="muted-text">Manual Entry/OMR mein kabhi-kabhi placeholder number (jaise <code>1111111111</code>, <code>0000000000</code>) chadh jaate hain — aur kabhi-kabhi teacher se koi bhi RANDOM valid-dikhne wala number bhi galat type ho jaata hai (jo placeholder pattern na hone ki wajah se pehle pakda nahi jaata tha). Dono cases mein wo student Students Directory ke registered account se match nahi hota aur Leaderboard mein alag-se (duplicate) entry ban jaati hai. Yeh tool ab Students Directory se cross-check karke, registered number se mismatch bhi pakadta hai — jahan possible ho wahan sahi number khud-ba-khud suggest bhi kar deta hai. Confirm karke "Update Karein" dabayein — us group ke SAARE galat-number records ek saath sahi ho jayenge.</p>
+          <p class="muted-text">Manual Entry/OMR mein kabhi-kabhi placeholder number (jaise <code>1111111111</code>, <code>0000000000</code>) chadh jaate hain — aur kabhi-kabhi teacher se koi bhi RANDOM valid-dikhne wala number bhi galat type ho jaata hai (jo placeholder pattern na hone ki wajah se pehle pakda nahi jaata tha). Dono cases mein wo student Students Directory ke registered account se match nahi hota aur Leaderboard mein alag-se (duplicate) entry ban jaati hai. Yeh tool ab Students Directory se cross-check karke, registered number se mismatch bhi pakadta hai — jahan possible ho wahan sahi number apne aap suggest bhi kar deta hai. Confirm karke "Update Karein" dabayein — us group ke SAARE galat-number records ek saath sahi ho jaayenge.</p>
           <button type="button" class="btn-secondary" onclick="loadFakeMobileGroups()" style="margin-bottom:12px;">🔄 Refresh</button>
           <div id="fixmobile-list"><p class="muted-text">Loading...</p></div>
         </div>
@@ -1799,7 +1799,7 @@ B"></textarea>
                "Select Test" changes (see renderClasswideWeakChapters()). -->
           <div class="card" style="margin-top:16px;border:1.5px solid #6366f1;">
             <h3 class="section-title" style="color:#4338ca;">📊 Class-wide Weak Chapters</h3>
-            <p class="muted-text" style="margin-top:-6px;">Upar "Select Test" se ek test chunein (ya "Sabhi Tests" par rehne dein poori class ke saare tests ke liye) — neeche har chapter mein poori class ki accuracy dikhegi.</p>
+            <p class="muted-text" style="margin-top:-6px;">Test chunein (ya "Sabhi Tests" rehne dein) — neeche har chapter mein poori class ki accuracy dikhegi.</p>
             <div id="classwide-analytics-box"><p class="muted-text" style="margin:0;">Loading...</p></div>
           </div>
 
@@ -1812,7 +1812,7 @@ B"></textarea>
       <div id="grade-box" class="hidden">
         <div class="card">
           <h3 class="section-title">📝 Grade Subjective Answers</h3>
-          <p class="muted-text">Test chunein — jin students ne subjective questions ka jawab likha hai unki list neeche dikhegi. Har student ka jawab padhkar marks dein aur Save karein.</p>
+          <p class="muted-text">Test chunein — subjective jawab likhne wale students ki list neeche aayegi. Jawab padhkar marks dein aur Save karein.</p>
           <div class="field-row"><label for="grade-test-select">Test</label><select id="grade-test-select"></select></div>
           <div id="grade-students-list" class="list-box"></div>
         </div>
@@ -1828,7 +1828,7 @@ B"></textarea>
       <div id="leaderboard-box" class="hidden">
         <div class="card">
           <h3 class="section-title">🏆 Top Performers</h3>
-          <p class="muted-text">Sabhi students yahan total marks ke hisaab se rank mein dikhte hain. Kisi bhi student par click karke uske marks kis-kis test se bane, wo breakdown khul jaayega. Jis test ka Leaderboard OFF hai, uske marks yahan count nahi honge (aur breakdown mein "leaderboard se OFF" likha dikhega).</p>
+          <p class="muted-text">Sabhi students total marks ke hisaab se rank mein dikhte hain. Student par click karein to test-wise marks khulenge. Leaderboard OFF wale test ke marks count nahi hote.</p>
           <button type="button" class="btn-secondary" onclick="window.SavyaExtras.renderAdminLeaderboard()" style="margin-bottom:10px;">🔄 Refresh</button>
           <div id="admin-leaderboard-list"></div>
         </div>
@@ -1857,7 +1857,7 @@ B"></textarea>
              (id-card.js → renderAdminIdCard). -->
         <div class="card" style="margin-bottom:12px;">
           <h3 class="section-title" style="margin-top:0;">🪪 Aapka ID Card</h3>
-          <p class="muted-text" style="margin-top:-6px;">Logo par click karke apne institute ka logo lagayein — turant sabhi students ke ID Card par bhi dikhega. Photo aur Naam par click/✏️ se apni details set karein.</p>
+          <p class="muted-text" style="margin-top:-6px;">Logo par click karke institute ka logo lagayein (ID Card par bhi dikhega). Photo aur Naam par click/✏️ karke details set karein.</p>
           <div class="idcard-outer" id="admin-idcard-outer">
             <div class="idcard">
               <div class="idcard-header">
@@ -1920,7 +1920,7 @@ B"></textarea>
              ko kabhi doosre institutes ka code dikhta nahi. -->
         <div class="card" style="margin-bottom:12px;">
           <h3 class="section-title" style="margin-top:0;">🔑 Institute Join Code</h3>
-          <p class="muted-text" style="margin-top:-6px;">Naye students ko registration ke waqt yeh code dena hoga — isse koi bhi bina permission ke aapke institute mein register nahi kar payega. Ye code sirf apne asli students ko hi dein.</p>
+          <p class="muted-text" style="margin-top:-6px;">Naye students ko registration ke waqt ye code dena hoga — bina code ke koi aapke institute mein register nahi kar paayega. Code sirf apne students ko dein.</p>
           <p id="institute-joincode-status" class="muted-text" style="font-weight:700;">Loading...</p>
           <div class="field-row">
             <label for="institute-joincode-input">Naya Code Set/Badlein</label>
@@ -1932,14 +1932,14 @@ B"></textarea>
         <div class="card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1.5px solid #93c5fd;margin-bottom:12px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
           <div>
             <strong style="color:#1e40af;">📥 Firebase Question Bank Seed</strong>
-            <p style="font-size:.82rem;color:#3730a3;margin-top:3px;">Pehli baar click karo — sare subjects (Math &amp; History) ke questions Firebase mein save/update ho jayenge.</p>
+            <p style="font-size:.82rem;color:#3730a3;margin-top:3px;">Pehli baar click karein — sabhi subjects (Math &amp; History) ke questions save/update ho jaayenge.</p>
           </div>
           <button id="seed-questions-btn" class="btn-primary" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">🌱 Seed All Questions to Firebase</button>
         </div>
         <div class="card" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1.5px solid #fdba74;margin-bottom:12px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
           <div>
             <strong style="color:#9a3412;">🔐 Admin Password</strong>
-            <p style="font-size:.82rem;color:#7c2d12;margin-top:3px;">Password ab Firebase mein save hoga, isliye har device par same rahega.</p>
+            <p style="font-size:.82rem;color:#7c2d12;margin-top:3px;">Password ab online save hota hai, isliye har device par same rahega.</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
             <button id="change-admin-password-btn" class="btn-primary" style="background:linear-gradient(135deg,#ea580c,#c2410c);">🔁 Change Password</button>
@@ -1954,7 +1954,7 @@ B"></textarea>
       <div id="solidslab-box" class="hidden">
         <div class="card">
           <h3 class="section-title">📐 3D Solids Lab</h3>
-          <p class="muted-text">Surface Area aur Volume ke chapter ke solids (cylinder, cone, sphere, cuboid waghera) 3D mein banaiye, ghumaiye, cut karke andar dekhiye — class mein students ko concept live dikhane ke liye.</p>
+          <p class="muted-text">Surface Area aur Volume ke solids (cylinder, cone, sphere, cuboid) 3D mein banayein, ghumayein, kaat kar andar dekhein — class mein concept live dikhane ke liye.</p>
           <div id="solids-lab-mount-admin" class="solids-lab-root"></div>
         </div>
       </div>
@@ -1980,13 +1980,13 @@ B"></textarea>
           <button type="button" class="btn-secondary" onclick="backToOmrHub()" style="margin-bottom:12px;">⬅ OMR par wapas</button>
         <div class="card" style="margin-bottom:16px;">
           <h3 class="section-title">🖨️ OMR Sheet Banayein</h3>
-          <p class="muted-text">Kisi bhi test ke liye ek printable OMR answer sheet (PDF) banayein — students isi par offline apne answers bharenge.</p>
+          <p class="muted-text">Kisi bhi test ke liye printable OMR answer sheet (PDF) banayein — students isi par offline answers bharenge.</p>
           <div class="field-row">
             <label for="omr-sheet-test-select">Test Chunein</label>
             <select id="omr-sheet-test-select"></select>
           </div>
           <button type="button" id="omr-generate-sheet-btn" class="btn-primary">🖨️ OMR Sheet Generate Karein (JPG)</button>
-          <p class="muted-text" style="margin-top:8px;">Note: Sheet ko poori tarah (bina crop kiye, seedhi, achhi light mein) photo kheenchein — corner ke 4 kaale square poori tarah dikhne chahiye.</p>
+          <p class="muted-text" style="margin-top:8px;">Note: Sheet ki poori photo kheenchein (bina crop, seedhi, achhi light mein) — corner ke 4 kaale square poore dikhne chahiye.</p>
         </div>
         </div>
         <!-- /Generate OMR Sheet -->
@@ -1997,20 +1997,20 @@ B"></textarea>
 
         <div class="card" style="margin-bottom:16px;border:1.5px solid #7c3aed;">
           <h3 class="section-title" style="color:#6d28d9;">🤖 Auto-Scan Galat Ho To — ChatGPT Se Answers Nikalwayein</h3>
-          <p class="muted-text">Agar OMR Scanner kisi sheet ke answers galat pakad raha hai (jaise light marking, phone camera ka angle, ya shadow ki wajah se), to us student ki OMR sheet ki photo(s) ChatGPT ko dikha kar sahi answers nikalwaye ja sakte hain — phir neeche "Answers Type Karein" box mein seedha paste karke save kar dein.</p>
+          <p class="muted-text">Agar OMR Scanner kisi sheet ke answers galat pakde (halki marking, camera angle ya shadow se), to us sheet ki photo ChatGPT ko dikhakar sahi answers nikalwayein, phir neeche "Answers Type Karein" box mein paste karke save karein.</p>
           <button type="button" class="btn-secondary" onclick="copyChatGptOmrPrompt()">📋 ChatGPT Prompt Copy Karein</button>
           <ol style="margin:10px 0 0;padding-left:20px;font-size:.85rem;color:#475569;line-height:1.7;">
             <li><a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a> par ek naya chat kholein.</li>
-            <li>Upar wala "📋 ChatGPT Prompt Copy Karein" button dabayein, phir wahan paste karein.</li>
-            <li>Us student ki OMR sheet ki photo(s) (ek ya zyada) us hi message mein attach karein aur bhej dein.</li>
+            <li>Upar wala "📋 ChatGPT Prompt Copy Karein" button dabayein, phir ChatGPT mein paste karein.</li>
+            <li>Us sheet ki photo(s) usi message mein attach karke bhejein.</li>
             <li>ChatGPT jo <code>1 A</code> / <code>2</code> / <code>3 C</code> jaisa format wapas dega, use poora copy karein.</li>
-            <li>Neeche "Answers" box mein paste karein aur "Answers Parse Karein" dabayein — jitne answers milenge wo apne aap bhar jayenge, baaki dropdown se check/fix kar lein.</li>
+            <li>Neeche "Answers" box mein paste karke "Answers Parse Karein" dabayein — answers apne aap bhar jaayenge, baaki dropdown se check/fix karein.</li>
           </ol>
         </div>
 
         <div class="card" style="margin-bottom:16px;">
           <h3 class="section-title">✍️ Answers Type Karke Marks Chadhayein</h3>
-          <p class="muted-text">Photo ki zaroorat nahi — student ka OMR khud dekh kar answers yahan type karein, jaise: <code>1 c 2 b 3 a 4 d</code> (ek line me ya alag-alag lines me, "x" ya "-" likhne se woh question not-attempted maana jayega).</p>
+          <p class="muted-text">Photo ki zaroorat nahi — student ka OMR khud dekh kar answers yahan type karein, jaise: <code>1 c 2 b 3 a 4 d</code> (ek line me ya alag-alag lines me, "x" ya "-" likhne se woh question not-attempted maana jaayega).</p>
           <div class="field-row">
             <label for="omr-manual-test-select">Test Chunein</label>
             <select id="omr-manual-test-select"></select>
@@ -2043,11 +2043,11 @@ B"></textarea>
 
         <div class="card" style="margin-bottom:16px;">
           <h3 class="section-title">🗂️ Exam Manager</h3>
-          <p class="muted-text">Apne offline/paper exams yahan manage karein — question bank se link nahi hai, sirf ek halka record hai: answer key, sheets ka collection-count, aur reports jaisi bookkeeping ke liye.</p>
-          <button type="button" class="btn-secondary" onclick="__examgrOpenRegSafe()" style="width:100%;margin-bottom:8px;">📝 Registration (test se pehle students + admit card)</button>
-          <button type="button" class="btn-secondary" onclick="syncOldTestsToExamManager()" id="examgr-sync-old-btn" style="width:100%;margin-top:10px;">🔄 Purane Tests (draft bhi) Sync Karein</button>
-          <button type="button" class="btn-secondary" onclick="examgrCleanOrphans()" id="examgr-orphan-btn" style="width:100%;margin-top:10px;">🧹 Delete ho chuke OMR results student side se hatayein</button>
-          <p class="muted-text" style="font-size:.78rem;margin-top:4px;">Naye tests (draft bhi) ab yahan khud-ba-khud aa jaate hain. Ye button un purane tests ke liye hai jo is feature se PEHLE publish ho chuke the — ek baar dabane se sabhi (draft bhi) yahan sync ho jaayenge.</p>
+          <p class="muted-text">Offline/paper exams ka record yahan rakhein: answer key, sheets ki ginti aur reports.</p>
+          <button type="button" class="btn-secondary" onclick="__examgrOpenRegSafe()" style="width:100%;margin-bottom:8px;">📝 Registration aur Admit Card</button>
+          <button type="button" class="btn-secondary" onclick="syncOldTestsToExamManager()" id="examgr-sync-old-btn" style="width:100%;margin-top:10px;">🔄 Purane Tests Sync Karein</button>
+          <button type="button" class="btn-secondary" onclick="examgrCleanOrphans()" id="examgr-orphan-btn" style="width:100%;margin-top:10px;">🧹 Student side ke purane OMR results hatayein</button>
+          <p class="muted-text" style="font-size:.78rem;margin-top:4px;">Naye tests apne aap yahan aate hain. Ye button sirf purane tests ke liye hai.</p>
         </div>
 
         <div class="examgr-intro-row">

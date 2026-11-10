@@ -207,7 +207,7 @@
     try {
       var ex = await load(), d = difficulty(ex, results(ex));
       if (!d.rows.length) { alert("Abhi koi scanned result ya answer key nahi hai."); return; }
-      var body = '<div style="font-size:12px;color:#475569;margin-bottom:8px;">' + d.students + " students ke result se • sabse mushkil sawal pehle</div>" + d.rows.map(function (r) {
+      var body = '<div style="font-size:12px;color:#475569;margin-bottom:8px;">' + d.students + " students ke result se • sabse mushkil sawaal pehle</div>" + d.rows.map(function (r) {
         var col = r.wrongPct >= 60 ? "#dc2626" : r.wrongPct >= 35 ? "#f59e0b" : "#16a34a";
         return '<div style="border:1px solid #e5e7eb;border-radius:10px;padding:8px 10px;margin-bottom:6px;"><div style="display:flex;justify-content:space-between;font-weight:800;"><span>Q' + r.q + '</span><span style="color:' + col + ';">' + r.wrongPct + '% galat</span></div><div style="height:6px;background:#e5e7eb;border-radius:4px;margin:5px 0;overflow:hidden;"><div style="height:100%;width:' + r.wrongPct + "%;background:" + col + ';"></div></div><div style="font-size:12px;color:#475569;">Sahi ' + r.rightPct + "% • Blank " + r.blankPct + "% • Key " + esc(r.key) + (r.topWrong ? " • Sabse zyada galat option " + esc(r.topWrong) + " (" + r.topWrongPct + "%)" : "") + "</div>" + (r.keyDoubt ? '<div style="font-size:12px;font-weight:800;color:#b45309;margin-top:3px;">⚠️ Q' + r.q + " ki key galat ho sakti hai — zyada students ne " + esc(r.topWrong) + " bhara, key " + esc(r.key) + " hai. Key check karo.</div>" : "") + "</div>";
       }).join("");
@@ -242,7 +242,7 @@
       }
     }
     if (diff && diff.rows.length) {
-      var x2 = page(); x2.fillStyle = "#111827"; x2.font = "800 36px Arial"; x2.textAlign = "left"; x2.fillText("Sabse mushkil sawal (dobara padhao)", 60, 60);
+      var x2 = page(); x2.fillStyle = "#111827"; x2.font = "800 36px Arial"; x2.textAlign = "left"; x2.fillText("Sabse mushkil sawaal (dobara padhao)", 60, 60);
       var yy = 130; diff.rows.slice(0, 15).forEach(function (r) {
         x2.fillStyle = "#111827"; x2.font = "800 26px Arial"; x2.textAlign = "left"; x2.fillText("Q" + r.q, 60, yy);
         x2.fillStyle = "#e5e7eb"; x2.fillRect(190, yy + 6, 700, 24); x2.fillStyle = r.wrongPct >= 60 ? "#dc2626" : "#f59e0b"; x2.fillRect(190, yy + 6, 7 * r.wrongPct, 24);

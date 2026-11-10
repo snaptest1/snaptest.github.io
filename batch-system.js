@@ -86,7 +86,7 @@
       var qc = window.SnapQuota ? window.SnapQuota.check(inst, file.size) : Promise.resolve({ ok: true });
       return qc.then(function (q) {
         if (!q.ok) { toast(q.msg); return Promise.reject(Object.assign(new Error(q.msg), { quota: true })); }
-        return sd.upload(file, { inst: inst, batchId: batchId }, prog).then(function (d) { window.SnapQuota && window.SnapQuota.add(inst, d.size); toast("✅ Upload ho gaya • Link apne-aap ban gaya"); return { url: d.url, driveId: d.id, fileName: d.name, fileType: d.type, fileSize: d.size }; })
+        return sd.upload(file, { inst: inst, batchId: batchId }, prog).then(function (d) { window.SnapQuota && window.SnapQuota.add(inst, d.size); toast("✅ Upload ho gaya • Link apne aap ban gaya"); return { url: d.url, driveId: d.id, fileName: d.name, fileType: d.type, fileSize: d.size }; })
           .catch(function (e) { console.warn("[SnapDrive] fail:", e); toast("Google Drive upload nahi hua: " + (e && e.message || e) + " — doosre tareeke se try ho raha hai…"); return uploadFileOld(file, inst, batchId, prog); });
       });
     }
@@ -95,13 +95,13 @@
   function uploadFileOld(file, inst, batchId, prog) {
     var sf = window.SnapFiles;
     if (sf && sf.ready()) return sf.upload(file, { inst: inst, batchId: batchId }, prog).then(function (of) { if (of.used) toast("✅ Upload ho gaya • Storage: " + Math.round(of.used / 1048576) + " MB / 1 GB"); return { ownFile: of, fileName: file.name, fileType: of.type || file.type || "", fileSize: of.size }; })
-      .catch(function (e) { console.warn("[SnapFiles] apna storage fail — Firebase tareeka:", e); try { sf.noteFail(e); } catch (x) {} toast(e && (e.status === 507 || e.status === 413) ? e.message : "Apna storage nahi chala — Firebase se upload ho raha hai…"); return uploadFileFb(file, inst, batchId, prog); });
+      .catch(function (e) { console.warn("[SnapFiles] apna storage fail — Firebase tareeka:", e); try { sf.noteFail(e); } catch (x) {} toast(e && (e.status === 507 || e.status === 413) ? e.message : "Apna storage nahi chala — dusre storage se upload ho raha hai…"); return uploadFileFb(file, inst, batchId, prog); });
     return uploadFileFb(file, inst, batchId, prog);
   }
   function uploadFileFb(file, inst, batchId, prog) {
     var safe = file.name.replace(/[^\w.\-]+/g, "_"), path = "batches/" + inst + "/" + batchId + "/" + Date.now() + "_" + safe, st = storage();
     function viaChunks() {
-      if (file.size > MAXCH) return Promise.reject(new Error("Firebase Storage ON nahi hai — bina Storage ke file 4MB tak hi upload hoti hai. Badi file ke liye link use karein ya Storage ON karein."));
+      if (file.size > MAXCH) return Promise.reject(new Error("Online storage chalu nahi hai — file 4MB tak hi upload hogi. Badi file ke liye link use karein."));
       return file.arrayBuffer().then(function (buf) {
         var d = b64(buf), n = Math.ceil(d.length / CH) || 1, fref = bref(inst, batchId).collection("files").doc();
         return fref.set({ instituteId: inst, name: file.name, type: file.type || "", size: file.size, chunks: n, createdAt: FV().serverTimestamp() }).then(function () {
@@ -185,7 +185,7 @@
 
   function openAdmin() {
     if (typeof isAdminLoggedIn === "function" && !isAdminLoggedIn()) return;
-    if (!DB()) return toast("Firebase connection nahi hai");
+    if (!DB()) return toast("Server se connection nahi hai");
     /* v201 INSTANT OPEN: panel turant dikhao (pichla data ho to usi se), network load peeche chalta hai */
     var inst0 = typeof getCurrentAdminInstituteId === "function" ? getCurrentAdminInstituteId() : null;
     var warm = !!(inst0 && A.inst === inst0 && A.loaded && A.batches);
@@ -223,7 +223,7 @@
         }));
       });
     }).then(function () {
-      /* v218: admin ka koi bhi badlaav (item/subject/chapter/import/bulk) loadAll se guzarta hai -> catalog apne-aap match (sirf badle docs likhte hain) */
+      /* v218: admin ka koi bhi badlaav (item/subject/chapter/import/bulk) loadAll se guzarta hai -> catalog apne aap match (sirf badle docs likhte hain) */
       try { window.SnapCatalog && CFG.catalog !== false && window.SnapCatalog.syncAll(A.inst, A.batches, A.items, false); } catch (e) {}
       return healCounts();
     }).then(function () {
@@ -416,7 +416,7 @@
       .then(function () { audit("batch.deleteall", id); ov.remove(); A.students = null; toast("✅ Batch aur uska saara data delete ho gaya"); return loadAll(); })
       .then(function () { adminGo("batches"); })
       .catch(function (e) {
-        console.warn(e); say("❌ Beech me ruk gaya: " + (e.code || e.message) + "\n\nDobara 'Delete + Data' dabayein — jo bacha hai wo bhi hat jayega.");
+        console.warn(e); say("❌ Beech me ruk gaya: " + (e.code || e.message) + "\n\nDobara 'Delete + Data' dabayein — jo bacha hai wo bhi hat jaayega.");
         var x = ov.querySelector("#bm-dx"); x && (x.style.display = ""); var c = ov.querySelector("[data-c]"); c && (c.onclick = function () { ov.remove(); loadAll().then(function () { adminGo("batches"); }); });
       });
   }
@@ -428,11 +428,11 @@
     if (a === "edit") return batchForm(b);
     if (a === "content") { A.f = { batch: id }; return adminGo("class"); }
     if (a === "stu") { A.f = { batch: id }; return adminGo("students"); }
-    if (a === "arc") { if (!sure('"' + b.name + '" ko Archive karein?\n\nNayi enrollment band ho jayegi; enrolled students purana content dekhte rahenge. Kuch delete nahi hota — baad me Unarchive kar sakte hain.')) return; return bref(A.inst, id).update({ status: "archived", enrollment: "closed", updatedAt: FV().serverTimestamp() }).then(function () { audit("batch.archive", id); toast("Batch archive ho gaya"); return loadAll(); }).then(function () { adminGo("batches"); }); }
+    if (a === "arc") { if (!sure('"' + b.name + '" ko Archive karein?\n\nNayi enrollment band ho jaayegi; enrolled students purana content dekhte rahenge. Kuch delete nahi hota — baad me Unarchive kar sakte hain.')) return; return bref(A.inst, id).update({ status: "archived", enrollment: "closed", updatedAt: FV().serverTimestamp() }).then(function () { audit("batch.archive", id); toast("Batch archive ho gaya"); return loadAll(); }).then(function () { adminGo("batches"); }); }
     if (a === "tog") { var on = b.status !== "active"; return bref(A.inst, id).update({ status: on ? "active" : "inactive", published: on, updatedAt: FV().serverTimestamp() }).then(function () { audit("batch." + (on ? "activate" : "deactivate"), id); return loadAll(); }).then(function () { adminGo("batches"); }); }
     if (a === "delall") {
       return Promise.all([bref(A.inst, id).collection("members").get(), bref(A.inst, id).collection("assignments").get(), bref(A.inst, id).collection("testLinks").get()]).then(function (r) {
-        var msg = 'Batch "' + b.name + '" ka SAARA data permanently delete hoga:\n\n• ' + (A.items[id] || []).length + ' content (class / recording / notes / PPT / announcement) aur unki files\n• ' + r[0].size + ' students ki enrollment\n• ' + r[1].size + ' assignments (submissions ke saath)\n• ' + r[2].size + ' test links (tests delete nahi honge, batch se alag ho jayenge)\n• subjects, chapters, doubts, attendance\n\nPayments ka record bacha rahega. YE UNDO NAHI HOGA.\n\nConfirm karne ke liye batch ka naam likhein:';
+        var msg = 'Batch "' + b.name + '" ka SAARA data permanently delete hoga:\n\n• ' + (A.items[id] || []).length + ' content (class / recording / notes / PPT / announcement) aur unki files\n• ' + r[0].size + ' students ki enrollment\n• ' + r[1].size + ' assignments (submissions ke saath)\n• ' + r[2].size + ' test links (tests delete nahi honge, batch se alag ho jaayenge)\n• subjects, chapters, doubts, attendance\n\nPayments ka record bacha rahega. YE UNDO NAHI HOGA.\n\nConfirm karne ke liye batch ka naam likhein:';
         var typed = prompt(msg, ""); if (typed == null) return;
         if (typed.trim().toLowerCase() !== String(b.name || "").trim().toLowerCase()) return toast("Naam match nahi hua — delete nahi kiya");
         return deleteBatchAll(b);
@@ -460,7 +460,7 @@
     m.innerHTML = '<div class="bm-tools"><select id="bm-bf"><option value="all">All Batches</option>' + A.batches.map(function (b) { return '<option value="' + b.id + '"' + (bf === b.id ? " selected" : "") + '>' + esc(b.name) + '</option>'; }).join("") + '</select><input id="bm-q" placeholder="Search…" value="' + esc(A.f.q || "") + '"></div>' +
       '<div class="bm-tablewrap"><table class="bm-table"><tr><th>Title</th><th>Batch</th><th>Subject</th><th>' + (v === "class" ? "Schedule" : "Date") + '</th><th>Status</th><th>Actions</th></tr>' +
       (rows.length ? rows.map(function (i) { return '<tr><td><b>' + esc(i.title) + '</b>' + (i.cat ? '<br><small>' + esc(i.cat) + '</small>' : "") + '</td><td>' + esc(batchName(i.batchId)) + '</td><td>' + esc(i.subject || "—") + '</td><td>' + fdate(i.scheduledAt || i.createdAt) + '</td><td>' + stBadge(i) + '</td><td><div class="bm-act">' + itemActs(i) + '</div></td></tr>'; }).join("") : '<tr><td colspan="6"><div class="bm-empty">Abhi kuch nahi hai. Upar "+" se jodein.</div></td></tr>') + '</table></div>' +
-      (v === "recording" ? '<div class="bm-note">ℹ️ Recording tabhi "Ready" hoti hai jab aap uska valid link (YouTube unlisted / Google Drive / direct video URL) jodte hain. Bina link ke koi recording "saved" nahi maani jaati.</div>' : "");
+      (v === "recording" ? '<div class="bm-note">ℹ️ Recording tab "Ready" hoti hai jab aap uska valid link (YouTube unlisted / Google Drive / video URL) jodte hain.</div>' : "");
     $("#bm-bf").onchange = function () { A.f.batch = this.value; vItems(m, v); };
     $("#bm-q").oninput = function () { A.f.q = this.value; var p = this.selectionStart; vItems(m, v); var n = $("#bm-q"); n.focus(); n.setSelectionRange(p, p); };
     m.querySelectorAll("[data-a]").forEach(function (b) { b.onclick = function () { itemAct(b.dataset.a, b.dataset.b, b.dataset.id, v); }; });
@@ -487,7 +487,7 @@
     if (kind === "note" || kind === "material") f.push({ k: "cat", l: "Type", t: "select", o: NOTE_TYPES.map(function (x) { return x[0]; }) });
     if (kind !== "announcement") f.push({ k: "subject", l: "Subject" }, { k: "chapter", l: "Chapter" });
     f.push({ k: "desc", l: kind === "announcement" ? "Message" : "Description", t: "textarea", r: kind === "announcement" });
-    if (kind === "class") f.push({ k: "dt", l: "Date & Time", t: "datetime-local", r: 1, h: "Live class YouTube Live par hogi. 'Go Live' dabate waqt aap YouTube Live ka link daalenge — link pehle se student ko nahi dikhta." }, { k: "durationMin", l: "Duration (minutes)", t: "number" }, { k: "teacher", l: "Teacher" });
+    if (kind === "class") f.push({ k: "dt", l: "Date & Time", t: "datetime-local", r: 1, h: "Live class YouTube Live par hogi. 'Go Live' dabate waqt YouTube Live ka link daalein." }, { k: "durationMin", l: "Duration (minutes)", t: "number" }, { k: "teacher", l: "Teacher" });
     if (kind === "recording") f.push({ k: "durationMin", l: "Duration (minutes)", t: "number" }, { k: "teacher", l: "Teacher" });
     if (upl) f.push({ k: "file", l: it && (it.fileName || hasFile(it)) ? "Nayi File Upload (purani replace hogi)" : "File Upload", t: "file", acc: kind === "recording" ? "video/*,audio/*" : ".pdf,.ppt,.pptx,.doc,.docx,.xls,.xlsx,.txt,.csv,.zip,image/*,audio/*,video/*", h: "Phone/computer se seedhe upload — apna storage (badi file bhi chalegi, koi size limit nahi). Pehle upload poora hone dein." }, { k: "url", l: "YA Link (https)", h: "Google Drive (anyone with link) / YouTube / direct URL. Upload ya link — dono me se ek." + (it && it.fileName ? "<br>Abhi: " + esc(it.fileName) : "") });
     var vals = it ? Object.assign({ mode: "inapp" }, it, { dt: it.scheduledAt ? new Date(ms(it.scheduledAt) - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 16) : "" }) : { batchId: A.f.batch || (A.batches[0] || {}).id, cat: "Notes", mode: "external", subject: A.f.subject || "", chapter: A.f.chapter || "" };
@@ -622,7 +622,7 @@ function vPay(m) {
     authReady().then(function () { return pref(A.inst).get(); }).then(function (d) {
       var v = d.exists ? d.data() : {};
       m.innerHTML = '<div class="bm-card"><h3>UPI Payment Setup</h3><div class="bm-form"><label>Payee / Institute ka naam</label><input id="ps_n" value="' + esc(v.payeeName || "") + '" placeholder="Savyasachi Coaching">' +
-        '<label>UPI ID (optional)</label><input id="ps_u" value="' + esc(v.upiId || "") + '" placeholder="name@upi"><div class="bm-note">UPI ID dene par student ko "UPI app se pay karein" button milta hai (amount khud bhar jata hai).</div>' +
+        '<label>UPI ID (optional)</label><input id="ps_u" value="' + esc(v.upiId || "") + '" placeholder="name@upi"><div class="bm-note">UPI ID dene par student ko "UPI app se pay karein" button milta hai (amount apne aap bhar jaata hai).</div>' +
         '<label>QR Scanner image (PhonePe / GPay / Paytm ka QR screenshot)</label><input id="ps_f" type="file" accept="image/*"><div id="ps_p" style="margin-top:10px">' + (v.qr ? '<img src="' + v.qr + '" style="max-width:220px;border-radius:12px;border:1px solid #e2e8f0">' : '<span class="bm-note">Abhi QR set nahi hai.</span>') + '</div>' +
         '<div class="acts"><button class="bm-btn" id="ps_s">Save</button></div></div><div class="bm-note">⚠️ Payment automatic verify nahi hoti. Student UTR/screenshot bhejta hai, aap apni UPI app me paisa dekhkar Approve karte hain.</div></div>';
       $("#ps_f").onchange = function () { var f = this.files[0]; if (!f) return; shrink(f, 640, 380000).then(function (u) { A.f.qr = u; $("#ps_p").innerHTML = '<img src="' + u + '" style="max-width:220px;border-radius:12px;border:1px solid #e2e8f0">'; }).catch(function (e) { toast("Image nahi lagi: " + e.message); }); };
@@ -635,7 +635,7 @@ function vPay(m) {
     }).catch(function (e) { m.innerHTML = '<div class="bm-empty">Load nahi hua (' + esc(e.code || e.message) + ')</div>'; });
   }
   function vTests(m) {
-    m.innerHTML = '<div class="bm-card"><h3>Tests & Assignments</h3><p style="font-size:.86rem;color:#475569">Tests aapke maujooda Tests section se hi chalte hain (duplicate nahi banaya gaya). Test banakar publish karein — students use Tests tab me dekhte hain.</p><button class="bm-btn" id="bm-gt">Existing Tests kholein</button><p class="bm-note">Batch-wise test assignment aur assignment submissions agle phase me.</p></div>';
+    m.innerHTML = '<div class="bm-card"><h3>Tests & Assignments</h3><p style="font-size:.86rem;color:#475569">Tests aapke Tests section se hi chalte hain. Test banakar publish karein — students use Tests tab me dekhte hain.</p><button class="bm-btn" id="bm-gt">Existing Tests kholein</button><p class="bm-note">Batch-wise test assignment aur assignment submissions agle phase me.</p></div>';
     $("#bm-gt").onclick = function () { $("#bm-admin").remove(); typeof goAdmin === "function" && goAdmin("tests"); };
   }
 

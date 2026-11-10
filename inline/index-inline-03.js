@@ -17,7 +17,7 @@
         // nahi, page load speed par koi asar nahi).
         // OFFLINE FIX: yahan pehle har naye session me SAARE caches delete hote the (SW ka offline cache bhi),
         // isliye app offline kholne par "Web page not available" aata tha. Purane version ke cache
-        // sw.js ke 'activate' me apne-aap hat jaate hain, to yahan delete karne ki zaroorat nahi.
+        // sw.js ke 'activate' me apne aap hat jaate hain, to yahan delete karne ki zaroorat nahi.
         try {
           if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
             navigator.serviceWorker.getRegistrations().then(function (regs) {

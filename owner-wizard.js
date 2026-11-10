@@ -34,7 +34,7 @@
     return "";
   }
 
-  /* data jo institute doc me jayega (test me bhi yahi use hota hai) */
+  /* data jo institute doc me jaayega (test me bhi yahi use hota hai) */
   function buildDoc() {
     var d = { name: S.name.trim(), ownerName: S.owner.trim(), active: true, allowedClasses: S.classes.slice(),
       brandColor: validColor(S.color) ? S.color : "#4f46e5", plan: S.plan, studentLimit: Math.max(0, Math.floor(+S.slim || 0)), storageLimitMB: Math.max(0, Math.floor(+S.lim || 0)) };
@@ -53,7 +53,7 @@
   function body() {
     if (created) {
       var link = (cfg().webUrl || "https://snaptestpro.github.io/").replace(/\/?$/, "/") + "?inst=" + encodeURIComponent(created);
-      return '<h3 style="margin:6px 0">✅ Institute ban gaya</h3><div style="font-size:.84rem;line-height:1.55">Ab ye karein:<br>1. Institute card me <b>Admin Add</b> se uske admin ka email jodein.<br>2. Admin pehli baar login karke <b>Institute Settings → Mera Storage</b> me apna Drive jode.<br>3. Niche ka link ya APK students/admin ko dein.</div>' +
+      return '<h3 style="margin:6px 0">✅ Institute ban gaya</h3><div style="font-size:.84rem;line-height:1.55">Ab ye karein:<br>1. Institute card me <b>Admin Add</b> se uske admin ka email jodein.<br>2. Admin pehli baar login karke <b>Institute Settings → Mera Storage</b> me apna Drive jode.<br>3. Neeche ka link ya APK students/admin ko dein.</div>' +
         '<div style="margin:10px 0"><div style="font-size:.74rem;color:#666">App link</div><div style="display:flex;gap:6px"><input readonly value="' + esc(link) + '" style="flex:1;padding:7px;font-size:.78rem;min-width:0"><button type="button" class="owner-mini-btn" data-w="copy" data-v="' + esc(link) + '">Copy</button></div></div>' +
         '<div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" class="owner-mini-btn" data-w="apk">📱 APK / App Link</button><button type="button" class="owner-mini-btn" data-w="close" style="background:#4f46e5;color:#fff">Done</button></div>';
     }

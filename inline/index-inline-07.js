@@ -763,7 +763,7 @@ async function uploadOneBulkQuestion(q, subject, chapter, difficulty, classId, i
   // Firestore ka onSnapshot listener wapas aane mein thoda time (aur kabhi
   // network lag) lagta hai — tab tak ke liye local questionBank array mein
   // bhi turant push kar dete hain, taaki upload khatam hote hi list turant
-  // (bina Refresh button dabaye) update dikhe. deleteBankQuestion() mein
+  // (bina Refresh button dabayein) update dikhe. deleteBankQuestion() mein
   // bhi bilkul yahi pattern already use ho raha hai.
   if (typeof questionBank !== "undefined") {
     questionBank = questionBank.filter(x => x.id !== docId);
@@ -1485,7 +1485,7 @@ function renderManageChapters(){
   section.innerHTML=html;
 }
 function confirmDeleteSubject(subj){
-  if(!confirm('Delete "'+subj+'" subject?\n\nDropdown se hat jayega. Existing questions safe rahenge.'))return;
+  if(!confirm('Delete "'+subj+'" subject?\n\nDropdown se hat jaayega. Existing questions safe rahenge.'))return;
   deleteSubject(subj);
   var classId = currentBankClassId();
   var cur=(document.getElementById('bank-subject')||{}).value;
@@ -1494,7 +1494,7 @@ function confirmDeleteSubject(subj){
   renderManagePanel();
 }
 function confirmDeleteChapter(subject,chapter){
-  if(!confirm('Delete "'+chapter+'" chapter?\n\nDropdown se hat jayega. Existing questions safe rahenge.'))return;
+  if(!confirm('Delete "'+chapter+'" chapter?\n\nDropdown se hat jaayega. Existing questions safe rahenge.'))return;
   deleteChapter(subject,chapter);
   var classId = currentBankClassId();
   var cur=(document.getElementById('bank-chapter')||{}).value;
@@ -1647,7 +1647,7 @@ async function autoMergeAllDuplicates() {
   lastDupGroups = findDuplicates();
   if (!lastDupGroups.length) { alert('Koi duplicate nahi mila jise merge karein.'); return; }
   var totalRemove = lastDupGroups.reduce(function(n, g){ return n + g.items.length - 1; }, 0);
-  if (!confirm('🤖 Auto-Merge: ' + lastDupGroups.length + ' group(s) mein se best question rakha jayega aur ' + totalRemove + ' duplicate(s) Recycle Bin mein move ho jayenge.\n\nContinue karein?')) return;
+  if (!confirm('🤖 Auto-Merge: ' + lastDupGroups.length + ' group(s) mein se best question rakha jaayega aur ' + totalRemove + ' duplicate(s) Recycle Bin mein move ho jaayenge.\n\nContinue karein?')) return;
   var btn = document.getElementById('dup-automerge-btn');
   if (btn) { btn.disabled = true; btn.textContent = '⏳ Merging...'; }
   autoDupInProgress = true;
