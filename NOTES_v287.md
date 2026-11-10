@@ -6,3 +6,4 @@
 - Notifications: website/zip updates go to the Owner only. Students/admin get an app-update push only when THEIR institute's APK is built (topic app_inst_<id>).
   Needs: push-worker/worker.js redeployed on Cloudflare; .github/workflows only apply if WORKFLOW_PAT is set (otherwise edit them on GitHub).
 - Owner APK: scripts/build-www.js now bundles owner-enquiries.js (it was missing, so the Inbox tab never appeared in the Owner APK). Rebuild the Owner APK: Actions > Build Owner APK > Run workflow.
+- Owner APK now runs in live mode (APP_URL in build-owner-apk.yml): it opens the website's owner-app.html, so every website update shows in the Owner app automatically. Install the new Owner APK once; after that no rebuild is needed. owner-live.js also added to the bundled fallback list.
